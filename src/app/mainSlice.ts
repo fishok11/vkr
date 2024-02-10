@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
+import { Article } from './types';
 
-export interface InitialState {
-
-}
+export type InitialState = {
+  articles: Article[];
+};
 
 const initialState: InitialState = {
-
+  articles: [],
 };
 
 // export const incrementAsync = createAsyncThunk(
@@ -18,6 +19,7 @@ const initialState: InitialState = {
 //   }
 // );
 
+
 export const mainSlice = createSlice({
   name: 'main',
   initialState,
@@ -26,7 +28,7 @@ export const mainSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    builder
+    // builder
 
   },
 });
