@@ -1,8 +1,16 @@
+import { Routes, Route } from "react-router-dom";
+import MainPage from "./pages/MainPage";
+import ArticlesPage from "./pages/ArticlesPage";
 
 
-function App() {
+export const App = () => {
   return (
-    <></>
+    <div>
+      <Routes>
+        <Route index element={<MainPage />}/>
+        <Route path={`/articles`} element={<ArticlesPage />}/>
+      </Routes>
+    </div>
   );
 }
 

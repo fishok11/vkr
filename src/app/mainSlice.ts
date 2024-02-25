@@ -1,24 +1,32 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { Article } from './types';
+import axios from 'axios';
+import { BASE_API_URL } from '../config';
 
 export type InitialState = {
   articles: Article[];
+  isLoading: Boolean;
 };
 
 const initialState: InitialState = {
   articles: [],
+  isLoading: false,
 };
 
-// export const incrementAsync = createAsyncThunk(
-//   'counter/fetchCount',
-//   async (amount: number) => {
-//     const response = await fetchCount(amount);
-//     // The value we return becomes the `fulfilled` action payload
-//     return response.data;
-//   }
-// );
 
+export const getArticles = createAsyncThunk<Article[], undefined, {rejectValue: string}>(
+  'getArticles',
+  async (_, {rejectWithValue}) => {
+    try {
+      const { data } = await axios.get(BASE_API_URL + `articles`);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue('Server error!');
+    }
+  }
+);
 
 export const mainSlice = createSlice({
   name: 'main',
@@ -28,13 +36,20 @@ export const mainSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    // builder
+    builder
+      .addCase(getArticles.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getArticles.fulfilled, (state, action: PayloadAction<Article[]>) => {
+        state.articles = action.payload;
+        state.isLoading = false;
+      })
 
   },
 });
 
 export const {  } = mainSlice.actions;
 
-export const selectCount = (state: RootState) => state.main;
+export const mainState = (state: RootState) => state.main;
 
 export default mainSlice.reducer;
