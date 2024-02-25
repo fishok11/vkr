@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const MainPage = () => {
+export const HomePage = () => {
   return (
     <>
       <Link to={'/articles'}>articles</Link>
@@ -8,4 +8,4 @@ export const MainPage = () => {
   );
 }
 
-export default MainPage;
+export default HomePage;
