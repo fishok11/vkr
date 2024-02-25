@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
   return (
@@ -6,6 +7,6 @@ export const HomePage = () => {
       <Link to={'/articles'}>articles</Link>
     </>
   );
-}
+};
 
 export default HomePage;

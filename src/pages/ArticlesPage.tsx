@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { getArticles, mainState } from "../app/mainSlice";
-import LinkArticle from "../UI/linkArticle/LinkArticle";
+import React, { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
+import { getArticles, mainState } from '../app/mainSlice';
+import LinkArticle from '../UI/linkArticle/LinkArticle';
 
 const ArticlesPage = () => {
   const state = useAppSelector(mainState);
@@ -9,15 +9,15 @@ const ArticlesPage = () => {
 
   useEffect(() => {
     dispatch(getArticles());
-  }, [])
+  }, [dispatch]);
 
   return (
     <>
       {state.articles.map((item) => (
-        <LinkArticle key={item.id} to={item.title} text={item.title}/>
+        <LinkArticle key={item.id} to={item.title} text={item.title} />
       ))}
     </>
-  )
-}
+  );
+};
 
 export default ArticlesPage;

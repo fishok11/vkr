@@ -10,7 +10,7 @@ const Header: FC = () => {
           Home
         </Link>
         <Link to={'/articles'} className={styles.link}>
-          Articles  
+          Articles
         </Link>
       </div>
     </header>
