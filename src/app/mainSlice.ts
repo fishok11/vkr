@@ -14,18 +14,19 @@ const initialState: InitialState = {
   isLoading: false,
 };
 
-export const getArticles = createAsyncThunk<Article[], undefined, { rejectValue: string }>(
-  'getArticles',
-  async (_, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.get(BASE_API_URL + `articles`);
-      return data;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue('Server error!');
-    }
-  },
-);
+export const getArticles = createAsyncThunk<
+  Article[],
+  undefined,
+  { rejectValue: string }
+>('getArticles', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(BASE_API_URL + `articles`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server error!');
+  }
+});
 
 export const mainSlice = createSlice({
   name: 'main',
@@ -37,10 +38,13 @@ export const mainSlice = createSlice({
       .addCase(getArticles.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getArticles.fulfilled, (state, action: PayloadAction<Article[]>) => {
-        state.articles = action.payload;
-        state.isLoading = false;
-      });
+      .addCase(
+        getArticles.fulfilled,
+        (state, action: PayloadAction<Article[]>) => {
+          state.articles = action.payload;
+          state.isLoading = false;
+        },
+      );
   },
 });
 
