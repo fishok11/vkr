@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getArticle, mainState } from '../../../app/mainSlice';
+import { getArticle, getQuestions, mainState } from '../../../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useParams } from 'react-router';
 
@@ -12,9 +12,11 @@ export const useArticlePage = () => {
     if (articleId !== undefined) {
       dispatch(getArticle(articleId));
     }
+    dispatch(getQuestions());
   }, []);
 
   return {
     state,
+    articleId,
   };
 };

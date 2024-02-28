@@ -2,18 +2,119 @@
   "articles": [
     {
       "id": 1,
-      "title": "11111",
-      "content": "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+      "title": "1 Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!"
     },
     {
       "id": 2,
-      "title": "22222",
-      "content": "22222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222"
+      "title": "2 Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!"
     },
     {
       "id": 3,
-      "title": "33333",
-      "content": "333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333"
+      "title": "3 Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+      "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!"
     }
-  ] 
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "articleId": 1,
+      "question": "First question?",
+      "answers": [
+        { "text": "First answer 1", "right": false },
+        { "text": "First answer 2", "right": false },
+        { "text": "First answer 3", "right": true },
+        { "text": "First answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 2,
+      "articleId": 1,
+      "question": "Second question?",
+      "answers": [
+        { "text": "Second answer 1", "right": true },
+        { "text": "Second answer 2", "right": false },
+        { "text": "Second answer 3", "right": false },
+        { "text": "Second answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 3,
+      "articleId": 1,
+      "question": "Third question?",
+      "answers": [
+        { "text": "Third answer 1", "right": true },
+        { "text": "Third answer 2", "right": false },
+        { "text": "Third answer 3", "right": false },
+        { "text": "Third answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 4,
+      "articleId": 2,
+      "question": "First question?",
+      "answers": [
+        { "text": "First answer 1", "right": false },
+        { "text": "First answer 2", "right": false },
+        { "text": "First answer 3", "right": true },
+        { "text": "First answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 5,
+      "articleId": 2,
+      "question": "Second question?",
+      "answers": [
+        { "text": "Second answer 1", "right": true },
+        { "text": "Second answer 2", "right": false },
+        { "text": "Second answer 3", "right": false },
+        { "text": "Second answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 6,
+      "articleId": 2,
+      "question": "Third question?",
+      "answers": [
+        { "text": "Third answer 1", "right": true },
+        { "text": "Third answer 2", "right": false },
+        { "text": "Third answer 3", "right": false },
+        { "text": "Third answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 7,
+      "articleId": 3,
+      "question": "First question?",
+      "answers": [
+        { "text": "First answer 1", "right": false },
+        { "text": "First answer 2", "right": false },
+        { "text": "First answer 3", "right": true },
+        { "text": "First answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 8,
+      "articleId": 3,
+      "question": "Second question?",
+      "answers": [
+        { "text": "Second answer 1", "right": true },
+        { "text": "Second answer 2", "right": false },
+        { "text": "Second answer 3", "right": false },
+        { "text": "Second answer 4", "right": false }
+      ]
+    },
+    {
+      "id": 9,
+      "articleId": 3,
+      "question": "Third question?",
+      "answers": [
+        { "text": "Third answer 1", "right": true },
+        { "text": "Third answer 2", "right": false },
+        { "text": "Third answer 3", "right": false },
+        { "text": "Third answer 4", "right": false }
+      ]
+    }
+  ]
 }
