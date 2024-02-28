@@ -14,9 +14,15 @@ const ArticlesPage = () => {
 
   return (
     <div className={styles.container}>
-      {state.articles.map((item) => (
-        <LinkArticle key={item.id} to={item.title} text={item.title} />
-      ))}
+      <div className={styles.linkContainer}>
+        {state.articles.map((item) => (
+          <LinkArticle
+            key={item.id}
+            to={`/article/${item.title}`}
+            text={item.title}
+          />
+        ))}
+      </div>
     </div>
   );
 };

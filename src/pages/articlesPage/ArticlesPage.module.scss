@@ -1,3 +1,7 @@
 .container {
-  @apply h-full;
+  @apply flex justify-center h-full;
+
+  .linkContainer {
+    @apply flex flex-col gap-2
+  }
 }
