@@ -1,11 +1,11 @@
 .container {
-  @apply p-3 border-b border-gray-600 bg-gray-800;
+  @apply p-3 border-b border-gray-600 bg-gray-800 h-5/100 box-border;
 
   .linkContainer {
-    @apply flex justify-between w-56;
+    @apply flex justify-between w-56 mx-auto my-0;
 
     .link {
-      @apply text-slate-200 duration-150 hover:text-blue-400 ;
+      @apply text-slate-200 duration-150 hover:text-blue-400;
     }
   }
 }

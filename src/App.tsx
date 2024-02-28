@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import MainPage from './pages/HomePage';
-import ArticlesPage from './pages/ArticlesPage';
+import MainPage from './pages/homePage/HomePage';
+import ArticlesPage from './pages/articlesPage/ArticlesPage';
 import Header from './components/Header/Header';
 import styles from './App.module.scss';
 
