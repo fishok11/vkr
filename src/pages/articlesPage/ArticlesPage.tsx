@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getArticles, mainState } from '../../app/mainSlice';
+import React from 'react';
 import LinkArticle from '../../UI/linkArticle/LinkArticle';
-import styles from './ArticlesPage.module.scss'
+import styles from './ArticlesPage.module.scss';
+import { useArticlesPage } from './logic/useArticlesPage';
 
 const ArticlesPage = () => {
-  const state = useAppSelector(mainState);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getArticles());
-  }, [dispatch]);
+  const { state } = useArticlesPage();
 
   return (
     <div className={styles.container}>
@@ -18,7 +12,7 @@ const ArticlesPage = () => {
         {state.articles.map((item) => (
           <LinkArticle
             key={item.id}
-            to={`/article/${item.title}`}
+            to={`/article/${item.id}`}
             text={item.title}
           />
         ))}

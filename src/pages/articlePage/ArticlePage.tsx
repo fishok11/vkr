@@ -1,10 +1,17 @@
 import React, { FC } from 'react';
-import { useParams } from 'react-router';
+import styles from './ArticlePage.module.scss';
+import { useArticlePage } from './logic/useArticlePage';
 
 const ArticlePage: FC = () => {
-  const { articleId } = useParams();
+  const { state } = useArticlePage();
 
-  return <div></div>;
+  if (state.isLoading === true) return null;
+
+  return (
+    <div className={styles.container}>
+      <p>{state.article.content}</p>
+    </div>
+  );
 };
 
 export default ArticlePage;
