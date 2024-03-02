@@ -3,7 +3,6 @@ import { useArticlePage } from './logic/useArticlePage';
 import { Question } from '../../app/types';
 import styles from './ArticlePage.module.scss';
 
-
 const ArticlePage: FC = () => {
   const { state, articleId } = useArticlePage();
 
@@ -25,10 +24,10 @@ const ArticlePage: FC = () => {
                 {question.answers.map((answer) => (
                   <div key={answer.text} className={styles.answerContainer}>
                     <input
-                      className={styles.input}
                       id={answer.text}
                       type={'radio'}
                       name={question.question}
+                      className={styles.input}
                     />
                     <label htmlFor={answer.text} className={styles.label}>
                       {answer.text}
