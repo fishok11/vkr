@@ -10,4 +10,5 @@ export type Question = {
   question: string;
   correctAnswer: string;
   incorrectAnswers: string[];
+  answers: string[];
 };
