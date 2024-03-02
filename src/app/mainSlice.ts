@@ -13,7 +13,7 @@ export type InitialState = {
 
 const initialState: InitialState = {
   article: {
-    id: null,
+    id: 0,
     title: '',
     content: '',
   },

@@ -1,17 +1,13 @@
 export type Article = {
-  id: number | null;
+  id: number;
   title: string;
   content: string;
 };
 
-export type Answer = {
-  text: string;
-  right: boolean;
-};
-
 export type Question = {
-  id: number | null;
+  id: number;
   articleId: number;
   question: string;
-  answers: Answer[];
+  correctAnswer: string;
+  incorrectAnswers: string[];
 };

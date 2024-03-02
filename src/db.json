@@ -21,100 +21,100 @@
       "id": 1,
       "articleId": 1,
       "question": "First question?",
-      "answers": [
-        { "text": "First answer 1", "right": false },
-        { "text": "First answer 2", "right": false },
-        { "text": "First answer 3", "right": true },
-        { "text": "First answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "First answer 1",
+        "First answer 2",
+        "First answer 3"
+      ],
+      "correctAnswer": "First answer 4"
     },
     {
       "id": 2,
       "articleId": 1,
       "question": "Second question?",
-      "answers": [
-        { "text": "Second answer 1", "right": true },
-        { "text": "Second answer 2", "right": false },
-        { "text": "Second answer 3", "right": false },
-        { "text": "Second answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "Second answer 1",
+        "Second answer 2",
+        "Second answer 3"
+      ],
+      "correctAnswer": "Second answer 4"
     },
     {
       "id": 3,
       "articleId": 1,
       "question": "Third question?",
-      "answers": [
-        { "text": "Third answer 1", "right": true },
-        { "text": "Third answer 2", "right": false },
-        { "text": "Third answer 3", "right": false },
-        { "text": "Third answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "Third answer 1",
+        "Third answer 2",
+        "Third answer 3"
+      ],
+      "correctAnswer": "Third answer 4"
     },
     {
       "id": 4,
       "articleId": 2,
       "question": "First question?",
-      "answers": [
-        { "text": "First answer 1", "right": false },
-        { "text": "First answer 2", "right": false },
-        { "text": "First answer 3", "right": true },
-        { "text": "First answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "First answer 1",
+        "First answer 2",
+        "First answer 3"
+      ],
+      "correctAnswer": "First answer 4"
     },
     {
       "id": 5,
       "articleId": 2,
       "question": "Second question?",
-      "answers": [
-        { "text": "Second answer 1", "right": true },
-        { "text": "Second answer 2", "right": false },
-        { "text": "Second answer 3", "right": false },
-        { "text": "Second answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "Second answer 1",
+        "Second answer 2",
+        "Second answer 3"
+      ],
+      "correctAnswer": "Second answer 4"
     },
     {
       "id": 6,
       "articleId": 2,
       "question": "Third question?",
-      "answers": [
-        { "text": "Third answer 1", "right": true },
-        { "text": "Third answer 2", "right": false },
-        { "text": "Third answer 3", "right": false },
-        { "text": "Third answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "Third answer 1",
+        "Third answer 2",
+        "Third answer 3"
+      ],
+      "correctAnswer": "Third answer 4"
     },
     {
       "id": 7,
       "articleId": 3,
       "question": "First question?",
-      "answers": [
-        { "text": "First answer 1", "right": false },
-        { "text": "First answer 2", "right": false },
-        { "text": "First answer 3", "right": true },
-        { "text": "First answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "First answer 1",
+        "First answer 2",
+        "First answer 3"
+      ],
+      "correctAnswer": "First answer 4"
     },
     {
       "id": 8,
       "articleId": 3,
       "question": "Second question?",
-      "answers": [
-        { "text": "Second answer 1", "right": true },
-        { "text": "Second answer 2", "right": false },
-        { "text": "Second answer 3", "right": false },
-        { "text": "Second answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "Second answer 1",
+        "Second answer 2",
+        "Second answer 3"
+      ],
+      "correctAnswer": "Second answer 4"
     },
     {
       "id": 9,
       "articleId": 3,
       "question": "Third question?",
-      "answers": [
-        { "text": "Third answer 1", "right": true },
-        { "text": "Third answer 2", "right": false },
-        { "text": "Third answer 3", "right": false },
-        { "text": "Third answer 4", "right": false }
-      ]
+      "incorrectAnswers": [
+        "Third answer 1",
+        "Third answer 2",
+        "Third answer 3"
+      ],
+      "correctAnswer": "Third answer 4"
     }
   ]
 }
