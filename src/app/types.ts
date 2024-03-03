@@ -9,6 +9,5 @@ export type Question = {
   articleId: number;
   question: string;
   correctAnswer: string;
-  incorrectAnswers: string[];
   answers: string[];
 };

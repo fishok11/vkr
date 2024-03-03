@@ -21,10 +21,11 @@
       "id": 1,
       "articleId": 1,
       "question": "First question?",
-      "incorrectAnswers": [
+      "answers": [
         "First answer 1",
         "First answer 2",
-        "First answer 3"
+        "First answer 3",
+        "First answer 4"
       ],
       "correctAnswer": "First answer 4"
     },
@@ -32,10 +33,11 @@
       "id": 2,
       "articleId": 1,
       "question": "Second question?",
-      "incorrectAnswers": [
+      "answers": [
         "Second answer 1",
         "Second answer 2",
-        "Second answer 3"
+        "Second answer 3",
+        "Second answer 4"
       ],
       "correctAnswer": "Second answer 4"
     },
@@ -43,10 +45,11 @@
       "id": 3,
       "articleId": 1,
       "question": "Third question?",
-      "incorrectAnswers": [
+      "answers": [
         "Third answer 1",
         "Third answer 2",
-        "Third answer 3"
+        "Third answer 3",
+        "Third answer 4"
       ],
       "correctAnswer": "Third answer 4"
     },
@@ -54,10 +57,11 @@
       "id": 4,
       "articleId": 2,
       "question": "First question?",
-      "incorrectAnswers": [
+      "answers": [
         "First answer 1",
         "First answer 2",
-        "First answer 3"
+        "First answer 3",
+        "First answer 4"
       ],
       "correctAnswer": "First answer 4"
     },
@@ -65,10 +69,11 @@
       "id": 5,
       "articleId": 2,
       "question": "Second question?",
-      "incorrectAnswers": [
+      "answers": [
         "Second answer 1",
         "Second answer 2",
-        "Second answer 3"
+        "Second answer 3",
+        "Second answer 4"
       ],
       "correctAnswer": "Second answer 4"
     },
@@ -79,7 +84,8 @@
       "incorrectAnswers": [
         "Third answer 1",
         "Third answer 2",
-        "Third answer 3"
+        "Third answer 3",
+        "Third answer 4"
       ],
       "correctAnswer": "Third answer 4"
     },
@@ -87,10 +93,11 @@
       "id": 7,
       "articleId": 3,
       "question": "First question?",
-      "incorrectAnswers": [
+      "answers": [
         "First answer 1",
         "First answer 2",
-        "First answer 3"
+        "First answer 3",
+        "First answer 4"
       ],
       "correctAnswer": "First answer 4"
     },
@@ -98,10 +105,11 @@
       "id": 8,
       "articleId": 3,
       "question": "Second question?",
-      "incorrectAnswers": [
+      "answers": [
         "Second answer 1",
         "Second answer 2",
-        "Second answer 3"
+        "Second answer 3",
+        "Second answer 4"
       ],
       "correctAnswer": "Second answer 4"
     },
@@ -109,15 +117,14 @@
       "id": 9,
       "articleId": 3,
       "question": "Third question?",
-      "incorrectAnswers": [
+      "answers": [
         "Third answer 1",
         "Third answer 2",
-        "Third answer 3"
+        "Third answer 3",
+        "Third answer 4"
       ],
       "correctAnswer": "Third answer 4"
     }
   ],
-  "answers": {
-    
-  }
+  "results": {}
 }
