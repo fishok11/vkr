@@ -7,19 +7,20 @@ export const useArticlePage = () => {
   const { articleId } = useParams();
   const state = useAppSelector(mainState);
   const dispatch = useAppDispatch();
-  const [selectedAnswers, setSelectedAnswers] = useState<string[]>([]);
-
+  const [selectedAnswers, setSelectedAnswers] = useState<{
+    [key: number]: string;
+  }>([]);
   const handleAnswerSelection = (
     selectedAnswer: string,
     questionId: number,
   ) => {
-    setSelectedAnswers((prevSelectedAnswers: string[]) => {
+    setSelectedAnswers((prevSelectedAnswers: { [key: number]: string }) => {
       const updatedSelection = { ...prevSelectedAnswers };
       updatedSelection[questionId] = selectedAnswer;
       return updatedSelection;
     });
-    console.log(selectedAnswers);
   };
+
   useEffect(() => {
     if (articleId !== undefined) {
       dispatch(getArticle(articleId));
