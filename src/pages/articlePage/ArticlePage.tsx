@@ -65,8 +65,8 @@ const ArticlePage: FC = () => {
               .map((question: Question) => (
                 <div key={question.id}>
                   <p className={styles.questionTitle}>{question.question}</p>
-                  <p>Correct answer: {question.correctAnswer}</p>
-                  <p>Your answer: {selectedAnswers[question.id]}</p>
+                  <p>Правильный ответ: {question.correctAnswer}</p>
+                  <p>Ваш ответ: {selectedAnswers[question.id]}</p>
                 </div>
               ))}
           </>

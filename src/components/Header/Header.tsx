@@ -7,13 +7,13 @@ const Header: FC = () => {
     <header className={styles.container}>
       <div className={styles.linkContainer}>
         <Link to={'/'} className={styles.link}>
-          Home
+          Главная
         </Link>
         <Link to={'/articles'} className={styles.link}>
-          Articles
+          Статьи
         </Link>
         <Link to={'/about'} className={styles.link}>
-          About
+          О нас
         </Link>
       </div>
     </header>
