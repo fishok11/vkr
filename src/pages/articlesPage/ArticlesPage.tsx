@@ -1,5 +1,5 @@
 import React from 'react';
-import LinkArticle from '../../UI/linkArticle/LinkArticle';
+import CustomLink from '../../UI/customLink/CustomLink';
 import styles from './ArticlesPage.module.scss';
 import { useArticlesPage } from './logic/useArticlesPage';
 
@@ -10,7 +10,7 @@ const ArticlesPage = () => {
     <div className={styles.container}>
       <div className={styles.linkContainer}>
         {state.articles.map((item) => (
-          <LinkArticle
+          <CustomLink
             key={item.id}
             to={`/article/${item.id}`}
             text={item.title}

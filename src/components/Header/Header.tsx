@@ -1,20 +1,14 @@
 import React, { FC } from 'react';
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import CustomLink from '../../UI/customLink/CustomLink';
 
 const Header: FC = () => {
   return (
     <header className={styles.container}>
       <div className={styles.linkContainer}>
-        <Link to={'/'} className={styles.link}>
-          Главная
-        </Link>
-        <Link to={'/articles'} className={styles.link}>
-          Статьи
-        </Link>
-        <Link to={'/about'} className={styles.link}>
-          О нас
-        </Link>
+        <CustomLink to={'/'} text="Главная" />
+        <CustomLink to={'/articles'} text="Статьи" />
+        <CustomLink to={'/about'} text="О нас" />
       </div>
     </header>
   );
