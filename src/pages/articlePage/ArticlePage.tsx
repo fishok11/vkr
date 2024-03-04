@@ -50,7 +50,12 @@ const ArticlePage: FC = () => {
                   </div>
                 </div>
               ))}
-            <Button text={'OK'} onClick={() => handleResults()} />
+            <div className={styles.buttonContainer}>
+              <Button
+                text={'Посмотреть результаты'}
+                onClick={() => handleResults()}
+              />
+            </div>
           </>
         )}
 
