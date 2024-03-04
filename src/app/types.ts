@@ -1,5 +1,6 @@
 export type Article = {
   id: number;
+  chapter: string;
   title: string;
   content: string;
 };

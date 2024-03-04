@@ -1,7 +1,18 @@
 .container {
   @apply flex justify-center w-3/5 h-full mx-auto my-0 bg-gray-900;
 
-  .linkContainer {
-    @apply flex flex-col gap-2
+  .chapter {
+    @apply font-bold text-xl;
+  }
+  .chaptersContainer {
+    @apply flex flex-col gap-4;
+
+    .chapterContainer {
+      @apply flex flex-col gap-3;
+
+      .linksContainer {
+        @apply flex flex-col gap-2;
+      }
+    }
   }
 }

@@ -8,13 +8,22 @@ const ArticlesPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.linkContainer}>
-        {state.articles.map((item) => (
-          <CustomLink
-            key={item.id}
-            to={`/article/${item.id}`}
-            text={item.title}
-          />
+      <div className={styles.chaptersContainer}>
+        {state.articles.map((article) => (
+          <div key={article.chapter} className={styles.chapterContainer}>
+            <h2 className={styles.chapter}>{article.chapter}</h2>
+            <div className={styles.linksContainer}>
+              {state.articles
+                .filter((item) => item.chapter === article.chapter)
+                .map((fiterArticle) => (
+                  <CustomLink
+                    key={fiterArticle.id}
+                    to={`/article/${fiterArticle.id}`}
+                    text={fiterArticle.title}
+                  />
+                ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>

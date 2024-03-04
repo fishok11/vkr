@@ -2,16 +2,19 @@
   "articles": [
     {
       "id": 1,
+      "chapter": "First",
       "title": "1 Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!"
     },
     {
       "id": 2,
+      "chapter": "Two",
       "title": "2 Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!"
     },
     {
       "id": 3,
+      "chapter": "Three",
       "title": "3 Lorem ipsum dolor sit amet consectetur adipisicing elit.",
       "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum facere veritatis, excepturi in enim iusto molestias? Doloremque amet rerum, obcaecati dignissimos, hic suscipit nisi nostrum aliquam dolores quibusdam molestias? Voluptates!"
     }
