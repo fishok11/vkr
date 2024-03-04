@@ -77,6 +77,10 @@ const ArticlePage: FC = () => {
           </>
         )}
       </div>
+      <div className={styles.linksContainer}>
+        <div>Назад</div>
+        <div>Далее</div>
+      </div>
     </div>
   );
 };

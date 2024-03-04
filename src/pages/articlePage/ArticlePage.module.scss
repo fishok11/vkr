@@ -32,4 +32,8 @@
       @apply min-w-52 w-auto mx-auto my-0;
     }
   }
+
+  .linksContainer {
+    @apply flex justify-between items-center w-full;
+  }
 }
