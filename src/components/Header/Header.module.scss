@@ -1,5 +1,5 @@
 .container {
-  @apply p-3 border-b border-gray-600 bg-gray-800 h-5/100 box-border;
+  @apply p-3 border-b border-gray-600 bg-gray-800 h-auto box-border;
 
   .linkContainer {
     @apply flex justify-between w-56 mx-auto my-0;

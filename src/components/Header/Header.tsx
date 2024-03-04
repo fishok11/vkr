@@ -12,6 +12,9 @@ const Header: FC = () => {
         <Link to={'/articles'} className={styles.link}>
           Articles
         </Link>
+        <Link to={'/about'} className={styles.link}>
+          About
+        </Link>
       </div>
     </header>
   );

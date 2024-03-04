@@ -10,6 +10,8 @@ export const useArticlePage = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: number]: string;
   }>([]);
+  const [showResults, setShowResults] = useState(false);
+
   const handleAnswerSelection = (
     selectedAnswer: string,
     questionId: number,
@@ -19,6 +21,10 @@ export const useArticlePage = () => {
       updatedSelection[questionId] = selectedAnswer;
       return updatedSelection;
     });
+  };
+
+  const handleResults = () => {
+    setShowResults(true);
   };
 
   useEffect(() => {
@@ -33,5 +39,7 @@ export const useArticlePage = () => {
     articleId,
     handleAnswerSelection,
     selectedAnswers,
+    showResults,
+    handleResults,
   };
 };
