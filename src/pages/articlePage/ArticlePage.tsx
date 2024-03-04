@@ -3,6 +3,7 @@ import { useArticlePage } from './logic/useArticlePage';
 import { Question } from '../../app/types';
 import styles from './ArticlePage.module.scss';
 import Button from '../../UI/button/Button';
+import { Link } from 'react-router-dom';
 
 const ArticlePage: FC = () => {
   const {
@@ -12,6 +13,8 @@ const ArticlePage: FC = () => {
     selectedAnswers,
     showResults,
     handleResults,
+    prevArticleId,
+    nextArticleId,
   } = useArticlePage();
 
   return (
@@ -77,10 +80,14 @@ const ArticlePage: FC = () => {
           </>
         )}
       </div>
-      <div className={styles.linksContainer}>
-        <div>Назад</div>
-        <div>Далее</div>
-      </div>
+      {/* <div className={styles.linksContainer}>
+        {prevArticleId && (
+          <Link to={`/article/${prevArticleId}`}>Предыдущая статья</Link>
+        )}
+        {nextArticleId && (
+          <Link to={`/article/${nextArticleId}`}>Следующая статья</Link>
+        )}
+      </div> */}
     </div>
   );
 };

@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { getArticle, getQuestions, mainState } from '../../../app/mainSlice';
+import {
+  getArticle,
+  getArticles,
+  getQuestions,
+  mainState,
+} from '../../../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useParams } from 'react-router';
 
@@ -32,7 +37,23 @@ export const useArticlePage = () => {
       dispatch(getArticle(articleId));
     }
     dispatch(getQuestions());
+    dispatch(getArticles());
   }, []);
+
+  const currentIndex = state.articles.findIndex(
+    (article) => article.id.toString() === articleId,
+  );
+  const articlesFilterByChapter = state.articles.filter(
+    (article) => article.chapter === state.article.chapter,
+  );
+  console.log(articlesFilterByChapter);
+
+  const prevArticleId =
+    currentIndex > 0 ? articlesFilterByChapter[currentIndex - 1].id : null;
+  const nextArticleId =
+    currentIndex < articlesFilterByChapter.length - 1
+      ? articlesFilterByChapter[currentIndex + 1].id
+      : null;
 
   return {
     state,
@@ -41,5 +62,7 @@ export const useArticlePage = () => {
     selectedAnswers,
     showResults,
     handleResults,
+    prevArticleId,
+    nextArticleId,
   };
 };

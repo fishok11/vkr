@@ -84,7 +84,7 @@
       "id": 6,
       "articleId": 2,
       "question": "Third question?",
-      "incorrectAnswers": [
+      "answers": [
         "Third answer 1",
         "Third answer 2",
         "Third answer 3",
