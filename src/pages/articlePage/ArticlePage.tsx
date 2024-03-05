@@ -12,7 +12,7 @@ const ArticlePage: FC = () => {
     handleAnswerSelection,
     selectedAnswers,
     showResults,
-    handleResults,
+    setShowResults,
     articlesFilterByChapter,
     prevArticleId,
     nextArticleId,
@@ -57,7 +57,7 @@ const ArticlePage: FC = () => {
             <div className={styles.buttonContainer}>
               <Button
                 text={'Посмотреть результаты'}
-                onClick={() => handleResults()}
+                onClick={() => setShowResults(true)}
               />
             </div>
           </>
@@ -84,12 +84,20 @@ const ArticlePage: FC = () => {
       {articlesFilterByChapter && (
         <div className={styles.linksContainer}>
           {prevArticleId && (
-            <Link to={`/article/${prevArticleId}`} className={styles.prevLink}>
+            <Link
+              to={`/article/${prevArticleId}`}
+              className={styles.prevLink}
+              onClick={() => setShowResults(false)}
+            >
               Назад
             </Link>
           )}
           {nextArticleId && (
-            <Link to={`/article/${nextArticleId}`} className={styles.nextLink}>
+            <Link
+              to={`/article/${nextArticleId}`}
+              className={styles.nextLink}
+              onClick={() => setShowResults(false)}
+            >
               Далее
             </Link>
           )}

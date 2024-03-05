@@ -8,7 +8,7 @@ const Header: FC = () => {
       <div className={styles.linkContainer}>
         <CustomLink to={'/'} text="Главная" />
         <CustomLink to={'/articles'} text="Статьи" />
-        <CustomLink to={'/about'} text="О нас" />
+        <CustomLink to={'/about'} text="Инфо" />
       </div>
     </header>
   );

@@ -28,10 +28,6 @@ export const useArticlePage = () => {
     });
   };
 
-  const handleResults = () => {
-    setShowResults(true);
-  };
-
   useEffect(() => {
     if (articleId !== undefined) {
       dispatch(getArticle(articleId));
@@ -60,7 +56,7 @@ export const useArticlePage = () => {
     handleAnswerSelection,
     selectedAnswers,
     showResults,
-    handleResults,
+    setShowResults,
     articlesFilterByChapter,
     prevArticleId,
     nextArticleId,
