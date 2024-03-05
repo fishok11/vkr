@@ -5,6 +5,8 @@ import styles from './ArticlePage.module.scss';
 import Button from '../../UI/button/Button';
 import { Link } from 'react-router-dom';
 import HTMLReactParser from 'html-react-parser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 const ArticlePage: FC = () => {
   const {
@@ -91,7 +93,7 @@ const ArticlePage: FC = () => {
               className={styles.prevLink}
               onClick={() => setShowResults(false)}
             >
-              Назад
+              <FontAwesomeIcon icon={faArrowLeft} /> Назад
             </Link>
           )}
           {nextArticleId && (
@@ -100,7 +102,7 @@ const ArticlePage: FC = () => {
               className={styles.nextLink}
               onClick={() => setShowResults(false)}
             >
-              Далее
+              Далее <FontAwesomeIcon icon={faArrowRight} />
             </Link>
           )}
         </div>

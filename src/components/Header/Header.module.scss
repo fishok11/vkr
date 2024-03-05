@@ -1,5 +1,5 @@
 .container {
-  @apply flex justify-between items-center p-3 border-b border-gray-600 bg-gray-800 h-[7vh] box-border sticky left-0 top-0;
+  @apply flex justify-between items-center p-3 border-b border-gray-600 bg-gray-800 h-[7vh] box-border;
 
   .linkContainer {
     @apply flex justify-between items-center w-56 mx-auto my-0;
