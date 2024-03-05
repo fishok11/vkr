@@ -4,6 +4,7 @@ import { Question } from '../../app/types';
 import styles from './ArticlePage.module.scss';
 import Button from '../../UI/button/Button';
 import { Link } from 'react-router-dom';
+import HTMLReactParser from 'html-react-parser';
 
 const ArticlePage: FC = () => {
   const {
@@ -20,7 +21,8 @@ const ArticlePage: FC = () => {
 
   return (
     <div className={styles.container}>
-      <p>{state.article.content}</p>
+      <h1>{state.article.title}</h1>
+      <p>{HTMLReactParser(state.article.content)}</p>
       <div className={styles.questionsContainer}>
         {!showResults && (
           <>
