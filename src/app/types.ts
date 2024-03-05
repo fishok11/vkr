@@ -1,6 +1,6 @@
 export type Article = {
   id: number;
-  chapter: string;
+  chapterId: number;
   title: string;
   content: string;
 };
@@ -11,4 +11,9 @@ export type Question = {
   question: string;
   correctAnswer: string;
   answers: string[];
+};
+
+export type Chapter = {
+  id: number;
+  chapter: string;
 };

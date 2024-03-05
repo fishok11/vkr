@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getArticles, mainState } from '../../../app/mainSlice';
+import { getArticles, getChapters, mainState } from '../../../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 export const useArticlesPage = () => {
@@ -7,6 +7,7 @@ export const useArticlesPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    dispatch(getChapters());
     dispatch(getArticles());
   }, [dispatch]);
 

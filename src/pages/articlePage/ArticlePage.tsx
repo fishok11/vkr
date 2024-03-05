@@ -13,6 +13,7 @@ const ArticlePage: FC = () => {
     selectedAnswers,
     showResults,
     handleResults,
+    articlesFilterByChapter,
     prevArticleId,
     nextArticleId,
   } = useArticlePage();
@@ -80,14 +81,20 @@ const ArticlePage: FC = () => {
           </>
         )}
       </div>
-      {/* <div className={styles.linksContainer}>
-        {prevArticleId && (
-          <Link to={`/article/${prevArticleId}`}>Предыдущая статья</Link>
-        )}
-        {nextArticleId && (
-          <Link to={`/article/${nextArticleId}`}>Следующая статья</Link>
-        )}
-      </div> */}
+      {articlesFilterByChapter && (
+        <div className={styles.linksContainer}>
+          {prevArticleId && (
+            <Link to={`/article/${prevArticleId}`} className={styles.prevLink}>
+              Назад
+            </Link>
+          )}
+          {nextArticleId && (
+            <Link to={`/article/${nextArticleId}`} className={styles.nextLink}>
+              Далее
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };

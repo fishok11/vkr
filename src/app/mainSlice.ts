@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { Article, Question } from './types';
+import { Article, Chapter, Question } from './types';
 import axios from 'axios';
 import { BASE_API_URL } from '../config';
 
@@ -8,18 +8,20 @@ export type InitialState = {
   article: Article;
   articles: Article[];
   questions: Question[];
+  chapters: Chapter[];
   isLoading: boolean;
 };
 
 const initialState: InitialState = {
   article: {
     id: 0,
-    chapter: '',
+    chapterId: 0,
     title: '',
     content: '',
   },
   articles: [],
   questions: [],
+  chapters: [],
   isLoading: false,
 };
 
@@ -65,10 +67,26 @@ export const getQuestions = createAsyncThunk<
   }
 });
 
+export const getChapters = createAsyncThunk<
+  Chapter[],
+  undefined,
+  { rejectValue: string }
+>('getChapters', async (_, { rejectWithValue }) => {
+  try {
+    const { data } = await axios.get(BASE_API_URL + `chapters`);
+    return data;
+  } catch (error) {
+    console.log(error);
+    return rejectWithValue('Server error!');
+  }
+});
+
 export const mainSlice = createSlice({
   name: 'main',
   initialState,
-  reducers: {},
+  reducers: {
+    
+  },
 
   extraReducers: (builder) => {
     builder
@@ -99,6 +117,16 @@ export const mainSlice = createSlice({
         getQuestions.fulfilled,
         (state, action: PayloadAction<Question[]>) => {
           state.questions = action.payload;
+          state.isLoading = false;
+        },
+      )
+      .addCase(getChapters.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(
+        getChapters.fulfilled,
+        (state, action: PayloadAction<Chapter[]>) => {
+          state.chapters = action.payload;
           state.isLoading = false;
         },
       );

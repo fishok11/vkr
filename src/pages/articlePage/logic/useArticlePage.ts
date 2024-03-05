@@ -38,21 +38,20 @@ export const useArticlePage = () => {
     }
     dispatch(getQuestions());
     dispatch(getArticles());
-  }, []);
+  }, [articleId]);
 
-  const currentIndex = state.articles.findIndex(
+  const articlesFilterByChapter = state.articles.filter(
+    (article) => article.chapterId === state.article.chapterId,
+  );
+  const currentIndex = articlesFilterByChapter.findIndex(
     (article) => article.id.toString() === articleId,
   );
-  const articlesFilterByChapter = state.articles.filter(
-    (article) => article.chapter === state.article.chapter,
-  );
-  console.log(articlesFilterByChapter);
 
   const prevArticleId =
-    currentIndex > 0 ? articlesFilterByChapter[currentIndex - 1].id : null;
+    currentIndex > 0 ? articlesFilterByChapter[currentIndex - 1]?.id : null;
   const nextArticleId =
     currentIndex < articlesFilterByChapter.length - 1
-      ? articlesFilterByChapter[currentIndex + 1].id
+      ? articlesFilterByChapter[currentIndex + 1]?.id
       : null;
 
   return {
@@ -62,6 +61,7 @@ export const useArticlePage = () => {
     selectedAnswers,
     showResults,
     handleResults,
+    articlesFilterByChapter,
     prevArticleId,
     nextArticleId,
   };
