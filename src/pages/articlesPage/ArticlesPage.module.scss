@@ -2,7 +2,7 @@
   @apply flex justify-center w-3/5 h-full mx-auto my-0 bg-gray-900;
 
   .chapter {
-    @apply font-bold text-xl;
+    @apply font-bold;
   }
   .chaptersContainer {
     @apply flex flex-col gap-4;
