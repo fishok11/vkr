@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { useArticlePage } from './logic/useArticlePage';
-import { Question } from '../../app/types';
 import styles from './ArticlePage.module.scss';
-import Button from '../../UI/button/Button';
 import { Link } from 'react-router-dom';
 import HTMLReactParser from 'html-react-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

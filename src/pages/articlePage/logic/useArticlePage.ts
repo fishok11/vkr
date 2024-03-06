@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  getArticle,
-  getArticles,
-  getQuestions,
-  mainState,
-} from '../../../app/mainSlice';
+import { getArticle, getArticles, mainState } from '../../../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useParams } from 'react-router';
 
@@ -33,7 +28,7 @@ export const useArticlePage = () => {
   const nextArticleId =
     currentIndex < articlesFilterByChapter.length - 1
       ? articlesFilterByChapter[currentIndex + 1]?.id
-      : null;articleId
+      : null;
 
   return {
     state,

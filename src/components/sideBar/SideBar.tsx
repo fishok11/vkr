@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useSideBar } from './logic/useSideBar';
-import styles from './SideBar.module.scss'
+import styles from './SideBar.module.scss';
 import CustomLink from '../../UI/customLink/CustomLink';
 import { Article, Chapter } from '../../app/types';
 
