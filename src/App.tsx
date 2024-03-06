@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MainPage from './pages/homePage/HomePage';
 import ArticlesPage from './pages/articlesPage/ArticlesPage';
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import styles from './App.module.scss';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import InfoPage from './pages/infoPage/InfoPage';
