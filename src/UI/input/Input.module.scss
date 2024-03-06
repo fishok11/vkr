@@ -1,0 +1,19 @@
+.container {
+  @apply w-full box-border;
+
+  .label {
+    @apply block text-sm font-medium text-white;
+  }
+
+  .input {
+    @apply w-full block p-2 h-10 box-border rounded-lg outline-none bg-gray-700 text-gray-400 border border-gray-600 placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500 focus:border-2;
+  }
+
+  .inputError {
+    @apply w-full block p-2 h-10 box-border rounded-lg outline-none bg-gray-700 text-gray-400 border-2 border-red-400;
+  }
+
+  .helperText {
+    @apply text-red-400 text-sm font-light;
+  }
+}

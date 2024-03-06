@@ -84,10 +84,7 @@ export const getChapters = createAsyncThunk<
 export const mainSlice = createSlice({
   name: 'main',
   initialState,
-  reducers: {
-    
-  },
-
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getArticles.pending, (state) => {
