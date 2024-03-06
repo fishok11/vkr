@@ -1,5 +1,5 @@
 .container {
-  @apply flex items-center flex-col gap-4 w-3/5 h-full mx-auto my-0;
+  @apply flex items-center flex-col gap-4 w-full h-full mx-auto my-0 duration-150;
 
   .linksContainer {
     @apply flex justify-between items-center w-full h-auto p-1 relative;

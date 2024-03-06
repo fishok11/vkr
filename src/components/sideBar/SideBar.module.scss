@@ -1,3 +1,19 @@
-.container {
-  @apply w-64;
+.sideBarContainerOpen {
+  @apply flex flex-col gap-4 bg-gray-800 w-64 absolute left-0 top-0 px-5 py-8 h-full duration-150 animate-showSideBar;
+
+  .linksContainer {
+    @apply flex flex-col gap-2;
+  }
+}
+
+.sideBarContainerClose {
+  @apply flex flex-col gap-4 bg-gray-800 w-64 absolute left-0 top-0 px-5 py-8 h-full duration-150 animate-hideSideBar;
+
+  .linksContainer {
+    @apply flex flex-col gap-2;
+  }
+}
+
+.button {
+  @apply absolute left-10 top-10 text-xl;
 }
