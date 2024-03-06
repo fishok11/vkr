@@ -27,11 +27,20 @@ const initialState: InitialState = {
 
 export const getArticles = createAsyncThunk<
   Article[],
-  undefined,
+  string,
   { rejectValue: string }
->('getArticles', async (_, { rejectWithValue }) => {
+>('getArticles', async (articleToSearch, { rejectWithValue }) => {
   try {
     const { data } = await axios.get(BASE_API_URL + `articles`);
+    if (articleToSearch !== '') {
+      const result = data.filter((article: Article) => {
+        return article.title.toLowerCase().includes(articleToSearch.toLowerCase());
+      });
+      console.log(result);
+      
+      
+      return result;
+    }
     return data;
   } catch (error) {
     console.log(error);
@@ -130,7 +139,7 @@ export const mainSlice = createSlice({
   },
 });
 
-// export const {} = mainSlice.actions;
+// export const { } = mainSlice.actions;
 
 export const mainState = (state: RootState) => state.main;
 

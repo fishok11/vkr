@@ -2,20 +2,31 @@ import React from 'react';
 import CustomLink from '../../UI/customLink/CustomLink';
 import styles from './ArticlesPage.module.scss';
 import { useArticlesPage } from './logic/useArticlesPage';
+import Input from '../../UI/input/Input';
+import { Article, Chapter } from '../../app/types';
 
 const ArticlesPage = () => {
-  const { state } = useArticlesPage();
+  const { state, articleToSearch, setArticleToSearch } = useArticlesPage();
 
   return (
     <div className={styles.container}>
+      <div className={styles.inputContainer}>
+        <Input
+          id={'search'}
+          type={'search'}
+          placeholder={'Search by article...'}
+          value={articleToSearch}
+          onChange={(e) => setArticleToSearch(e.target.value)}
+        />
+      </div>
       <div className={styles.chaptersContainer}>
-        {state.chapters.map((chapter) => (
+        {state.chapters.map((chapter: Chapter) => (
           <div key={chapter.id} className={styles.chapterContainer}>
             <h2 className={styles.chapter}>{chapter.chapter}</h2>
             <div className={styles.linksContainer}>
               {state.articles
-                .filter((item) => item.chapterId == chapter.id)
-                .map((fiterArticle) => (
+                .filter((item: Article) => item.chapterId == chapter.id)
+                .map((fiterArticle: Article) => (
                   <CustomLink
                     key={fiterArticle.id}
                     to={`/article/${fiterArticle.id}`}

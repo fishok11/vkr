@@ -33,7 +33,7 @@ export const useArticlePage = () => {
       dispatch(getArticle(articleId));
     }
     dispatch(getQuestions());
-    dispatch(getArticles());
+    dispatch(getArticles(''));
   }, [articleId]);
 
   const articlesFilterByChapter = state.articles.filter(
