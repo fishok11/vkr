@@ -7,17 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const SideBar: FC = () => {
-  const { state, open, setOpen, sideBarRef } = useSideBar();
+  const { state, open, setOpen, sideBarRef, sideBarStyle } = useSideBar();
 
   return (
     <>
       {open && (
-        <div
-          ref={sideBarRef}
-          className={
-            open ? styles.sideBarContainerOpen : styles.sideBarContainerClose
-          }
-        >
+        <div ref={sideBarRef} className={sideBarStyle}>
           {state.chapters.map((chapter: Chapter) => (
             <div key={chapter.id} className={styles.chapterContainer}>
               <h2 className={styles.chapter}>{chapter.chapter}</h2>

@@ -9,12 +9,12 @@ module.exports = {
       },
       keyframes: {
         showSideBar: {
-          from: { left: -256 },
-          to: { left: 0 },
+          from: { left: -256, opacity: 0 },
+          to: { left: 0, opacity: 1 },
         },
         hideSideBar: {
-          from: { left: 0 },
-          to: { left: -256 },
+          from: { left: 0, opacity: 1 },
+          to: { left: -256, opacity: 0 },
         },
       },
       animation: {
@@ -25,4 +25,3 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/forms')],
 };
-
