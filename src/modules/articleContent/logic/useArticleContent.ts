@@ -14,6 +14,8 @@ export const useArticleContent = () => {
       dispatch(getArticle(articleId));
     }
     dispatch(getArticles(''));
+
+    return () => setShowResults(false);
   }, [articleId]);
 
   const articlesFilterByChapter = state.articles.filter(

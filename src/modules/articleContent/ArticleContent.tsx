@@ -33,7 +33,6 @@ const ArticleContent: FC = () => {
             <Link
               to={`/article/${prevArticleId}`}
               className={styles.prevLink}
-              onClick={() => setShowResults(false)}
             >
               <FontAwesomeIcon icon={faArrowLeft} /> Назад
             </Link>
@@ -42,7 +41,6 @@ const ArticleContent: FC = () => {
             <Link
               to={`/article/${nextArticleId}`}
               className={styles.nextLink}
-              onClick={() => setShowResults(false)}
             >
               Далее <FontAwesomeIcon icon={faArrowRight} />
             </Link>
