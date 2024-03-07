@@ -9,7 +9,7 @@ import Loader from '../../UI/loader/Loader';
 const ArticlesPage = () => {
   const { state, articleToSearch, setArticleToSearch } = useArticlesPage();
 
-  if (state.isLoading) return <Loader />;
+  if (state.isLoadingArticles || state.isLoadingChapters) return <Loader />;
 
   return (
     <div className={styles.container}>

@@ -4,7 +4,9 @@ import styles from './Loader.module.scss';
 const Loader: FC = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.loader}></div>
+      <div className={styles.loaderContainer}>
+        <div className={styles.loader}></div>
+      </div>
     </div>
   );
 };

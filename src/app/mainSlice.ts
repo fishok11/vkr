@@ -9,7 +9,10 @@ export type InitialState = {
   articles: Article[];
   questions: Question[];
   chapters: Chapter[];
-  isLoading: boolean;
+  isLoadingArticle: boolean;
+  isLoadingArticles: boolean;
+  isLoadingQuestions: boolean;
+  isLoadingChapters: boolean;
 };
 
 const initialState: InitialState = {
@@ -22,7 +25,10 @@ const initialState: InitialState = {
   articles: [],
   questions: [],
   chapters: [],
-  isLoading: false,
+  isLoadingArticle: false,
+  isLoadingArticles: false,
+  isLoadingQuestions: false,
+  isLoadingChapters: false,
 };
 
 export const getArticles = createAsyncThunk<
@@ -96,43 +102,43 @@ export const mainSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getArticles.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingArticles = true;
       })
       .addCase(
         getArticles.fulfilled,
         (state, action: PayloadAction<Article[]>) => {
           state.articles = action.payload;
-          state.isLoading = false;
+          state.isLoadingArticles = false;
         },
       )
       .addCase(getArticle.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingArticle = true;
       })
       .addCase(
         getArticle.fulfilled,
         (state, action: PayloadAction<Article>) => {
           state.article = action.payload;
-          state.isLoading = false;
+          state.isLoadingArticle = false;
         },
       )
       .addCase(getQuestions.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingQuestions = true;
       })
       .addCase(
         getQuestions.fulfilled,
         (state, action: PayloadAction<Question[]>) => {
           state.questions = action.payload;
-          state.isLoading = false;
+          state.isLoadingQuestions = false;
         },
       )
       .addCase(getChapters.pending, (state) => {
-        state.isLoading = true;
+        state.isLoadingChapters = true;
       })
       .addCase(
         getChapters.fulfilled,
         (state, action: PayloadAction<Chapter[]>) => {
           state.chapters = action.payload;
-          state.isLoading = false;
+          state.isLoadingChapters = false;
         },
       );
   },

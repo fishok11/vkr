@@ -8,7 +8,11 @@ import { useArticlePage } from './logic/useArticlePage';
 const ArticlePage: FC = () => {
   const { state } = useArticlePage();
 
-  // if (state.isLoading) return <Loader />;
+  // if (
+  //   state.isLoadingArticle 
+  // ) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className={styles.container}>
