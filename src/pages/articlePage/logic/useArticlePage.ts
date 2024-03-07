@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react';
-import { getArticle, getArticles, mainState } from '../../../app/mainSlice';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { useParams } from 'react-router';
+import {  mainState } from '../../../app/mainSlice';
+import {  useAppSelector } from '../../../app/hooks';
 
 export const useArticlePage = () => {
+  const state = useAppSelector(mainState);
 
+  return {
+    state
+  }
 };

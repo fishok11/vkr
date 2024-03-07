@@ -30,18 +30,12 @@ const ArticleContent: FC = () => {
       {articlesFilterByChapter && (
         <div className={styles.linksContainer}>
           {prevArticleId && (
-            <Link
-              to={`/article/${prevArticleId}`}
-              className={styles.prevLink}
-            >
+            <Link to={`/article/${prevArticleId}`} className={styles.prevLink}>
               <FontAwesomeIcon icon={faArrowLeft} /> Назад
             </Link>
           )}
           {nextArticleId && (
-            <Link
-              to={`/article/${nextArticleId}`}
-              className={styles.nextLink}
-            >
+            <Link to={`/article/${nextArticleId}`} className={styles.nextLink}>
               Далее <FontAwesomeIcon icon={faArrowRight} />
             </Link>
           )}

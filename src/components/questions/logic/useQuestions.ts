@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { getQuestions, mainState } from "../../../app/mainSlice";
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { getQuestions, mainState } from '../../../app/mainSlice';
 
 export const useQuestions = () => {
-
   const state = useAppSelector(mainState);
   const dispatch = useAppDispatch();
   const [selectedAnswers, setSelectedAnswers] = useState<{
@@ -25,7 +24,6 @@ export const useQuestions = () => {
   useEffect(() => {
     dispatch(getQuestions());
   }, []);
-
 
   return {
     state,
