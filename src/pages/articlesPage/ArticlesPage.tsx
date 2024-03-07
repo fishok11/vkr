@@ -13,8 +13,8 @@ const ArticlesPage = () => {
       <div className={styles.inputContainer}>
         <Input
           id={'search'}
-          type={'search'}
-          placeholder={'Search by article...'}
+          type={'text'}
+          placeholder={'Поиск по статьям...'}
           value={articleToSearch}
           onChange={(e) => setArticleToSearch(e.target.value)}
         />

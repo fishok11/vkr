@@ -34,11 +34,10 @@ export const getArticles = createAsyncThunk<
     const { data } = await axios.get(BASE_API_URL + `articles`);
     if (articleToSearch !== '') {
       const result = data.filter((article: Article) => {
-        return article.title.toLowerCase().includes(articleToSearch.toLowerCase());
+        return article.title
+          .toLowerCase()
+          .includes(articleToSearch.toLowerCase());
       });
-      console.log(result);
-      
-      
       return result;
     }
     return data;
