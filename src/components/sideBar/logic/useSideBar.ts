@@ -9,6 +9,14 @@ export const useSideBar = () => {
   const [open, setOpen] = useState<boolean>(false);
   const sideBarRef = useRef<HTMLDivElement>(null);
   const [sideBarStyle, setSideBarStyle] = useState(styles.sideBarContainerOpen);
+  const handleCloseSideBar = () => {
+    setSideBarStyle(styles.sideBarContainerClose);
+    const timer = setTimeout(() => {
+      setOpen(false);
+      setSideBarStyle(styles.sideBarContainerOpen);
+    }, 200);
+    return () => clearTimeout(timer);
+  };
 
   useEffect(() => {
     dispatch(getChapters());
@@ -21,12 +29,7 @@ export const useSideBar = () => {
         sideBarRef.current &&
         !sideBarRef.current.contains(event.target as Node)
       ) {
-        setSideBarStyle(styles.sideBarContainerClose);
-        const timer = setTimeout(() => {
-          setOpen(false);
-          setSideBarStyle(styles.sideBarContainerOpen);
-        }, 200);
-        return () => clearTimeout(timer);
+        handleCloseSideBar();
       }
     };
 
@@ -43,5 +46,6 @@ export const useSideBar = () => {
     setOpen,
     sideBarRef,
     sideBarStyle,
+    handleCloseSideBar,
   };
 };

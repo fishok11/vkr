@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const SideBar: FC = () => {
-  const { state, open, setOpen, sideBarRef, sideBarStyle } = useSideBar();
+  const { state, open, setOpen, sideBarRef, sideBarStyle, handleCloseSideBar } =
+    useSideBar();
 
   if (state.isLoadingArticles || state.isLoadingChapters) return null;
 
@@ -22,11 +23,15 @@ const SideBar: FC = () => {
                 {state.articles
                   .filter((item: Article) => item.chapterId == chapter.id)
                   .map((fiterArticle: Article) => (
-                    <CustomLink
+                    <div
                       key={fiterArticle.id}
-                      to={`/article/${fiterArticle.id}`}
-                      text={fiterArticle.title}
-                    />
+                      onClick={() => handleCloseSideBar()}
+                    >
+                      <CustomLink
+                        to={`/article/${fiterArticle.id}`}
+                        text={fiterArticle.title}
+                      />
+                    </div>
                   ))}
               </div>
             </div>
