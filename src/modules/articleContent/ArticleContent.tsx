@@ -24,7 +24,7 @@ const ArticleContent: FC = () => {
   return (
     <div className={styles.container}>
       <h1>{state.article.title}</h1>
-      <p>{HTMLReactParser(state.article.content)}</p>
+      {HTMLReactParser(state.article.content)}
       <Questions
         articleId={articleId}
         showResults={showResults}
