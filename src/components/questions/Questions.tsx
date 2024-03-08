@@ -3,6 +3,7 @@ import styles from './Questions.module.scss';
 import { useQuestions } from './logic/useQuestions';
 import { Question } from '../../app/types';
 import Button from '../../UI/button/Button';
+import Loader from '../../UI/loader/Loader';
 
 type QuestionsProps = {
   articleId: string | undefined;
@@ -12,6 +13,8 @@ type QuestionsProps = {
 
 const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
   const { state, handleAnswerSelection, selectedAnswers } = useQuestions();
+
+  if (state.isLoadingQuestions) return <Loader />;
 
   return (
     <div className={styles.questionsContainer}>

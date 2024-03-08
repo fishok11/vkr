@@ -6,6 +6,7 @@ import HTMLReactParser from 'html-react-parser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import Questions from '../../components/questions/Questions';
+import Loader from '../../UI/loader/Loader';
 
 const ArticleContent: FC = () => {
   const {
@@ -17,6 +18,8 @@ const ArticleContent: FC = () => {
     prevArticleId,
     nextArticleId,
   } = useArticleContent();
+
+  if (state.isLoadingArticle) return <Loader />;
 
   return (
     <div className={styles.container}>

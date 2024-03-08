@@ -9,6 +9,8 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 const SideBar: FC = () => {
   const { state, open, setOpen, sideBarRef, sideBarStyle } = useSideBar();
 
+  if (state.isLoadingArticles || state.isLoadingChapters) return null;
+
   return (
     <>
       {open && (
