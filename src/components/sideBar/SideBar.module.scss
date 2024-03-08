@@ -1,5 +1,5 @@
 .sideBarContainerOpen {
-  @apply flex flex-col gap-4 bg-gray-800 w-64 absolute left-0 top-0 px-5 py-8 h-full duration-150 animate-showSideBar;
+  @apply flex flex-col gap-4 bg-gray-800 w-80 absolute left-0 top-0 px-5 py-8 h-full duration-150 animate-showSideBar;
 
   .linksContainer {
     @apply flex flex-col gap-2;
@@ -7,7 +7,7 @@
 }
 
 .sideBarContainerClose {
-  @apply flex flex-col gap-4 bg-gray-800 w-64 absolute left-0 top-0 px-5 py-8 h-full duration-150 animate-hideSideBar;
+  @apply flex flex-col gap-4 bg-gray-800 w-80 absolute left-0 top-0 px-5 py-8 h-full duration-150 animate-hideSideBar;
 
   .linksContainer {
     @apply flex flex-col gap-2;

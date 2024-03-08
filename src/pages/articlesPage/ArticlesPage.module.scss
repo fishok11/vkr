@@ -2,18 +2,18 @@
   @apply flex flex-col justify-center items-center gap-4 w-3/5 h-full mx-auto my-0 bg-gray-900;
 
   .inputContainer {
-    @apply max-w-96 w-full
+    @apply max-w-96 w-full;
   }
 
   .chaptersContainer {
     @apply flex flex-col gap-4;
 
     .chapterContainer {
-      @apply flex flex-col gap-3; 
-      
+      @apply flex flex-col gap-3;
+
       .chapter {
         @apply font-bold;
-      } 
+      }
 
       .linksContainer {
         @apply flex flex-col gap-2;

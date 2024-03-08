@@ -18,8 +18,8 @@ module.exports = {
         },
       },
       animation: {
-        showSideBar: 'showSideBar 0.2s linear',
-        hideSideBar: 'hideSideBar 0.2s linear',
+        showSideBar: 'showSideBar 0.2s ease-in-out',
+        hideSideBar: 'hideSideBar 0.2s ease-in-out',
       },
     },
   },

@@ -20,7 +20,7 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
     <div className={styles.questionsContainer}>
       {!showResults && (
         <>
-          <p className={styles.text}>Вопросы</p>
+          <h2 className={styles.text}>Вопросы</h2>
           {state.questions
             .filter(
               (question: Question) =>
@@ -58,7 +58,7 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
 
       {showResults && (
         <>
-          <p className={styles.text}>Результаты</p>
+          <h2 className={styles.text}>Результаты</h2>
           {state.questions
             .filter(
               (question: Question) =>
@@ -67,8 +67,10 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
             .map((question: Question) => (
               <div key={question.id}>
                 <p className={styles.questionTitle}>{question.question}</p>
-                <p>Правильный ответ: {question.correctAnswer}</p>
-                <p>Ваш ответ: {selectedAnswers[question.id]}</p>
+                <p>
+                  <b>Правильный ответ:</b> {question.correctAnswer}
+                </p>
+                <p><b>Ваш ответ:</b> {selectedAnswers[question.id]}</p>
               </div>
             ))}
         </>
