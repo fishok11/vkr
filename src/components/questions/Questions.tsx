@@ -70,7 +70,9 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
                 <p>
                   <b>Правильный ответ:</b> {question.correctAnswer}
                 </p>
-                <p><b>Ваш ответ:</b> {selectedAnswers[question.id]}</p>
+                <p>
+                  <b>Ваш ответ:</b> {selectedAnswers[question.id]}
+                </p>
               </div>
             ))}
         </>

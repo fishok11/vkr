@@ -14,7 +14,6 @@ export const useArticleContent = () => {
       dispatch(getArticle(articleId));
     }
     dispatch(getArticles(''));
-
     return () => setShowResults(false);
   }, [articleId]);
 

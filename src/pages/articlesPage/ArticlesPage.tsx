@@ -4,7 +4,7 @@ import styles from './ArticlesPage.module.scss';
 import { useArticlesPage } from './logic/useArticlesPage';
 import Input from '../../UI/input/Input';
 import { Article, Chapter } from '../../app/types';
-import Loader from '../../UI/loader/Loader';
+// import Loader from '../../UI/loader/Loader';
 
 const ArticlesPage = () => {
   const { state, articleToSearch, setArticleToSearch } = useArticlesPage();
