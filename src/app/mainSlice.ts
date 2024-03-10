@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { Article, Chapter, Question } from './types';
-import axios from 'axios';
-import { BASE_API_URL } from '../config';
+import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
+import db from '../firebase';
 
 export type InitialState = {
   article: Article;
@@ -17,8 +17,8 @@ export type InitialState = {
 
 const initialState: InitialState = {
   article: {
-    id: 0,
-    chapterId: 0,
+    id: '',
+    chapterId: '',
     title: '',
     content: '',
   },
@@ -37,15 +37,31 @@ export const getArticles = createAsyncThunk<
   { rejectValue: string }
 >('getArticles', async (articleToSearch, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(BASE_API_URL + `articles`);
+    const docRef = query(collection(db, 'articles'));
+    const docs = await getDocs(docRef);
+    const data: Article[] = [];
+
+    docs.forEach((doc) => {
+      const article: Article = {
+        id: doc.id,
+        chapterId: doc.data().chapterId,
+        title: doc.data().title,
+        content: doc.data().content,
+      };
+
+      data.push(article);
+    });
+
     if (articleToSearch !== '') {
       const result = data.filter((article: Article) => {
         return article.title
           .toLowerCase()
           .includes(articleToSearch.toLowerCase());
       });
+
       return result;
     }
+
     return data;
   } catch (error) {
     console.log(error);
@@ -59,10 +75,23 @@ export const getArticle = createAsyncThunk<
   { rejectValue: string }
 >('getArticle', async (articleId: string, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(BASE_API_URL + `articles/${articleId}`);
-    return data;
+    const docRef = doc(db, 'articles', articleId);
+    const docArticle = await getDoc(docRef);
+
+    if (docArticle.exists()) {
+      const data: Article = {
+        id: docArticle.id,
+        chapterId: docArticle.data().chapterId,
+        title: docArticle.data().title,
+        content: docArticle.data().content,
+      };
+
+      return data;
+    } else {
+      return rejectWithValue('Article not found');
+    }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -73,7 +102,22 @@ export const getQuestions = createAsyncThunk<
   { rejectValue: string }
 >('getQuestions', async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(BASE_API_URL + `questions`);
+    const docRef = query(collection(db, 'questions'));
+    const docs = await getDocs(docRef);
+    const data: Question[] = [];
+
+    docs.forEach((doc) => {
+      const question: Question = {
+        id: doc.id,
+        articleId: doc.data().articleId,
+        question: doc.data().question,
+        correctAnswer: doc.data().correctAnswer,
+        answers: doc.data().answers,
+      };
+
+      data.push(question);
+    });
+
     return data;
   } catch (error) {
     console.log(error);
@@ -87,7 +131,18 @@ export const getChapters = createAsyncThunk<
   { rejectValue: string }
 >('getChapters', async (_, { rejectWithValue }) => {
   try {
-    const { data } = await axios.get(BASE_API_URL + `chapters`);
+    const docRef = query(collection(db, 'chapters'));
+    const docs = await getDocs(docRef);
+    const data: Chapter[] = [];
+
+    docs.forEach((doc) => {
+      const chapter: Chapter = {
+        id: doc.id,
+        chapter: doc.data().chapter,
+      };
+
+      data.push(chapter);
+    });
     return data;
   } catch (error) {
     console.log(error);

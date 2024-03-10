@@ -39,7 +39,7 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
                         className={styles.input}
                         value={answer}
                         onChange={() =>
-                          handleAnswerSelection(answer, question.id)
+                          handleAnswerSelection(answer, parseInt(question.id))
                         }
                       />
                       <label htmlFor={answer} className={styles.label}>
@@ -71,7 +71,7 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
                   <b>Правильный ответ:</b> {question.correctAnswer}
                 </p>
                 <p>
-                  <b>Ваш ответ:</b> {selectedAnswers[question.id]}
+                  <b>Ваш ответ:</b> {selectedAnswers[parseInt(question.id)]}
                 </p>
               </div>
             ))}
