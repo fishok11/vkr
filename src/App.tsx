@@ -6,6 +6,7 @@ import Header from './components/header/Header';
 import styles from './App.module.scss';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import InfoPage from './pages/infoPage/InfoPage';
+import Footer from './components/footer/Footer';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path={`/about`} element={<InfoPage />} />
         </Routes>
       </div>
+      <Footer />
     </>
   );
 }
