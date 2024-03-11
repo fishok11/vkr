@@ -1,7 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+  useEffect,
+  // useRef,
+  // useState
+} from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getArticles, getChapters, mainState } from '../../../app/mainSlice';
-import styles from '../SideBar.module.scss';
+// import styles from '../SideBar.module.scss';
 
 export const useSideBar = () => {
   const state = useAppSelector(mainState);

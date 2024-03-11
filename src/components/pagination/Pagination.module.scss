@@ -1,0 +1,11 @@
+.linksContainer {
+  @apply flex justify-between items-center w-full h-auto p-1 relative;
+
+  .prevLink {
+    @apply flex justify-center items-center gap-1 absolute left-0 p-1 duration-150 hover:text-blue-400;
+  }
+
+  .nextLink {
+    @apply flex justify-center items-center gap-1 absolute right-0 p-1 duration-150 hover:text-blue-400;
+  }
+}

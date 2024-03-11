@@ -25,18 +25,17 @@ export const useArticleContent = () => {
   );
 
   const prevArticleId =
-    currentIndex > 0 ? articlesFilterByChapter[currentIndex - 1]?.id : null;
+    currentIndex > 0 ? articlesFilterByChapter[currentIndex - 1]?.id : '';
   const nextArticleId =
     currentIndex < articlesFilterByChapter.length - 1
       ? articlesFilterByChapter[currentIndex + 1]?.id
-      : null;
+      : '';
 
   return {
     state,
     articleId,
     showResults,
     setShowResults,
-    articlesFilterByChapter,
     prevArticleId,
     nextArticleId,
   };
