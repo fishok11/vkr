@@ -1,7 +1,7 @@
 .container {
-  @apply w-3/4 flex flex-col justify-center items-center mx-auto my-0 absolute top-0 bottom-0 left-0 right-0;
+  @apply flex flex-col justify-center items-center gap-8 w-3/4 mx-auto my-0 absolute top-0 bottom-0 left-0 right-0;
 
   .text {
-    @apply text-center;
+    @apply text-center text-4xl;
   }
 }

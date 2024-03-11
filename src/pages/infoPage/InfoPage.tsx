@@ -4,12 +4,16 @@ import styles from './InfoPage.module.scss';
 const InfoPage: FC = () => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.text}>
-        Разработал Ладыгин Всеволод Львович студент 19СН1с
-      </h2>
+      <img
+        src={'http://abitur.penzgtu.ru/static/images/logo.png'}
+        alt={'logo'}
+      />
       <h2 className={styles.text}>
         WEB - ресурс для проверки знаний военнослужащих по военным
         специальностям
+      </h2>
+      <h2 className={styles.text}>
+        Разработал Ладыгин Всеволод Львович студент 19СН1с
       </h2>
     </div>
   );
