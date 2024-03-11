@@ -14,17 +14,18 @@ const SideBar: FC = () => {
       {state.chapters.map((chapter: Chapter) => (
         <div key={chapter.id} className={styles.chapterContainer}>
           <h2 className={styles.chapter}>{chapter.chapter}</h2>
-          <div className={styles.linksContainer}>
+          <ul className={styles.linksContainer}>
             {state.articles
               .filter((item: Article) => item.chapterId == chapter.id)
               .map((fiterArticle: Article) => (
-                <CustomLink
-                  key={fiterArticle.id}
-                  to={`/article/${fiterArticle.id}`}
-                  text={fiterArticle.title}
-                />
+                <li key={fiterArticle.id}>
+                  <CustomLink
+                    to={`/article/${fiterArticle.id}`}
+                    text={fiterArticle.title}
+                  />
+                </li>
               ))}
-          </div>
+          </ul>
         </div>
       ))}
     </div>

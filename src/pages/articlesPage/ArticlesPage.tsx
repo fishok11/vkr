@@ -27,17 +27,18 @@ const ArticlesPage = () => {
           {state.chapters.map((chapter: Chapter) => (
             <div key={chapter.id} className={styles.chapterContainer}>
               <h2 className={styles.chapter}>{chapter.chapter}</h2>
-              <div className={styles.linksContainer}>
+              <ul className={styles.linksContainer}>
                 {state.articles
                   .filter((item: Article) => item.chapterId == chapter.id)
                   .map((article: Article) => (
-                    <CustomLink
-                      key={article.id}
-                      to={`/article/${article.id}`}
-                      text={article.title}
-                    />
+                    <li key={article.id}>
+                      <CustomLink
+                        to={`/article/${article.id}`}
+                        text={article.title}
+                      />
+                    </li>
                   ))}
-              </div>
+              </ul>
             </div>
           ))}
         </div>
