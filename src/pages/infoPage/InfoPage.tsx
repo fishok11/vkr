@@ -4,10 +4,7 @@ import styles from './InfoPage.module.scss';
 const InfoPage: FC = () => {
   return (
     <div className={styles.container}>
-      <img
-        src={'http://abitur.penzgtu.ru/static/images/logo.png'}
-        alt={'logo'}
-      />
+      <img src={'../../img/logoPenzGTU.png'} alt={'logo'} />
       <h2 className={styles.text}>
         WEB - ресурс для проверки знаний военнослужащих по военным
         специальностям
