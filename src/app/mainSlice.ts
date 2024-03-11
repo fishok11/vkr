@@ -64,7 +64,6 @@ export const getArticles = createAsyncThunk<
 
     return data;
   } catch (error) {
-    console.log(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -91,7 +90,6 @@ export const getArticle = createAsyncThunk<
       return rejectWithValue('Article not found');
     }
   } catch (error) {
-    console.error(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -120,7 +118,6 @@ export const getQuestions = createAsyncThunk<
 
     return data;
   } catch (error) {
-    console.log(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -145,7 +142,6 @@ export const getChapters = createAsyncThunk<
     });
     return data;
   } catch (error) {
-    console.log(error);
     return rejectWithValue('Server error!');
   }
 });
