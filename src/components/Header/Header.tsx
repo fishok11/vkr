@@ -6,7 +6,7 @@ const Header: FC = () => {
   return (
     <header className={styles.container}>
       <div className={styles.linkContainer}>
-        <CustomLink to={'/'} text="Главная" />
+        <CustomLink to={'/vkr'} text="Главная" />
         <CustomLink to={'/articles'} text="Статьи" />
         <CustomLink to={'/about'} text="Инфо" />
       </div>

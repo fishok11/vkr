@@ -14,7 +14,7 @@ function App() {
       <Header />
       <div className={styles.main}>
         <Routes>
-          <Route index element={<MainPage />} />
+          <Route path={`/vkr`} element={<MainPage />} />
           <Route path={`/articles`} element={<ArticlesPage />} />
           <Route path={`/article/:articleId`} element={<ArticlePage />} />
           <Route path={`/about`} element={<InfoPage />} />
