@@ -30,11 +30,11 @@ const ArticlesPage = () => {
               <div className={styles.linksContainer}>
                 {state.articles
                   .filter((item: Article) => item.chapterId == chapter.id)
-                  .map((fiterArticle: Article) => (
+                  .map((article: Article) => (
                     <CustomLink
-                      key={fiterArticle.id}
-                      to={`/article/${fiterArticle.id}`}
-                      text={fiterArticle.title}
+                      key={article.id}
+                      to={`/article/${article.id}`}
+                      text={article.title}
                     />
                   ))}
               </div>

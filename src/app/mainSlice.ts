@@ -35,7 +35,7 @@ export const getArticles = createAsyncThunk<
   Article[],
   string,
   { rejectValue: string }
->('getArticles', async (articleToSearch, { rejectWithValue }) => {
+>('getArticles', async (searchParams, { rejectWithValue }) => {
   try {
     const docRef = query(collection(db, 'articles'));
     const docs = await getDocs(docRef);
@@ -52,11 +52,11 @@ export const getArticles = createAsyncThunk<
       data.push(article);
     });
 
-    if (articleToSearch !== '') {
+    searchParams = searchParams.trim();
+
+    if (searchParams !== '') {
       const result = data.filter((article: Article) => {
-        return article.title
-          .toLowerCase()
-          .includes(articleToSearch.toLowerCase());
+        return article.title.toLowerCase().includes(searchParams.toLowerCase());
       });
 
       return result;

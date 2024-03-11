@@ -21,7 +21,7 @@ if (!firebase.apps.length) {
 }
 
 const db = firebase.firestore();
-const settings = { timestampsInSnapshots: true };
+const settings = { timestampsInSnapshots: true, merge: true };
 db.settings(settings);
 
 // Enable experimentalForceLongPolling for Firestore
