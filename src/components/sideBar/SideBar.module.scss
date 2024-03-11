@@ -1,8 +1,12 @@
 .sideBarContainer {
-  @apply flex flex-col gap-4 fixed left-0 top-[7vh] overflow-y-scroll px-5 pb-[14vh] pt-8 bg-gray-800 w-80 h-full duration-150 animate-showSideBar;
+  @apply flex flex-col gap-4 fixed left-0 top-[7vh] overflow-y-scroll px-5 pb-[14vh] pt-8 bg-gray-800 w-64 h-full duration-150 animate-showSideBar;
+
+  .chapter {
+    @apply text-base font-bold;
+  }
 
   .linksContainer {
-    @apply flex flex-col gap-2;
+    @apply flex flex-col gap-2 text-sm;
   }
 }
 
@@ -17,4 +21,3 @@
 .sideBarContainer::-webkit-scrollbar-thumb {
   background-color: rgb(38, 50, 67);
 }
-
