@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import styles from './InfoPage.module.scss';
+import logo from '../../img/logoPenzGTU.png';
 
 const InfoPage: FC = () => {
   return (
     <div className={styles.container}>
-      <img src={'../../img/logoPenzGTU.png'} alt={'logo'} />
+      <img src={logo} alt={'logo'} />
       <h2 className={styles.text}>
         WEB - ресурс для проверки знаний военнослужащих по военным
         специальностям
