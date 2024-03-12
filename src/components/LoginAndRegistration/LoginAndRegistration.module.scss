@@ -5,7 +5,7 @@
     @apply flex flex-col gap-3 bg-gray-800 p-3 rounded-xl mx-auto h-max w-96 relative;
 
     .close {
-      @apply text-gray-600 cursor-pointer text-right absolute right-4;
+      @apply text-red-300 cursor-pointer text-right absolute right-4;
     }
 
     .title {

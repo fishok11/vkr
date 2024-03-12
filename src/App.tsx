@@ -23,7 +23,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-      {/* <LogIn /> */}
+      <LogIn />
       <SignUp />
     </>
   );

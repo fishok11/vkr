@@ -1,11 +1,12 @@
 import { nanoid } from 'nanoid';
-import { createUser } from '../../../app/userSlice';
+import { createUser, hideSignUpModal, userState } from '../../../app/userSlice';
 import { useCookies } from 'react-cookie';
 import { useState } from 'react';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { User } from '../../../app/types';
 
 export const useSignUp = () => {
+  const state = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -19,7 +20,7 @@ export const useSignUp = () => {
     password: password,
   };
 
-  const handleChange = () => {
+  const handleClick = () => {
     if (
       email !== '' &&
       username !== '' &&
@@ -29,12 +30,18 @@ export const useSignUp = () => {
       setError(false);
       dispatch(createUser(user));
       setCookie('user', user.id, { maxAge: 259200 });
+      dispatch(hideSignUpModal());
     } else {
       setError(true);
     }
   };
 
+  const handleCloseDignUpModal = () => {
+    dispatch(hideSignUpModal());
+  };
+
   return {
+    state,
     email,
     setEmail,
     username,
@@ -43,6 +50,7 @@ export const useSignUp = () => {
     setPassword,
     error,
     setError,
-    handleChange,
+    handleClick,
+    handleCloseDignUpModal,
   };
 };

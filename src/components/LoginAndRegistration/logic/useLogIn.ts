@@ -1,4 +1,4 @@
-import { logInUser, userState } from '../../../app/userSlice';
+import { hideLogInModal, logInUser, userState } from '../../../app/userSlice';
 import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -17,10 +17,11 @@ export const useLogIn = () => {
     password: password,
   };
 
-  const handleChange = () => {
+  const handleClick = () => {
     if (user.username !== '' && user.password !== '' && user !== undefined) {
       setError(false);
       dispatch(logInUser(user));
+      dispatch(hideLogInModal());
     } else {
       setError(true);
     }
@@ -33,13 +34,19 @@ export const useLogIn = () => {
     }
   }, [state.user.id]);
 
+  const handleCloseLogInModal = () => {
+    dispatch(hideLogInModal());
+  };
+
   return {
+    state,
     error,
     setError,
     username,
     setUsername,
     password,
     setPassword,
-    handleChange,
+    handleClick,
+    handleCloseLogInModal,
   };
 };

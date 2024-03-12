@@ -3,9 +3,12 @@ import styles from './LoginAndRegistration.module.scss';
 import { useSignUp } from './logic/useSignUp';
 import Button from '../../UI/button/Button';
 import Input from '../../UI/input/Input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp: FC = () => {
   const {
+    state,
     email,
     setEmail,
     username,
@@ -13,13 +16,21 @@ const SignUp: FC = () => {
     password,
     setPassword,
     error,
-    handleChange,
+    handleClick,
+    handleCloseDignUpModal,
   } = useSignUp();
+
+  if (!state.signUpModal) return null;
 
   return (
     <div className={styles.container}>
       <div className={styles.item}>
-        <div className={styles.close}>Close</div>
+        <button
+          className={styles.close}
+          onClick={() => handleCloseDignUpModal()}
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
         <p className={styles.title}>Sing up</p>
         <Input
           type={'text'}
@@ -42,7 +53,7 @@ const SignUp: FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button text={'OK'} onClick={() => handleChange()} />
+        <Button text={'OK'} onClick={() => handleClick()} />
         {error && <p className={styles.error}>Fill in all the fields!</p>}
       </div>
     </div>

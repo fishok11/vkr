@@ -13,6 +13,8 @@ import db from '../firebase';
 
 export type InitialState = {
   user: User;
+  logInModal: boolean;
+  signUpModal: boolean;
 };
 
 const initialState: InitialState = {
@@ -22,6 +24,8 @@ const initialState: InitialState = {
     username: '',
     password: '',
   },
+  logInModal: false,
+  signUpModal: false,
 };
 
 export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
@@ -69,7 +73,20 @@ export const logInUser = createAsyncThunk<
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    showLogInModal: (state) => {
+      state.logInModal = true;
+    },
+    hideLogInModal: (state) => {
+      state.logInModal = false;
+    },
+    showSignUpModal: (state) => {
+      state.signUpModal = true;
+    },
+    hideSignUpModal: (state) => {
+      state.signUpModal = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
@@ -88,7 +105,12 @@ export const userSlice = createSlice({
   },
 });
 
-// export const { } = mainSlice.actions;
+export const {
+  showLogInModal,
+  hideLogInModal,
+  showSignUpModal,
+  hideSignUpModal,
+} = userSlice.actions;
 
 export const userState = (state: RootState) => state.user;
 
