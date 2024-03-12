@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from './LoginAndRegistration.module.scss';
 import { User, UserSignUp } from '../../app/types';
 import { v4 as uuidv4 } from 'uuid';
+import nextId from 'react-id-generator';
 // import { createUser } from '@/services/requests';
 // import { setCookie } from 'cookies-next';
 
@@ -17,7 +18,7 @@ const SignUp: FC = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const user: User = {
-    id: uuidv4.toString(),
+    id: nextId(),
     email: email,
     username: username,
     password: password,
