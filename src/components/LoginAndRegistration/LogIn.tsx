@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styles from './LoginAndRegistration.module.scss';
 import { useLogIn } from './logic/useLogIn';
+import Button from '../../UI/button/Button';
+import Input from '../../UI/input/Input';
 
 const LogIn: FC = () => {
   const { error, username, setUsername, password, setPassword, handleChange } =
@@ -16,25 +18,21 @@ const LogIn: FC = () => {
           Close
         </div>
         <p className={styles.title}>Log in</p>
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          className={styles.input}
+        <Input
+          id={'Username'}
+          type={'text'}
+          placeholder={'Username'}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          className={styles.input}
+        <Input
+          id={'Password'}
+          type={'password'}
+          placeholder={'Password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className={styles.button} onClick={() => handleChange()}>
-          OK
-        </button>
+        <Button text={'OK'} onClick={() => handleChange()} />
         {error && <p className={styles.error}>Fill in all the fields!</p>}
       </div>
     </div>

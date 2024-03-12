@@ -36,6 +36,7 @@ const Input: FC<Partial<InputProps>> = ({
       <input
         className={error ? styles.inputError : styles.input}
         id={id}
+        name={id}
         type={type}
         placeholder={placeholder}
         min={min}

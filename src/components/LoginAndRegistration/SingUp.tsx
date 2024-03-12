@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styles from './LoginAndRegistration.module.scss';
 import { useSignUp } from './logic/useSignUp';
+import Button from '../../UI/button/Button';
+import Input from '../../UI/input/Input';
 
 const SignUp: FC = () => {
   const {
@@ -19,33 +21,28 @@ const SignUp: FC = () => {
       <div className={styles.item}>
         <div className={styles.close}>Close</div>
         <p className={styles.title}>Sing up</p>
-        <input
-          type="text"
-          placeholder="Email"
-          name="email"
-          className={styles.input}
+        <Input
+          type={'text'}
+          placeholder={'Email'}
+          id={'email'}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          className={styles.input}
+        <Input
+          type={'text'}
+          placeholder={'Username'}
+          id="username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          className={styles.input}
+        <Input
+          type={'password'}
+          placeholder={'Password'}
+          id={'password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className={styles.button} onClick={() => handleChange()}>
-          OK
-        </button>
+        <Button text={'OK'} onClick={() => handleChange()} />
         {error && <p className={styles.error}>Fill in all the fields!</p>}
       </div>
     </div>
