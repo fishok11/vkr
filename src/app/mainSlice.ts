@@ -1,7 +1,14 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { Article, Chapter, Question } from './types';
-import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
+import { Article, Chapter, Question, User } from './types';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+} from 'firebase/firestore';
 import db from '../firebase';
 
 export type InitialState = {
@@ -140,11 +147,25 @@ export const getChapters = createAsyncThunk<
 
       data.push(chapter);
     });
+
     return data;
   } catch (error) {
     return rejectWithValue('Server error!');
   }
 });
+
+export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
+  'UserSignUp',
+  async (user: User, { rejectWithValue }) => {
+    try {
+      const data = await setDoc(doc(db, 'users'), user);
+
+      return data;
+    } catch (error) {
+      return rejectWithValue('Server error!');
+    }
+  },
+);
 
 export const mainSlice = createSlice({
   name: 'main',

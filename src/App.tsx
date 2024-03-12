@@ -7,6 +7,8 @@ import styles from './App.module.scss';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import InfoPage from './pages/infoPage/InfoPage';
 import Footer from './components/footer/Footer';
+import LogIn from './components/LoginAndRegistration/LogIn';
+import SignUp from './components/LoginAndRegistration/SingUp';
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         </Routes>
       </div>
       <Footer />
+      {/* <LogIn /> */}
+      <SignUp />
     </>
   );
 }
