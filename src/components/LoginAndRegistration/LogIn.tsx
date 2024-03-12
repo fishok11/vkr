@@ -1,38 +1,10 @@
 import React, { FC } from 'react';
-import { useState } from 'react';
 import styles from './LoginAndRegistration.module.scss';
-import { UserLogIn } from '../../app/types';
-// import { logInUser } from '@/services/requests';
-// import {  } from 'react-cookie';
-
-// type LogInProps = {
-//   logInActive: boolean;
-//   closeLogInWindow: Function;
-// }
+import { useLogIn } from './logic/useLogIn';
 
 const LogIn: FC = () => {
-  const [error, setError] = useState(false);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const user: UserLogIn = {
-    username: username,
-    password: password,
-  };
-
-  const handleChange = async (user: UserLogIn | undefined) => {
-    if (username !== '' && password !== '' && user !== undefined) {
-      setError(false);
-      // const data = await logInUser(user);
-      // setCookie('user', data?.userData?.id, { maxAge: 259200 });
-      // setCookie('cart', data?.cartId, { maxAge: 259200 });
-      // closeLogInWindow(false);
-    } else {
-      setError(true);
-    }
-  };
-
-  // if (logInActive === false) return null;
+  const { error, username, setUsername, password, setPassword, handleChange } =
+    useLogIn();
 
   return (
     <div className={styles.container}>
@@ -60,7 +32,7 @@ const LogIn: FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className={styles.button} onClick={() => handleChange(user)}>
+        <button className={styles.button} onClick={() => handleChange()}>
           OK
         </button>
         {error && <p className={styles.error}>Fill in all the fields!</p>}
