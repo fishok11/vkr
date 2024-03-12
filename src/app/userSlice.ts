@@ -15,6 +15,8 @@ export type InitialState = {
   user: User;
   logInModal: boolean;
   signUpModal: boolean;
+  isLoadingLogIn: boolean;
+  isLoadingSignUp: boolean;
 };
 
 const initialState: InitialState = {
@@ -26,6 +28,8 @@ const initialState: InitialState = {
   },
   logInModal: false,
   signUpModal: false,
+  isLoadingLogIn: false,
+  isLoadingSignUp: false,
 };
 
 export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
@@ -90,17 +94,17 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createUser.pending, (state) => {
-        // state.isLoadingChapters = true;
+        state.isLoadingSignUp = true;
       })
       .addCase(createUser.fulfilled, (state) => {
-        // state.isLoadingChapters = false;
+        state.isLoadingSignUp = false;
       })
       .addCase(logInUser.pending, (state) => {
-        // state.isLoadingChapters = true;
+        state.isLoadingLogIn = true;
       })
       .addCase(logInUser.fulfilled, (state, action: PayloadAction<User>) => {
         state.user = action.payload;
-        // state.isLoadingChapters = false;
+        state.isLoadingLogIn = false;
       });
   },
 });
