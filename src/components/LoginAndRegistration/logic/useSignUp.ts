@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid';
-import { createUser } from '../../../app/mainSlice';
+import { createUser } from '../../../app/userSlice';
 import { useCookies } from 'react-cookie';
 import { useState } from 'react';
 import { useAppDispatch } from '../../../app/hooks';

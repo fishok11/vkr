@@ -1,11 +1,11 @@
-import { logInUser, mainState } from '../../../app/mainSlice';
+import { logInUser, userState } from '../../../app/userSlice';
 import { useCookies } from 'react-cookie';
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { UserLogIn } from '../../../app/types';
 
 export const useLogIn = () => {
-  const state = useAppSelector(mainState);
+  const state = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [error, setError] = useState(false);
   const [username, setUsername] = useState('');
@@ -23,7 +23,7 @@ export const useLogIn = () => {
       await dispatch(logInUser(user));
       // console.log(state.user.id);
 
-      setCookie('user', state.user.id, { maxAge: 259200 });
+      setCookie('user', state, { maxAge: 259200 });
     } else {
       setError(true);
     }

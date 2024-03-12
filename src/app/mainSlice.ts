@@ -1,15 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { Article, Chapter, Question, User, UserLogIn } from './types';
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from 'firebase/firestore';
+import { Article, Chapter, Question } from './types';
+import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
 import db from '../firebase';
 
 export type InitialState = {
@@ -17,7 +9,6 @@ export type InitialState = {
   articles: Article[];
   questions: Question[];
   chapters: Chapter[];
-  user: User;
   isLoadingArticle: boolean;
   isLoadingArticles: boolean;
   isLoadingQuestions: boolean;
@@ -34,12 +25,6 @@ const initialState: InitialState = {
   articles: [],
   questions: [],
   chapters: [],
-  user: {
-    id: '',
-    email: '',
-    username: '',
-    password: '',
-  },
   isLoadingArticle: false,
   isLoadingArticles: false,
   isLoadingQuestions: false,
@@ -162,48 +147,6 @@ export const getChapters = createAsyncThunk<
   }
 });
 
-export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
-  'createUser',
-  async (user: User, { rejectWithValue }) => {
-    try {
-      const data = await setDoc(doc(db, 'users', user.id), user);
-
-      return data;
-    } catch (error) {
-      return rejectWithValue('Server error!');
-    }
-  },
-);
-
-export const logInUser = createAsyncThunk<
-  User,
-  UserLogIn,
-  { rejectValue: string }
->('logInUser', async (user: UserLogIn, { rejectWithValue }) => {
-  try {
-    const docRefUser = query(
-      collection(db, 'users'),
-      where('username', '==', user.username),
-      where('password', '==', user.password),
-    );
-    const docsUser = await getDocs(docRefUser);
-    let userData: User | undefined;
-
-    docsUser.forEach((doc) => {
-      userData = {
-        id: doc.id,
-        email: doc.data().email,
-        username: doc.data().username,
-        password: doc.data().password,
-      };
-    });
-
-    return userData ?? rejectWithValue('User not found');
-  } catch (error) {
-    return rejectWithValue('Server error!');
-  }
-});
-
 export const mainSlice = createSlice({
   name: 'main',
   initialState,
@@ -249,20 +192,7 @@ export const mainSlice = createSlice({
           state.chapters = action.payload;
           state.isLoadingChapters = false;
         },
-      )
-      .addCase(createUser.pending, (state) => {
-        // state.isLoadingChapters = true;
-      })
-      .addCase(createUser.fulfilled, (state) => {
-        // state.isLoadingChapters = false;
-      })
-      .addCase(logInUser.pending, (state) => {
-        // state.isLoadingChapters = true;
-      })
-      .addCase(logInUser.fulfilled, (state, action: PayloadAction<User>) => {
-        state.user = action.payload;
-        // state.isLoadingChapters = false;
-      });
+      );
   },
 });
 
