@@ -1,6 +1,6 @@
 import { logInUser, userState } from '../../../app/userSlice';
 import { useCookies } from 'react-cookie';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { UserLogIn } from '../../../app/types';
 
@@ -17,17 +17,21 @@ export const useLogIn = () => {
     password: password,
   };
 
-  const handleChange = async () => {
+  const handleChange = () => {
     if (user.username !== '' && user.password !== '' && user !== undefined) {
       setError(false);
-      await dispatch(logInUser(user));
-      // console.log(state.user.id);
-
-      setCookie('user', state, { maxAge: 259200 });
+      dispatch(logInUser(user));
     } else {
       setError(true);
     }
   };
+
+  useEffect(() => {
+    if (cookies.user === undefined && state.user.id !== '') {
+      setCookie('user', state.user.id, { maxAge: 259200 });
+      console.log(1);
+    }
+  }, [state.user.id]);
 
   return {
     error,
