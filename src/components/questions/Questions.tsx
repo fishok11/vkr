@@ -5,13 +5,13 @@ import { Question } from '../../app/types';
 import Button from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
 
-const Questions: FC = ( ) => {
+const Questions: FC = () => {
   const {
     stateMain,
+    stateUser,
     articleId,
     handleAnswerSelection,
     selectedAnswers,
-    showResults,
     handleAddResult,
   } = useQuestions();
 
@@ -19,7 +19,7 @@ const Questions: FC = ( ) => {
 
   return (
     <div className={styles.questionsContainer}>
-      {!showResults && (
+      {!stateUser.result.articleId && (
         <>
           <h2 className={styles.text}>Вопросы</h2>
           {stateMain.questions
@@ -60,7 +60,7 @@ const Questions: FC = ( ) => {
         </>
       )}
 
-      {showResults && (
+      {stateUser.result.articleId === articleId && (
         <>
           <h2 className={styles.text}>Результаты</h2>
           {stateMain.questions

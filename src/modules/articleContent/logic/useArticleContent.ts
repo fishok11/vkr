@@ -11,7 +11,6 @@ export const useArticleContent = () => {
   const [showResults, setShowResults] = useState<boolean>(false);
   const [cookies] = useCookies(['user']);
 
-
   useEffect(() => {
     if (articleId !== undefined) {
       dispatch(getArticle(articleId));

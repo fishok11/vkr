@@ -142,6 +142,9 @@ export const userSlice = createSlice({
     hideSignUpModal: (state) => {
       state.signUpModal = false;
     },
+    resetResult: (state) => {
+      state.result = initialState.result;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -179,6 +182,7 @@ export const {
   hideLogInModal,
   showSignUpModal,
   hideSignUpModal,
+  resetResult,
 } = userSlice.actions;
 
 export const userState = (state: RootState) => state.user;
