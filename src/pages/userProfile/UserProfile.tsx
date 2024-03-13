@@ -13,13 +13,15 @@ const UserProfile: FC = () => {
             {stateMain.articles
               .filter((article) => article.id == result.articleId)
               .map((article) => (
-                <h2
+                <button
                   key={article.id}
                   className={styles.articleTitle}
                   onClick={() => onTitleClick(article.id)}
                 >
-                  {article.title}
-                </h2>
+                  <h2>
+                    {article.title}
+                  </h2>
+                </button>
               ))}
 
             {activeIndex === result.articleId && (

@@ -13,8 +13,6 @@ export const useUserPrtofle = () => {
   const [activeIndex, setActiveIndex] = useState<string | null>(null);
   const onTitleClick = (index: string) => {
     activeIndex !== null ? setActiveIndex(null) : setActiveIndex(index);
-    console.log(activeIndex);
-    
   };
 
   useEffect(() => {
