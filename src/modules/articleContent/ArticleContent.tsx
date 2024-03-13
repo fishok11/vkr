@@ -14,6 +14,7 @@ const ArticleContent: FC = () => {
     setShowResults,
     prevArticleId,
     nextArticleId,
+    cookies,
   } = useArticleContent();
 
   if (state.isLoadingArticle) return <Loader />;
@@ -22,11 +23,13 @@ const ArticleContent: FC = () => {
     <div className={styles.container}>
       <h1>{state.article.title}</h1>
       {HTMLReactParser(state.article.content)}
-      <Questions
-        articleId={articleId}
-        showResults={showResults}
-        onClick={() => setShowResults(true)}
-      />
+      {cookies.user && (
+        <Questions
+          articleId={articleId}
+          showResults={showResults}
+          onClick={() => setShowResults(true)}
+        />
+      )}
       <Pagination prevArticleId={prevArticleId} nextArticleId={nextArticleId} />
     </div>
   );

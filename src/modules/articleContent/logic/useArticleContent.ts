@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { getArticle, getArticles, mainState } from '../../../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useParams } from 'react-router';
+import { useCookies } from 'react-cookie';
 
 export const useArticleContent = () => {
   const { articleId } = useParams();
   const state = useAppSelector(mainState);
   const dispatch = useAppDispatch();
   const [showResults, setShowResults] = useState<boolean>(false);
+  const [cookies] = useCookies(['user']);
+
 
   useEffect(() => {
     if (articleId !== undefined) {
@@ -38,5 +41,6 @@ export const useArticleContent = () => {
     setShowResults,
     prevArticleId,
     nextArticleId,
+    cookies,
   };
 };
