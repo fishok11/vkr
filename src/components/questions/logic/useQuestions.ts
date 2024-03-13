@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getQuestions, mainState } from '../../../app/mainSlice';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router';
-import { addResult, getResults } from '../../../app/userSlice';
+import { addResult, getResultOfTheArticle } from '../../../app/userSlice';
 import { ResultToAdded } from '../../../app/types';
 
 export const useQuestions = () => {
@@ -43,8 +43,9 @@ export const useQuestions = () => {
   useEffect(() => {
     dispatch(resetResult());
     dispatch(getQuestions());
-    dispatch(getResults({ articleId: articleId, userId: cookies.user }));
-    console.log(stateUser.result);
+    dispatch(
+      getResultOfTheArticle({ articleId: articleId, userId: cookies.user }),
+    );
   }, [showResults]);
 
   return {

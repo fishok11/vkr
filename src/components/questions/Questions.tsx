@@ -19,7 +19,7 @@ const Questions: FC = () => {
 
   return (
     <div className={styles.questionsContainer}>
-      {!stateUser.result.articleId && (
+      {!stateUser.resultOfTheArticle.articleId && (
         <>
           <h2 className={styles.text}>Вопросы</h2>
           {stateMain.questions
@@ -60,7 +60,7 @@ const Questions: FC = () => {
         </>
       )}
 
-      {stateUser.result.articleId === articleId && (
+      {stateUser.resultOfTheArticle.articleId === articleId && (
         <>
           <h2 className={styles.text}>Результаты</h2>
           {stateMain.questions
@@ -75,7 +75,12 @@ const Questions: FC = () => {
                   <b>Правильный ответ:</b> {question.correctAnswer}
                 </p>
                 <p>
-                  <b>Ваш ответ:</b> {selectedAnswers[parseInt(question.id)]}
+                  <b>Ваш ответ:</b>{' '}
+                  {
+                    stateUser.resultOfTheArticle.userAnswers[
+                      parseInt(question.id)
+                    ]
+                  }
                 </p>
               </div>
             ))}

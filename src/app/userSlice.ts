@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import {
-  GetResultsParams,
+  GetResultOfTheArticleParams,
   Result,
   ResultToAdded,
   User,
@@ -20,7 +20,8 @@ import db from '../firebase';
 
 export type InitialState = {
   user: User;
-  result: Result;
+  resultOfTheArticle: Result;
+  userResults: Result[];
   logInModal: boolean;
   signUpModal: boolean;
   isLoadingLogIn: boolean;
@@ -35,7 +36,8 @@ const initialState: InitialState = {
     username: '',
     password: '',
   },
-  result: { id: '', articleId: '', userId: '', userAnswers: {} },
+  userResults: [],
+  resultOfTheArticle: { id: '', articleId: '', userId: '', userAnswers: {} },
   logInModal: false,
   signUpModal: false,
   isLoadingLogIn: false,
@@ -97,30 +99,63 @@ export const addResult = createAsyncThunk<
   }
 });
 
-export const getResults = createAsyncThunk<
+export const getResultOfTheArticle = createAsyncThunk<
   Result,
-  GetResultsParams,
+  GetResultOfTheArticleParams,
   { rejectValue: string }
->('getResults', async (params: GetResultsParams, { rejectWithValue }) => {
+>(
+  'getResultOfTheArticle',
+  async (params: GetResultOfTheArticleParams, { rejectWithValue }) => {
+    try {
+      const docRefResults = query(
+        collection(db, 'results'),
+        where('articleId', '==', params.articleId),
+        where('userId', '==', params.userId),
+      );
+      const docsResults = await getDocs(docRefResults);
+      let resultData: Result | undefined;
+
+      docsResults.forEach((doc) => {
+        resultData = {
+          id: doc.id,
+          articleId: doc.data().articleId,
+          userId: doc.data().userId,
+          userAnswers: doc.data().userAnswers,
+        };
+      });
+
+      return resultData ?? rejectWithValue('Result not found');
+    } catch (error) {
+      return rejectWithValue('Server error!');
+    }
+  },
+);
+
+export const getUserResults = createAsyncThunk<
+  Result[],
+  string,
+  { rejectValue: string }
+>('getUserResults', async (userId: string, { rejectWithValue }) => {
   try {
     const docRefResults = query(
       collection(db, 'results'),
-      where('articleId', '==', params.articleId),
-      where('userId', '==', params.userId),
+      where('userId', '==', userId),
     );
     const docsResults = await getDocs(docRefResults);
-    let resultData: Result | undefined;
+    const data: Result[] = [];
 
     docsResults.forEach((doc) => {
-      resultData = {
+      const resultData = {
         id: doc.id,
         articleId: doc.data().articleId,
         userId: doc.data().userId,
         userAnswers: doc.data().userAnswers,
       };
+
+      data.push(resultData);
     });
 
-    return resultData ?? rejectWithValue('Result not found');
+    return data ?? rejectWithValue('Result not found');
   } catch (error) {
     return rejectWithValue('Server error!');
   }
@@ -143,7 +178,7 @@ export const userSlice = createSlice({
       state.signUpModal = false;
     },
     resetResult: (state) => {
-      state.result = initialState.result;
+      state.resultOfTheArticle = initialState.resultOfTheArticle;
     },
   },
   extraReducers: (builder) => {
@@ -167,13 +202,28 @@ export const userSlice = createSlice({
       .addCase(addResult.fulfilled, (state) => {
         state.isLoadingAddResult = false;
       })
-      .addCase(getResults.pending, (state) => {
+      .addCase(getResultOfTheArticle.pending, (state) => {
         state.isLoadingAddResult = true;
       })
-      .addCase(getResults.fulfilled, (state, action: PayloadAction<Result>) => {
-        state.result = action.payload;
-        state.isLoadingAddResult = false;
-      });
+      .addCase(
+        getResultOfTheArticle.fulfilled,
+        (state, action: PayloadAction<Result>) => {
+          state.resultOfTheArticle = action.payload;
+          state.isLoadingAddResult = false;
+        },
+      )
+      .addCase(getUserResults.pending, (state) => {
+        state.isLoadingAddResult = true;
+      })
+      .addCase(
+        getUserResults.fulfilled,
+        (state, action: PayloadAction<Result[]>) => {
+          state.userResults = action.payload;
+          state.isLoadingAddResult = false;
+          console.log(state.userResults);
+          
+        },
+      );
   },
 });
 
