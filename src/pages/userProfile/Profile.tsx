@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import styles from './Profile.module.scss';
 import { useProfle } from './logic/useProfile';
 import UserResults from '../../components/userResults/UserResults';
+import UsersResults from '../../components/usersResults/UsersResults';
 
 const UserProfile: FC = () => {
   const { stateUser } = useProfle();
@@ -12,7 +13,7 @@ const UserProfile: FC = () => {
         <b>Результаты пройденых тестов:</b>
       </h2>
       {!stateUser.user.admin && <UserResults />}
-      {stateUser.user.admin && <p>Здесь будут ркзультаты всех юзеров</p>}
+      {stateUser.user.admin && <UsersResults />}
     </div>
   );
 };

@@ -10,7 +10,6 @@ export const useProfle = () => {
 
   useEffect(() => {
     dispatch(getUser(cookies.user));
-    console.log(stateUser.user);
   }, []);
 
   return { stateUser };
