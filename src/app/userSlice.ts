@@ -17,6 +17,7 @@ import {
   where,
 } from 'firebase/firestore';
 import db from '../firebase';
+import toast from 'react-hot-toast';
 
 export type InitialState = {
   user: User;
@@ -24,6 +25,7 @@ export type InitialState = {
   userResults: Result[];
   logInModal: boolean;
   signUpModal: boolean;
+  userNotFound: boolean;
   isLoadingLogIn: boolean;
   isLoadingSignUp: boolean;
   isLoadingAddResult: boolean;
@@ -41,6 +43,7 @@ const initialState: InitialState = {
   resultOfTheArticle: { id: '', articleId: '', userId: '', userAnswers: {} },
   logInModal: false,
   signUpModal: false,
+  userNotFound: false,
   isLoadingLogIn: false,
   isLoadingSignUp: false,
   isLoadingAddResult: false,
@@ -53,6 +56,8 @@ export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
     try {
       const data = await setDoc(doc(db, 'users', user.id), user);
 
+      toast.success('Регистрация успешна!');
+
       return data;
     } catch (error) {
       return rejectWithValue('Server error!');
@@ -61,7 +66,7 @@ export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
 );
 
 export const logInUser = createAsyncThunk<
-  User,
+  User | undefined,
   UserLogIn,
   { rejectValue: string }
 >('logInUser', async (user: UserLogIn, { rejectWithValue }) => {
@@ -82,6 +87,13 @@ export const logInUser = createAsyncThunk<
         password: doc.data().password,
       };
     });
+
+    if (userData == undefined) {
+      toast.error('Пользователь не найден!');
+      return;
+    }
+
+    toast.success('Вход выполнен!');
 
     return userData ?? rejectWithValue('User not found');
   } catch (error) {
@@ -194,10 +206,15 @@ export const userSlice = createSlice({
       .addCase(logInUser.pending, (state) => {
         state.isLoadingLogIn = true;
       })
-      .addCase(logInUser.fulfilled, (state, action: PayloadAction<User>) => {
-        state.user = action.payload;
-        state.isLoadingLogIn = false;
-      })
+      .addCase(
+        logInUser.fulfilled,
+        (state, action: PayloadAction<User | undefined>) => {
+          if (action.payload) {
+            state.user = action.payload;
+          }
+          state.isLoadingLogIn = false;
+        },
+      )
       .addCase(addResult.pending, (state) => {
         state.isLoadingAddResult = true;
       })

@@ -11,7 +11,9 @@ export const useSignUp = () => {
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(false);
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorUsername, setErrorUsername] = useState(false);
+  const [errorPasswor, setErrorPasswor] = useState(false);
   const [cookies, setCookie] = useCookies(['user']);
   const user: User = {
     id: nanoid(),
@@ -20,20 +22,38 @@ export const useSignUp = () => {
     password: password,
   };
 
+  function validateEmail(email: string) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
   const handleClick = () => {
+    setErrorEmail(false);
+    setErrorUsername(false);
+    setErrorPasswor(false);
+
     if (
-      email !== '' &&
-      username !== '' &&
-      password !== '' &&
-      user !== undefined
+      user.email === '' ||
+      !validateEmail(user.email) ||
+      username === '' ||
+      password === ''
     ) {
-      setError(false);
-      dispatch(createUser(user));
-      setCookie('user', user.id, { maxAge: 259200 });
-      dispatch(hideSignUpModal());
-    } else {
-      setError(true);
+      if (user.email === '' || !validateEmail(user.email)) {
+        setErrorEmail(true);
+      }
+      if (user.username === '') {
+        setErrorUsername(true);
+      }
+      if (user.password === '') {
+        setErrorPasswor(true);
+      }
+      
+      return;
     }
+
+    dispatch(createUser(user));
+    setCookie('user', user.id, { maxAge: 259200 });
+    dispatch(hideSignUpModal());
   };
 
   const handleCloseDignUpModal = () => {
@@ -48,8 +68,9 @@ export const useSignUp = () => {
     setUsername,
     password,
     setPassword,
-    error,
-    setError,
+    errorEmail,
+    errorUsername,
+    errorPasswor,
     handleClick,
     handleCloseDignUpModal,
   };

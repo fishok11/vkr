@@ -10,6 +10,7 @@ import Footer from './components/footer/Footer';
 import LogIn from './components/LoginAndRegistration/LogIn';
 import SignUp from './components/LoginAndRegistration/SingUp';
 import UserProfile from './pages/userProfile/UserProfile';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
       <Footer />
       <LogIn />
       <SignUp />
+      <Toaster position="bottom-center" />
     </>
   );
 }

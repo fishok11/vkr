@@ -14,7 +14,7 @@ const UserProfile: FC = () => {
     stateUser.isLoadingGetUserResults
   )
     return <Loader />;
-    
+
   return (
     <div className={styles.container}>
       <h2>

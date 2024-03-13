@@ -15,7 +15,9 @@ const SignUp: FC = () => {
     setUsername,
     password,
     setPassword,
-    error,
+    errorEmail,
+    errorUsername,
+    errorPasswor,
     handleClick,
     handleCloseDignUpModal,
   } = useSignUp();
@@ -31,30 +33,35 @@ const SignUp: FC = () => {
         >
           <FontAwesomeIcon icon={faXmark} />
         </button>
-        <p className={styles.title}>Sing up</p>
+        <p className={styles.title}>Регистрация</p>
         <Input
+          id={'email'}
           type={'text'}
           placeholder={'Email'}
-          id={'email'}
+          error={errorEmail}
+          helperText={'Пустое или неправильное значение'}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
+          id={'username'}
           type={'text'}
           placeholder={'Username'}
-          id="username"
+          error={errorUsername}
+          helperText={'Пустое значение'}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <Input
+          id={'password'}
           type={'password'}
           placeholder={'Password'}
-          id={'password'}
+          error={errorPasswor}
+          helperText={'Пустое значение'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button text={'OK'} onClick={() => handleClick()} />
-        {error && <p className={styles.error}>Fill in all the fields!</p>}
       </div>
     </div>
   );

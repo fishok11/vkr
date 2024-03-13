@@ -9,11 +9,12 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 const LogIn: FC = () => {
   const {
     stateUser,
-    error,
     username,
     setUsername,
     password,
     setPassword,
+    errorUsername,
+    errorPasswor,
     handleClick,
     handleCloseLogInModal,
   } = useLogIn();
@@ -29,23 +30,24 @@ const LogIn: FC = () => {
         >
           <FontAwesomeIcon icon={faXmark} />
         </button>
-        <p className={styles.title}>Log in</p>
+        <p className={styles.title}>Авторизация</p>
         <Input
           id={'Username'}
           type={'text'}
           placeholder={'Username'}
+          error={errorUsername}
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
         <Input
           id={'Password'}
           type={'password'}
+          error={errorPasswor}
           placeholder={'Password'}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <Button text={'OK'} onClick={() => handleClick()} />
-        {error && <p className={styles.error}>Fill in all the fields!</p>}
       </div>
     </div>
   );

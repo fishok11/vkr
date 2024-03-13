@@ -7,7 +7,8 @@ import { UserLogIn } from '../../../app/types';
 export const useLogIn = () => {
   const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
-  const [error, setError] = useState(false);
+  const [errorUsername, setErrorUsername] = useState(false);
+  const [errorPasswor, setErrorPasswor] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [cookies, setCookie] = useCookies(['user']);
@@ -18,18 +19,27 @@ export const useLogIn = () => {
   };
 
   const handleClick = () => {
-    if (user.username !== '' && user.password !== '' && user !== undefined) {
-      setError(false);
-      dispatch(logInUser(user));
-      dispatch(hideLogInModal());
-    } else {
-      setError(true);
+    setErrorUsername(false);
+    setErrorUsername(false);
+
+    if (username === '' || password === '') {
+      if (user.username === '') {
+        setErrorUsername(true);
+      }
+      if (user.password === '') {
+        setErrorPasswor(true);
+      }
+      
+      return;
     }
+
+    dispatch(logInUser(user));
   };
 
   useEffect(() => {
     if (cookies.user === undefined && stateUser.user.id !== '') {
       setCookie('user', stateUser.user.id, { maxAge: 259200 });
+      dispatch(hideLogInModal());
     }
   }, [stateUser.user.id]);
 
@@ -39,12 +49,12 @@ export const useLogIn = () => {
 
   return {
     stateUser,
-    error,
-    setError,
     username,
     setUsername,
     password,
     setPassword,
+    errorUsername,
+    errorPasswor,
     handleClick,
     handleCloseLogInModal,
   };
