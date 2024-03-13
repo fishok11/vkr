@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styles from './LoginAndRegistration.module.scss';
+import styles from './Registration.module.scss';
 import { useRegistration } from './logic/useRegistration';
 import Button from '../../UI/button/Button';
 import Input from '../../UI/input/Input';
@@ -22,8 +22,6 @@ const Registration: FC = () => {
     handleClickLogIn,
     handleCloseModal,
   } = useRegistration();
-
-  // if (!stateUser.signUpModal && !stateUser.logInModal) return null;
 
   return (
     <>

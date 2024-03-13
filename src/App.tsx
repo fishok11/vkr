@@ -9,6 +9,7 @@ import InfoPage from './pages/infoPage/InfoPage';
 import Footer from './components/footer/Footer';
 import Registration from './components/LoginAndRegistration/Registration';
 import UserProfile from './pages/userProfile/UserProfile';
+import AdminRegistration from './pages/adminRegistration/AdminRegistration';
 import { Toaster } from 'react-hot-toast';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path={`/article/:articleId`} element={<ArticlePage />} />
           <Route path={`/about`} element={<InfoPage />} />
           <Route path={`/profile/:userId`} element={<UserProfile />} />
+          <Route path={`/admin`} element={<AdminRegistration />} />
         </Routes>
       </div>
       <Footer />

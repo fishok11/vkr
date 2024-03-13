@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import styles from './Header.module.scss';
 import CustomLink from '../../UI/customLink/CustomLink';
-import Button from '../../UI/button/Button';
 import { useHeader } from './logic/useHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

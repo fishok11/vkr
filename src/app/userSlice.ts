@@ -38,6 +38,7 @@ const initialState: InitialState = {
     email: '',
     username: '',
     password: '',
+    admin: false,
   },
   userResults: [],
   resultOfTheArticle: { id: '', articleId: '', userId: '', userAnswers: {} },
@@ -85,6 +86,7 @@ export const logInUser = createAsyncThunk<
         email: doc.data().email,
         username: doc.data().username,
         password: doc.data().password,
+        admin: doc.data().admin,
       };
     });
 

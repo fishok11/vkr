@@ -10,6 +10,7 @@ import { useCookies } from 'react-cookie';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { User, UserLogIn } from '../../../app/types';
+import { useLocation } from 'react-router';
 
 export const useRegistration = () => {
   const stateUser = useAppSelector(userState);
@@ -21,12 +22,15 @@ export const useRegistration = () => {
   const [errorUsername, setErrorUsername] = useState(false);
   const [errorPasswor, setErrorPasswor] = useState(false);
   const [cookies, setCookie] = useCookies(['user']);
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const userSignUp: User = {
     id: nanoid(),
     email: email,
     username: username,
     password: password,
+    admin: currentPath === '/admin' ? true : false,
   };
 
   const userLogIn: UserLogIn = {

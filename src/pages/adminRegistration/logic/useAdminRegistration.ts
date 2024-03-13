@@ -1,13 +1,10 @@
 import { useCookies } from 'react-cookie';
 import { useAppDispatch } from '../../../app/hooks';
 import { showLogInModal, showSignUpModal } from '../../../app/userSlice';
-import { useLocation } from 'react-router';
 
-export const useHeader = () => {
+export const useAdminRegistration = () => {
   const dispatch = useAppDispatch();
   const [cookies] = useCookies(['user']);
-  const location = useLocation();
-  const currentPath = location.pathname;
 
   const handleShowLogInModal = () => {
     dispatch(showLogInModal());
@@ -17,10 +14,5 @@ export const useHeader = () => {
     dispatch(showSignUpModal());
   };
 
-  return {
-    cookies,
-    currentPath,
-    handleShowLogInModal,
-    handleShowSignUpModal,
-  };
+  return { cookies, handleShowLogInModal, handleShowSignUpModal };
 };

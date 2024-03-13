@@ -25,6 +25,7 @@ export type User = {
   email: string;
   username: string;
   password: string;
+  admin: boolean;
 };
 
 export type UserLogIn = {
