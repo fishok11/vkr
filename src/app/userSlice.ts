@@ -220,8 +220,6 @@ export const userSlice = createSlice({
         (state, action: PayloadAction<Result[]>) => {
           state.userResults = action.payload;
           state.isLoadingAddResult = false;
-          console.log(state.userResults);
-          
         },
       );
   },

@@ -70,7 +70,7 @@ const Questions: FC = () => {
             )
             .map((question: Question) => (
               <div key={question.id}>
-                <p className={styles.questionTitle}>{question.question}</p>
+                <h3 className={styles.questionTitle}>{question.question}</h3>
                 <p>
                   <b>Правильный ответ:</b> {question.correctAnswer}
                 </p>
