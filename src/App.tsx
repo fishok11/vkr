@@ -8,7 +8,7 @@ import ArticlePage from './pages/articlePage/ArticlePage';
 import InfoPage from './pages/infoPage/InfoPage';
 import Footer from './components/footer/Footer';
 import Registration from './components/LoginAndRegistration/Registration';
-import UserProfile from './pages/userProfile/UserProfile';
+import UserProfile from './pages/userProfile/Profile';
 import AdminRegistration from './pages/adminRegistration/AdminRegistration';
 import { Toaster } from 'react-hot-toast';
 

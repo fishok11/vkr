@@ -11,6 +11,7 @@ import {
   addDoc,
   collection,
   doc,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -21,6 +22,7 @@ import toast from 'react-hot-toast';
 
 export type InitialState = {
   user: User;
+  users: User[];
   resultOfTheArticle: Result;
   userResults: Result[];
   logInModal: boolean;
@@ -40,6 +42,7 @@ const initialState: InitialState = {
     password: '',
     admin: false,
   },
+  users: [],
   userResults: [],
   resultOfTheArticle: { id: '', articleId: '', userId: '', userAnswers: {} },
   logInModal: false,
@@ -177,6 +180,60 @@ export const getUserResults = createAsyncThunk<
   }
 });
 
+export const getUsers = createAsyncThunk<
+  User[],
+  undefined,
+  { rejectValue: string }
+>('getUsers', async (_, { rejectWithValue }) => {
+  try {
+    const docRefUsers = query(collection(db, 'users'));
+    const docsUsers = await getDocs(docRefUsers);
+    const data: User[] = [];
+
+    docsUsers.forEach((doc) => {
+      const userData = {
+        id: doc.id,
+        email: doc.data().email,
+        username: doc.data().username,
+        password: doc.data().password,
+        admin: doc.data().admin,
+      };
+
+      data.push(userData);
+    });
+
+    return data ?? rejectWithValue('Result not found');
+  } catch (error) {
+    return rejectWithValue('Server error!');
+  }
+});
+
+export const getUser = createAsyncThunk<User, string, { rejectValue: string }>(
+  'getUser',
+  async (userId: string, { rejectWithValue }) => {
+    try {
+      const docRef = doc(db, 'users', userId);
+      const docUser = await getDoc(docRef);
+
+      if (docUser.exists()) {
+        const data: User = {
+          id: docUser.id,
+          email: docUser.data().email,
+          username: docUser.data().username,
+          password: docUser.data().password,
+          admin: docUser.data().admin,
+        };
+
+        return data;
+      } else {
+        return rejectWithValue('Article not found');
+      }
+    } catch (error) {
+      return rejectWithValue('Server error!');
+    }
+  },
+);
+
 export const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -242,7 +299,21 @@ export const userSlice = createSlice({
           state.userResults = action.payload;
           state.isLoadingGetUserResults = false;
         },
-      );
+      )
+      .addCase(getUsers.pending, (state) => {
+        state.isLoadingGetUserResults = true;
+      })
+      .addCase(getUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
+        state.users = action.payload;
+        state.isLoadingGetUserResults = false;
+      })
+      .addCase(getUser.pending, (state) => {
+        state.isLoadingGetUserResults = true;
+      })
+      .addCase(getUser.fulfilled, (state, action: PayloadAction<User>) => {
+        state.user = action.payload;
+        state.isLoadingGetUserResults = false;
+      });
   },
 });
 
