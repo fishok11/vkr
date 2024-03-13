@@ -1,13 +1,15 @@
+import { userState } from './../../../app/userSlice';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getQuestions, mainState } from '../../../app/mainSlice';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router';
-import { addResult } from '../../../app/userSlice';
-import { Result } from '../../../app/types';
+import { addResult, getResults } from '../../../app/userSlice';
+import { ResultToAdded } from '../../../app/types';
 
 export const useQuestions = () => {
-  const state = useAppSelector(mainState);
+  const stateMain = useAppSelector(mainState);
+  const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
@@ -16,7 +18,7 @@ export const useQuestions = () => {
   const [cookies] = useCookies(['user']);
   const { articleId } = useParams();
 
-  const result: Result = {
+  const result: ResultToAdded = {
     userId: cookies.user,
     articleId: articleId,
     userAnswers: selectedAnswers,
@@ -36,14 +38,16 @@ export const useQuestions = () => {
   const handleAddResult = () => {
     dispatch(addResult(result));
     // setShowResults(true);
-  }
+  };
 
   useEffect(() => {
     dispatch(getQuestions());
+    dispatch(getResults({ articleId: articleId, userId: cookies.user }));
+    console.log(stateUser.result);
   }, []);
 
   return {
-    state,
+    stateMain,
     articleId,
     handleAnswerSelection,
     selectedAnswers,

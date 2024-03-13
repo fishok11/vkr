@@ -33,9 +33,17 @@ export type UserLogIn = {
 };
 
 export type Result = {
+  id: string;
   userId: string;
   articleId: string | undefined;
   userAnswers: {
     [key: string]: string;
   };
+};
+
+export type ResultToAdded = Omit<Result, 'id'>;
+
+export type GetResultsParams = {
+  userId: string;
+  articleId: string | undefined;
 };

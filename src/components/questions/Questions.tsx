@@ -7,7 +7,7 @@ import Loader from '../../UI/loader/Loader';
 
 const Questions: FC = ( ) => {
   const {
-    state,
+    stateMain,
     articleId,
     handleAnswerSelection,
     selectedAnswers,
@@ -15,14 +15,14 @@ const Questions: FC = ( ) => {
     handleAddResult,
   } = useQuestions();
 
-  if (state.isLoadingQuestions) return <Loader />;
+  if (stateMain.isLoadingQuestions) return <Loader />;
 
   return (
     <div className={styles.questionsContainer}>
       {!showResults && (
         <>
           <h2 className={styles.text}>Вопросы</h2>
-          {state.questions
+          {stateMain.questions
             .filter(
               (question: Question) =>
                 question.articleId.toString() === articleId,
@@ -63,7 +63,7 @@ const Questions: FC = ( ) => {
       {showResults && (
         <>
           <h2 className={styles.text}>Результаты</h2>
-          {state.questions
+          {stateMain.questions
             .filter(
               (question: Question) =>
                 question.articleId.toString() == articleId,

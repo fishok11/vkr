@@ -1,12 +1,16 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { Result, User, UserLogIn } from './types';
+import {
+  GetResultsParams,
+  Result,
+  ResultToAdded,
+  User,
+  UserLogIn,
+} from './types';
 import {
   addDoc,
   collection,
   doc,
-  DocumentData,
-  DocumentReference,
   getDocs,
   query,
   setDoc,
@@ -16,10 +20,12 @@ import db from '../firebase';
 
 export type InitialState = {
   user: User;
+  result: Result;
   logInModal: boolean;
   signUpModal: boolean;
   isLoadingLogIn: boolean;
   isLoadingSignUp: boolean;
+  isLoadingAddResult: boolean;
 };
 
 const initialState: InitialState = {
@@ -29,10 +35,12 @@ const initialState: InitialState = {
     username: '',
     password: '',
   },
+  result: { id: '', articleId: '', userId: '', userAnswers: {} },
   logInModal: false,
   signUpModal: false,
   isLoadingLogIn: false,
   isLoadingSignUp: false,
+  isLoadingAddResult: false,
 };
 
 export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
@@ -79,11 +87,40 @@ export const logInUser = createAsyncThunk<
 
 export const addResult = createAsyncThunk<
   undefined,
-  Result,
+  ResultToAdded,
   { rejectValue: string }
->('addResult', async (result: Result, { rejectWithValue }) => {
+>('addResult', async (result: ResultToAdded, { rejectWithValue }) => {
   try {
     await addDoc(collection(db, 'results'), result);
+  } catch (error) {
+    return rejectWithValue('Server error!');
+  }
+});
+
+export const getResults = createAsyncThunk<
+  Result,
+  GetResultsParams,
+  { rejectValue: string }
+>('getResults', async (params: GetResultsParams, { rejectWithValue }) => {
+  try {
+    const docRefResults = query(
+      collection(db, 'results'),
+      where('articleId', '==', params.articleId),
+      where('userId', '==', params.userId),
+    );
+    const docsResults = await getDocs(docRefResults);
+    let resultData: Result | undefined;
+
+    docsResults.forEach((doc) => {
+      resultData = {
+        id: doc.id,
+        articleId: doc.data().articleId,
+        userId: doc.data().userId,
+        userAnswers: doc.data().userAnswers,
+      };
+    });
+
+    return resultData ?? rejectWithValue('Result not found');
   } catch (error) {
     return rejectWithValue('Server error!');
   }
@@ -120,6 +157,19 @@ export const userSlice = createSlice({
       .addCase(logInUser.fulfilled, (state, action: PayloadAction<User>) => {
         state.user = action.payload;
         state.isLoadingLogIn = false;
+      })
+      .addCase(addResult.pending, (state) => {
+        state.isLoadingAddResult = true;
+      })
+      .addCase(addResult.fulfilled, (state) => {
+        state.isLoadingAddResult = false;
+      })
+      .addCase(getResults.pending, (state) => {
+        state.isLoadingAddResult = true;
+      })
+      .addCase(getResults.fulfilled, (state, action: PayloadAction<Result>) => {
+        state.result = action.payload;
+        state.isLoadingAddResult = false;
       });
   },
 });
