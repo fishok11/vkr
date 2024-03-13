@@ -7,14 +7,15 @@ import Loader from '../../UI/loader/Loader';
 import Pagination from '../../components/pagination/Pagination';
 
 const ArticleContent: FC = () => {
-  const { state, prevArticleId, nextArticleId, cookies } = useArticleContent();
+  const { stateMain, prevArticleId, nextArticleId, cookies } =
+    useArticleContent();
 
-  if (state.isLoadingArticle) return <Loader />;
+  if (stateMain.isLoadingArticle) return <Loader />;
 
   return (
     <div className={styles.container}>
-      <h1>{state.article.title}</h1>
-      {HTMLReactParser(state.article.content)}
+      <h1>{stateMain.article.title}</h1>
+      {HTMLReactParser(stateMain.article.content)}
       {cookies.user && <Questions />}
       <Pagination prevArticleId={prevArticleId} nextArticleId={nextArticleId} />
     </div>

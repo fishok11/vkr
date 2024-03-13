@@ -8,7 +8,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const LogIn: FC = () => {
   const {
-    state,
+    stateUser,
     error,
     username,
     setUsername,
@@ -18,7 +18,7 @@ const LogIn: FC = () => {
     handleCloseLogInModal,
   } = useLogIn();
 
-  if (!state.logInModal) return null;
+  if (!stateUser.logInModal) return null;
 
   return (
     <div className={styles.container}>

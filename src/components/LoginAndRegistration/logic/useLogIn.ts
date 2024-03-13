@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { UserLogIn } from '../../../app/types';
 
 export const useLogIn = () => {
-  const state = useAppSelector(userState);
+  const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [error, setError] = useState(false);
   const [username, setUsername] = useState('');
@@ -28,17 +28,17 @@ export const useLogIn = () => {
   };
 
   useEffect(() => {
-    if (cookies.user === undefined && state.user.id !== '') {
-      setCookie('user', state.user.id, { maxAge: 259200 });
+    if (cookies.user === undefined && stateUser.user.id !== '') {
+      setCookie('user', stateUser.user.id, { maxAge: 259200 });
     }
-  }, [state.user.id]);
+  }, [stateUser.user.id]);
 
   const handleCloseLogInModal = () => {
     dispatch(hideLogInModal());
   };
 
   return {
-    state,
+    stateUser,
     error,
     setError,
     username,

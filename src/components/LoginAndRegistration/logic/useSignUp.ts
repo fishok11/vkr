@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { User } from '../../../app/types';
 
 export const useSignUp = () => {
-  const state = useAppSelector(userState);
+  const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
@@ -41,7 +41,7 @@ export const useSignUp = () => {
   };
 
   return {
-    state,
+    stateUser,
     email,
     setEmail,
     username,

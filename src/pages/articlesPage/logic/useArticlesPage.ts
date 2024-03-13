@@ -3,7 +3,7 @@ import { getArticles, getChapters, mainState } from '../../../app/mainSlice';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 export const useArticlesPage = () => {
-  const state = useAppSelector(mainState);
+  const stateMain = useAppSelector(mainState);
   const dispatch = useAppDispatch();
   const [articleToSearch, setArticleToSearch] = useState<string>('');
 
@@ -13,7 +13,7 @@ export const useArticlesPage = () => {
   }, [dispatch, articleToSearch]);
 
   return {
-    state,
+    stateMain,
     articleToSearch,
     setArticleToSearch,
   };

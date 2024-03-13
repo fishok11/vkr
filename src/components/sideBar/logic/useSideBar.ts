@@ -8,7 +8,7 @@ import { getArticles, getChapters, mainState } from '../../../app/mainSlice';
 // import styles from '../SideBar.module.scss';
 
 export const useSideBar = () => {
-  const state = useAppSelector(mainState);
+  const stateMain = useAppSelector(mainState);
   const dispatch = useAppDispatch();
   // const [open, setOpen] = useState<boolean>(false);
   // const sideBarRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ export const useSideBar = () => {
   // }, [setOpen]);
 
   return {
-    state,
+    stateMain,
     // open,
     // setOpen,
     // sideBarRef,

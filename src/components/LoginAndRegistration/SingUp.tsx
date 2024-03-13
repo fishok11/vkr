@@ -8,7 +8,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const SignUp: FC = () => {
   const {
-    state,
+    stateUser,
     email,
     setEmail,
     username,
@@ -20,7 +20,7 @@ const SignUp: FC = () => {
     handleCloseDignUpModal,
   } = useSignUp();
 
-  if (!state.signUpModal) return null;
+  if (!stateUser.signUpModal) return null;
 
   return (
     <div className={styles.container}>

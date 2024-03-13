@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 
 export const useArticleContent = () => {
   const { articleId } = useParams();
-  const state = useAppSelector(mainState);
+  const stateMain = useAppSelector(mainState);
   const dispatch = useAppDispatch();
   const [showResults, setShowResults] = useState<boolean>(false);
   const [cookies] = useCookies(['user']);
@@ -19,8 +19,8 @@ export const useArticleContent = () => {
     return () => setShowResults(false);
   }, [articleId]);
 
-  const articlesFilterByChapter = state.articles.filter(
-    (article) => article.chapterId === state.article.chapterId,
+  const articlesFilterByChapter = stateMain.articles.filter(
+    (article) => article.chapterId === stateMain.article.chapterId,
   );
   const currentIndex = articlesFilterByChapter.findIndex(
     (article) => article.id.toString() === articleId,
@@ -34,7 +34,7 @@ export const useArticleContent = () => {
       : '';
 
   return {
-    state,
+    stateMain,
     articleId,
     showResults,
     setShowResults,

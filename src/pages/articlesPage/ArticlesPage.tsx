@@ -7,7 +7,7 @@ import { Article, Chapter } from '../../app/types';
 import Loader from '../../UI/loader/Loader';
 
 const ArticlesPage = () => {
-  const { state, articleToSearch, setArticleToSearch } = useArticlesPage();
+  const { stateMain, articleToSearch, setArticleToSearch } = useArticlesPage();
 
   return (
     <div className={styles.container}>
@@ -20,15 +20,17 @@ const ArticlesPage = () => {
           onChange={(e) => setArticleToSearch(e.target.value)}
         />
       </div>
-      {(state.isLoadingArticles === true ||
-        state.isLoadingChapters === true) && <Loader />}
-      {(!state.isLoadingArticles || !state.isLoadingChapters) && (
+
+      {(stateMain.isLoadingArticles === true ||
+        stateMain.isLoadingChapters === true) && <Loader />}
+
+      {(!stateMain.isLoadingArticles || !stateMain.isLoadingChapters) && (
         <div className={styles.chaptersContainer}>
-          {state.chapters.map((chapter: Chapter) => (
+          {stateMain.chapters.map((chapter: Chapter) => (
             <div key={chapter.id} className={styles.chapterContainer}>
               <h2 className={styles.chapter}>{chapter.chapter}</h2>
               <ul className={styles.linksContainer}>
-                {state.articles
+                {stateMain.articles
                   .filter((item: Article) => item.chapterId == chapter.id)
                   .map((article: Article) => (
                     <li key={article.id}>

@@ -5,17 +5,17 @@ import { Article, Chapter } from '../../app/types';
 import styles from './SideBar.module.scss';
 
 const SideBar: FC = () => {
-  const { state } = useSideBar();
+  const { stateMain } = useSideBar();
 
-  if (state.isLoadingArticles || state.isLoadingChapters) return null;
+  if (stateMain.isLoadingArticles || stateMain.isLoadingChapters) return null;
 
   return (
     <div className={styles.sideBarContainer}>
-      {state.chapters.map((chapter: Chapter) => (
+      {stateMain.chapters.map((chapter: Chapter) => (
         <div key={chapter.id} className={styles.chapterContainer}>
           <h2 className={styles.chapter}>{chapter.chapter}</h2>
           <ul className={styles.linksContainer}>
-            {state.articles
+            {stateMain.articles
               .filter((item: Article) => item.chapterId == chapter.id)
               .map((fiterArticle: Article) => (
                 <li key={fiterArticle.id}>
