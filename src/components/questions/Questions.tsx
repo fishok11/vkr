@@ -4,6 +4,8 @@ import { useQuestions } from './logic/useQuestions';
 import { Question } from '../../app/types';
 import Button from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const Questions: FC = () => {
   const {
@@ -69,18 +71,38 @@ const Questions: FC = () => {
             )
             .map((question: Question) => (
               <div key={question.id}>
-                <h3 className={styles.questionTitle}>{question.question}</h3>
-                <p>
-                  <b>Правильный ответ:</b> {question.correctAnswer}
-                </p>
-                <p>
-                  <b>Ваш ответ:</b>{' '}
-                  {
-                    stateUser.resultOfTheArticle.userAnswers[
-                      parseInt(question.id)
-                    ]
-                  }
-                </p>
+                <h3 className={styles.questionTitle}>
+                  {stateUser.resultOfTheArticle.userAnswers[
+                    parseInt(question.id)
+                  ] === question.correctAnswer && (
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className={styles.correctIco}
+                    />
+                  )}
+                  {stateUser.resultOfTheArticle.userAnswers[
+                    parseInt(question.id)
+                  ] !== question.correctAnswer && (
+                    <FontAwesomeIcon
+                      icon={faXmark}
+                      className={styles.incorrectIco}
+                    />
+                  )}{' '}
+                  {question.question}
+                </h3>
+                <div>
+                  <p>
+                    <b>Правильный ответ:</b> {question.correctAnswer}
+                  </p>
+                  <p>
+                    <b>Ваш ответ:</b>{' '}
+                    {
+                      stateUser.resultOfTheArticle.userAnswers[
+                        parseInt(question.id)
+                      ]
+                    }
+                  </p>
+                </div>
               </div>
             ))}
         </>

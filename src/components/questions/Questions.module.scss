@@ -1,12 +1,12 @@
 .questionsContainer {
-  @apply flex flex-col w-full bg-gray-800 p-4 rounded-lg gap-5;
+  @apply flex flex-col w-full bg-gray-900 border border-gray-700 p-4 rounded-lg gap-5;
 
   .text {
     @apply font-bold;
   }
 
   .questionTitle {
-    @apply text-lg;
+    @apply text-lg mb-2;
   }
 
   .answersContainer {
@@ -23,6 +23,14 @@
         @apply text-base cursor-pointer;
       }
     }
+  }
+
+  .correctIco {
+    @apply text-green-400;
+  }
+
+  .incorrectIco {
+    @apply text-red-400;
   }
 
   .buttonContainer {
