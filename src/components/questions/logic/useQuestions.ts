@@ -53,7 +53,6 @@ export const useQuestions = () => {
     stateUser,
     articleId,
     handleAnswerSelection,
-    selectedAnswers,
     handleAddResult,
   };
 };

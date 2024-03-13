@@ -11,7 +11,6 @@ const Questions: FC = () => {
     stateUser,
     articleId,
     handleAnswerSelection,
-    selectedAnswers,
     handleAddResult,
   } = useQuestions();
 

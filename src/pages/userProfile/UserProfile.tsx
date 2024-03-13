@@ -1,12 +1,17 @@
 import React, { FC } from 'react';
 import styles from './UserProfile.module.scss';
 import { useUserPrtofle } from './logic/useUserProfile';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const UserProfile: FC = () => {
   const { stateMain, stateUser, activeIndex, onTitleClick } = useUserPrtofle();
 
   return (
     <div className={styles.container}>
+      <h2>
+        <b>Результаты пройденых тестов:</b>
+      </h2>
       <div className={styles.resultsContainer}>
         {stateUser.userResults.map((result) => (
           <div className={styles.accordionContainer} key={result.id}>
@@ -18,9 +23,7 @@ const UserProfile: FC = () => {
                   className={styles.articleTitle}
                   onClick={() => onTitleClick(article.id)}
                 >
-                  <h2>
-                    {article.title}
-                  </h2>
+                  <h2>{article.title}</h2>
                 </button>
               ))}
 
@@ -34,16 +37,30 @@ const UserProfile: FC = () => {
                   .map((question) => (
                     <div className={styles.questionContainer} key={question.id}>
                       <h3 className={styles.questionTitle}>
+                        {result.userAnswers[question.id] ===
+                          question.correctAnswer && (
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            className={styles.correctIco}
+                          />
+                        )}
+                        {result.userAnswers[question.id] !==
+                          question.correctAnswer && (
+                          <FontAwesomeIcon
+                            icon={faXmark}
+                            className={styles.incorrectIco}
+                          />
+                        )}{' '}
                         {question.question}
                       </h3>
                       <div>
                         <p>
-                          <b>Правильный ответ: </b>
-                          {question.correctAnswer}
-                        </p>
-                        <p>
                           <b>Ваш ответ: </b>
                           {result.userAnswers[question.id]}
+                        </p>
+                        <p>
+                          <b>Правильный ответ: </b>
+                          {question.correctAnswer}
                         </p>
                       </div>
                     </div>
