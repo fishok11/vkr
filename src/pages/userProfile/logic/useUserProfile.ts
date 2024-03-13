@@ -12,7 +12,7 @@ export const useUserPrtofle = () => {
   const [cookies] = useCookies(['user']);
   const [activeIndex, setActiveIndex] = useState<string | null>(null);
   const onTitleClick = (index: string) => {
-    activeIndex !== null ? setActiveIndex(null) : setActiveIndex(index);
+    index === activeIndex ? setActiveIndex(null) : setActiveIndex(index);
   };
 
   useEffect(() => {

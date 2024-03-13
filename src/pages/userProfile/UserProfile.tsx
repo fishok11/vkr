@@ -3,10 +3,18 @@ import styles from './UserProfile.module.scss';
 import { useUserPrtofle } from './logic/useUserProfile';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+import Loader from '../../UI/loader/Loader';
 
 const UserProfile: FC = () => {
   const { stateMain, stateUser, activeIndex, onTitleClick } = useUserPrtofle();
 
+  if (
+    stateMain.isLoadingArticles ||
+    stateMain.isLoadingQuestions ||
+    stateUser.isLoadingGetUserResults
+  )
+    return <Loader />;
+    
   return (
     <div className={styles.container}>
       <h2>
