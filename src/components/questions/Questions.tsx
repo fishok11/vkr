@@ -5,14 +5,15 @@ import { Question } from '../../app/types';
 import Button from '../../UI/button/Button';
 import Loader from '../../UI/loader/Loader';
 
-type QuestionsProps = {
-  articleId: string | undefined;
-  showResults: boolean;
-  onClick: () => void;
-};
-
-const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
-  const { state, handleAnswerSelection, selectedAnswers } = useQuestions();
+const Questions: FC = ( ) => {
+  const {
+    state,
+    articleId,
+    handleAnswerSelection,
+    selectedAnswers,
+    showResults,
+    handleAddResult,
+  } = useQuestions();
 
   if (state.isLoadingQuestions) return <Loader />;
 
@@ -39,7 +40,7 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
                         className={styles.input}
                         value={answer}
                         onChange={() =>
-                          handleAnswerSelection(answer, parseInt(question.id))
+                          handleAnswerSelection(question.id, answer)
                         }
                       />
                       <label htmlFor={answer} className={styles.label}>
@@ -51,7 +52,10 @@ const Questions: FC<QuestionsProps> = ({ articleId, showResults, onClick }) => {
               </div>
             ))}
           <div className={styles.buttonContainer}>
-            <Button text={'Посмотреть результаты'} onClick={onClick} />
+            <Button
+              text={'Посмотреть результаты'}
+              onClick={() => handleAddResult()}
+            />
           </div>
         </>
       )}

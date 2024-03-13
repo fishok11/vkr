@@ -9,9 +9,6 @@ import Pagination from '../../components/pagination/Pagination';
 const ArticleContent: FC = () => {
   const {
     state,
-    articleId,
-    showResults,
-    setShowResults,
     prevArticleId,
     nextArticleId,
     cookies,
@@ -25,9 +22,6 @@ const ArticleContent: FC = () => {
       {HTMLReactParser(state.article.content)}
       {cookies.user && (
         <Questions
-          articleId={articleId}
-          showResults={showResults}
-          onClick={() => setShowResults(true)}
         />
       )}
       <Pagination prevArticleId={prevArticleId} nextArticleId={nextArticleId} />

@@ -1,9 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { User, UserLogIn } from './types';
+import { Result, User, UserLogIn } from './types';
 import {
+  addDoc,
   collection,
   doc,
+  DocumentData,
+  DocumentReference,
   getDocs,
   query,
   setDoc,
@@ -69,6 +72,18 @@ export const logInUser = createAsyncThunk<
     });
 
     return userData ?? rejectWithValue('User not found');
+  } catch (error) {
+    return rejectWithValue('Server error!');
+  }
+});
+
+export const addResult = createAsyncThunk<
+  undefined,
+  Result,
+  { rejectValue: string }
+>('addResult', async (result: Result, { rejectWithValue }) => {
+  try {
+    await addDoc(collection(db, 'results'), result);
   } catch (error) {
     return rejectWithValue('Server error!');
   }

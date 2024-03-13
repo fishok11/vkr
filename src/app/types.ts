@@ -32,8 +32,10 @@ export type UserLogIn = {
   password: string;
 };
 
-export type UserSignUp = {
-  email: string;
-  username: string;
-  password: string;
+export type Result = {
+  userId: string;
+  articleId: string | undefined;
+  userAnswers: {
+    [key: string]: string;
+  };
 };

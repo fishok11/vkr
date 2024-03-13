@@ -30,7 +30,6 @@ export const useLogIn = () => {
   useEffect(() => {
     if (cookies.user === undefined && state.user.id !== '') {
       setCookie('user', state.user.id, { maxAge: 259200 });
-      console.log(1);
     }
   }, [state.user.id]);
 
