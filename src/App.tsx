@@ -7,8 +7,7 @@ import styles from './App.module.scss';
 import ArticlePage from './pages/articlePage/ArticlePage';
 import InfoPage from './pages/infoPage/InfoPage';
 import Footer from './components/footer/Footer';
-import LogIn from './components/LoginAndRegistration/LogIn';
-import SignUp from './components/LoginAndRegistration/SingUp';
+import Registration from './components/LoginAndRegistration/Registration';
 import UserProfile from './pages/userProfile/UserProfile';
 import { Toaster } from 'react-hot-toast';
 
@@ -26,8 +25,7 @@ function App() {
         </Routes>
       </div>
       <Footer />
-      <LogIn />
-      <SignUp />
+      <Registration />
       <Toaster position="bottom-center" />
     </>
   );

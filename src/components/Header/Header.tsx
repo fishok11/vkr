@@ -4,11 +4,16 @@ import CustomLink from '../../UI/customLink/CustomLink';
 import Button from '../../UI/button/Button';
 import { useHeader } from './logic/useHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faRightToBracket, faUser, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faRightToBracket,
+  faUser,
+  faUserPlus,
+} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 const Header: FC = () => {
-  const { cookies, handleShowLogInModal, handleShowSignUpModal } = useHeader();
+  const { cookies, currentPath, handleShowLogInModal, handleShowSignUpModal } =
+    useHeader();
 
   return (
     <header className={styles.container}>
@@ -18,7 +23,7 @@ const Header: FC = () => {
         <CustomLink to={'/about'} text={'Инфо'} />
       </div>
       <div className={styles.buttonContainer}>
-        {!cookies.user && (
+        {!cookies.user && currentPath !== '/admin' && (
           <>
             <div className={styles.ico} onClick={() => handleShowLogInModal()}>
               <FontAwesomeIcon icon={faRightToBracket} />
