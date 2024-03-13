@@ -9,6 +9,7 @@ import InfoPage from './pages/infoPage/InfoPage';
 import Footer from './components/footer/Footer';
 import LogIn from './components/LoginAndRegistration/LogIn';
 import SignUp from './components/LoginAndRegistration/SingUp';
+import UserProfile from './pages/userProfile/UserProfile';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path={`/articles`} element={<ArticlesPage />} />
           <Route path={`/article/:articleId`} element={<ArticlePage />} />
           <Route path={`/about`} element={<InfoPage />} />
+          <Route path={`/profile/:userId`} element={<UserProfile />} />
         </Routes>
       </div>
       <Footer />

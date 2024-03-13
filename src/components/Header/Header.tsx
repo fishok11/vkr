@@ -5,6 +5,7 @@ import Button from '../../UI/button/Button';
 import { useHeader } from './logic/useHeader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Header: FC = () => {
   const { cookies, handleShowLogInModal, handleShowSignUpModal } = useHeader();
@@ -12,9 +13,9 @@ const Header: FC = () => {
   return (
     <header className={styles.container}>
       <div className={styles.linkContainer}>
-        <CustomLink to={'/'} text="Главная" />
-        <CustomLink to={'/articles'} text="Статьи" />
-        <CustomLink to={'/about'} text="Инфо" />
+        <CustomLink to={'/'} text={'Главная'} />
+        <CustomLink to={'/articles'} text={'Статьи'} />
+        <CustomLink to={'/about'} text={'Инфо'} />
       </div>
       <div className={styles.buttonContainer}>
         {!cookies.user && (
@@ -27,11 +28,9 @@ const Header: FC = () => {
           </>
         )}
         {cookies.user && (
-          <>
-            <button>
-              <FontAwesomeIcon icon={faUser} />
-            </button>
-          </>
+          <Link to={`/profile/${cookies.user}`} className={styles.profileLink}>
+            <FontAwesomeIcon icon={faUser} />
+          </Link>
         )}
       </div>
     </header>
