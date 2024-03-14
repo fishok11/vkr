@@ -24,7 +24,7 @@ export type InitialState = {
   user: User;
   users: User[];
   resultOfTheArticle: Result;
-  userResults: Result[];
+  results: Result[];
   logInModal: boolean;
   signUpModal: boolean;
   userNotFound: boolean;
@@ -43,7 +43,7 @@ const initialState: InitialState = {
     admin: false,
   },
   users: [],
-  userResults: [],
+  results: [],
   resultOfTheArticle: { id: '', articleId: '', userId: '', userAnswers: {} },
   logInModal: false,
   signUpModal: false,
@@ -150,16 +150,13 @@ export const getResultOfTheArticle = createAsyncThunk<
   },
 );
 
-export const getUserResults = createAsyncThunk<
+export const getResults = createAsyncThunk<
   Result[],
-  string,
+  undefined,
   { rejectValue: string }
->('getUserResults', async (userId: string, { rejectWithValue }) => {
+>('getResults', async (_, { rejectWithValue }) => {
   try {
-    const docRefResults = query(
-      collection(db, 'results'),
-      where('userId', '==', userId),
-    );
+    const docRefResults = query(collection(db, 'results'));
     const docsResults = await getDocs(docRefResults);
     const data: Result[] = [];
 
@@ -290,13 +287,13 @@ export const userSlice = createSlice({
           state.isLoadingAddResult = false;
         },
       )
-      .addCase(getUserResults.pending, (state) => {
+      .addCase(getResults.pending, (state) => {
         state.isLoadingGetUserResults = true;
       })
       .addCase(
-        getUserResults.fulfilled,
+        getResults.fulfilled,
         (state, action: PayloadAction<Result[]>) => {
-          state.userResults = action.payload;
+          state.results = action.payload;
           state.isLoadingGetUserResults = false;
         },
       )

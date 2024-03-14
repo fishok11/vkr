@@ -1,7 +1,7 @@
 import { useCookies } from 'react-cookie';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getArticles, getQuestions, mainState } from '../../../app/mainSlice';
-import { getUserResults, userState } from '../../../app/userSlice';
+import { getResults, userState } from '../../../app/userSlice';
 import { useEffect, useState } from 'react';
 
 export const useUserResults = () => {
@@ -15,10 +15,10 @@ export const useUserResults = () => {
   };
 
   useEffect(() => {
-    dispatch(getUserResults(cookies.user));
+    dispatch(getResults());
     dispatch(getArticles(''));
     dispatch(getQuestions());
   }, []);
 
-  return { stateMain, stateUser, activeIndex, onTitleClick };
+  return { stateMain, stateUser, cookies, activeIndex, onTitleClick };
 };
