@@ -1,3 +1,11 @@
-.username {
-  @apply flex justify-start items-center gap-4;
+.container {
+  @apply flex flex-col gap-5;
+
+  .item {
+    @apply border-b border-gray-600 pb-3;
+
+    .username {
+      @apply flex justify-start items-center gap-4;
+    }
+  }
 }

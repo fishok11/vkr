@@ -9,9 +9,9 @@ const UsersResults = () => {
   const { stateUser } = useUsersResults();
 
   return (
-    <>
+    <div className={styles.container}>
       {stateUser.users.map((user) => (
-        <div key={user.id}>
+        <div key={user.id} className={styles.item}>
           <div className={styles.username}>
             <FontAwesomeIcon icon={faUser} />
             <h2>{user.username}</h2>
@@ -19,7 +19,7 @@ const UsersResults = () => {
           <UserResults userId={user.id} />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
