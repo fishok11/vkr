@@ -24,7 +24,6 @@ export const useUserResults = ({ userId }: { userId: string }) => {
       ? setActiveIndexArticle(null)
       : setActiveIndexArticle(index);
   };
-
   const onTitleChapterClick = (index: string) => {
     index === activeIndexChapter
       ? setActiveIndexChapter(null)
@@ -59,6 +58,47 @@ export const useUserResults = ({ userId }: { userId: string }) => {
     dispatch(getArticles(''));
     dispatch(getQuestions());
   }, []);
+  
+  const calculationAverageGradeArticle = (aricleId: string) => {
+    let cout = 0;
+    let quantityQuestions = 0;
+
+    const filterUserResults = stateUser.results.filter((result) => {
+      if (result.userId == userId) {
+        return result.userId;
+      }
+    });
+
+    const filterQuestionsByArticles = stateMain.questions.filter((question) => {
+      if (question.articleId == aricleId) {
+        return question.articleId;
+      }
+    });
+
+    filterUserResults.forEach((result) => {
+      filterQuestionsByArticles.forEach((question) => {
+        for (const key in result.userAnswers) {
+          if (
+            result.userAnswers[key] === question.correctAnswer &&
+            key === question.id
+          ) {
+            cout++;
+            return;
+          }
+        }
+      });
+      const userAnswersKeys = Object.keys(result.userAnswers);
+      quantityQuestions = userAnswersKeys.length;
+    });
+
+    console.log(cout, quantityQuestions);
+
+    const averageGrade = cout / (quantityQuestions / 100);
+
+    console.log(averageGrade);
+
+    return averageGrade;
+  };
 
   return {
     stateMain,
@@ -68,5 +108,6 @@ export const useUserResults = ({ userId }: { userId: string }) => {
     activeIndexChapter,
     onTitleChapterClick,
     filterChaptersByUserResults,
+    calculationAverageGradeArticle,
   };
 };
