@@ -21,6 +21,7 @@ export const useQuestions = () => {
   const result: ResultToAdded = {
     userId: cookies.user,
     articleId: articleId,
+    chapterId: stateMain.article.chapterId,
     userAnswers: selectedAnswers,
   };
 

@@ -44,7 +44,13 @@ const initialState: InitialState = {
   },
   users: [],
   results: [],
-  resultOfTheArticle: { id: '', articleId: '', userId: '', userAnswers: {} },
+  resultOfTheArticle: {
+    id: '',
+    articleId: '',
+    chapterId: '',
+    userId: '',
+    userAnswers: {},
+  },
   logInModal: false,
   signUpModal: false,
   userNotFound: false,
@@ -138,6 +144,7 @@ export const getResultOfTheArticle = createAsyncThunk<
         resultData = {
           id: doc.id,
           articleId: doc.data().articleId,
+          chapterId: doc.data().chapterId,
           userId: doc.data().userId,
           userAnswers: doc.data().userAnswers,
         };
@@ -164,6 +171,7 @@ export const getResults = createAsyncThunk<
       const resultData = {
         id: doc.id,
         articleId: doc.data().articleId,
+        chapterId: doc.data().chapterId,
         userId: doc.data().userId,
         userAnswers: doc.data().userAnswers,
       };

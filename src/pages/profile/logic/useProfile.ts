@@ -12,5 +12,5 @@ export const useProfle = () => {
     dispatch(getUser(cookies.user));
   }, []);
 
-  return { stateUser };
+  return { stateUser, cookies };
 };

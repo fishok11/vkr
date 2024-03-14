@@ -1,22 +1,19 @@
 import React from 'react';
-import { useUsersResults } from './logic/useUserResults';
+import { useUsersResults } from './logic/useUsersResults';
+import UserResults from '../userResults/UserResults';
 
 const UsersResults = () => {
-  const { stateUser, stateMain } = useUsersResults();
+  const { stateUser } = useUsersResults();
 
   return (
-    <div>
+    <>
       {stateUser.users.map((user) => (
-        <>
-          <h2 key={user.id}>{user.username}</h2>
-          {stateMain.chapters.map((chapter) => (
-            <>
-              <p key={chapter.id}>{chapter.chapter}</p>
-            </>
-          ))}
-        </>
+        <div key={user.id}>
+          <h2>{user.username}</h2>
+          <UserResults userId={user.id} />
+        </div>
       ))}
-    </div>
+    </>
   );
 };
 

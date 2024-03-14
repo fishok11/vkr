@@ -37,6 +37,7 @@ export type Result = {
   id: string;
   userId: string;
   articleId: string | undefined;
+  chapterId: string;
   userAnswers: {
     [key: string]: string;
   };
