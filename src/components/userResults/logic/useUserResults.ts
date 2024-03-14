@@ -31,7 +31,7 @@ export const useUserResults = ({ userId }: { userId: string }) => {
       : setActiveIndexChapter(index);
   };
 
-  const filterChapters = (chapters: Chapter[], results: Result[]) => {
+  const filterChaptersByUserResults = (chapters: Chapter[], results: Result[]) => {
     const resultArr: any = [];
     const userResults = results.filter((result) => result.userId == userId);
 
@@ -64,6 +64,6 @@ export const useUserResults = ({ userId }: { userId: string }) => {
     onTitleArticleClick,
     activeIndexChapter,
     onTitleChapterClick,
-    filterChapters,
+    filterChaptersByUserResults,
   };
 };

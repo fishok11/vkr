@@ -23,7 +23,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
     onTitleArticleClick,
     activeIndexChapter,
     onTitleChapterClick,
-    filterChapters,
+    filterChaptersByUserResults,
   } = useUserResults({ userId });
 
   if (
@@ -36,7 +36,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
 
   return (
     <div className={styles.resultsContainer}>
-      {filterChapters(stateMain.chapters, stateUser.results).map(
+      {filterChaptersByUserResults(stateMain.chapters, stateUser.results).map(
         (chapter: Chapter) => (
           <React.Fragment key={chapter.id}>
             <button onClick={() => onTitleChapterClick(chapter.id)}>
