@@ -31,8 +31,11 @@ export const useUserResults = ({ userId }: { userId: string }) => {
       : setActiveIndexChapter(index);
   };
 
-  const filterChaptersByUserResults = (chapters: Chapter[], results: Result[]) => {
-    const resultArr: any = [];
+  const filterChaptersByUserResults = (
+    chapters: Chapter[],
+    results: Result[],
+  ) => {
+    const resultArr: Chapter[] = [];
     const userResults = results.filter((result) => result.userId == userId);
 
     chapters.forEach((chapter) => {

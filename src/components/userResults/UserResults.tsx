@@ -9,7 +9,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useUserResults } from './logic/useUserResults';
 import Loader from '../../UI/loader/Loader';
-import { Chapter, Result } from '../../app/types';
+import { Chapter } from '../../app/types';
+import Badge from '../../UI/badge/Badge';
 
 type UserResultsParams = {
   userId: string;
@@ -48,6 +49,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                 {activeIndexChapter !== chapter.id && (
                   <FontAwesomeIcon icon={faCaretDown} />
                 )}
+                <Badge text={'100%'} />
               </h2>
             </button>
             {activeIndexChapter === chapter.id && (

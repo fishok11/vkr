@@ -8,8 +8,11 @@ export const useArticlesPage = () => {
   const dispatch = useAppDispatch();
   const [articleToSearch, setArticleToSearch] = useState<string>('');
 
-  const filterChaptersByArticle = (chapters: Chapter[], articles: Article[]) => {
-    const resultArr: any = [];
+  const filterChaptersByArticle = (
+    chapters: Chapter[],
+    articles: Article[],
+  ) => {
+    const resultArr: Chapter[] = [];
 
     chapters.forEach((chapter) => {
       articles.forEach((article) => {
