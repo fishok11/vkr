@@ -11,8 +11,13 @@ import {
 import { Link } from 'react-router-dom';
 
 const Header: FC = () => {
-  const { cookies, currentPath, handleShowLogInModal, handleShowSignUpModal } =
-    useHeader();
+  const {
+    stateUser,
+    cookies,
+    currentPath,
+    handleShowLogInModal,
+    handleShowSignUpModal,
+  } = useHeader();
 
   return (
     <header className={styles.container}>
@@ -37,7 +42,7 @@ const Header: FC = () => {
         )}
         {cookies.user && (
           <Link to={`/profile/${cookies.user}`} className={styles.profileLink}>
-            <FontAwesomeIcon icon={faUser} />
+            {stateUser.user.username} <FontAwesomeIcon icon={faUser} />
           </Link>
         )}
       </div>
