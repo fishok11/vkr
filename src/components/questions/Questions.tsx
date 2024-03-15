@@ -15,9 +15,18 @@ const Questions: FC = () => {
     handleAnswerSelection,
     handleAddResult,
     errorMessage,
+    cookies,
   } = useQuestions();
 
   if (stateMain.isLoadingQuestions) return <Loader />;
+
+  if (cookies.user === undefined) {
+    return (
+      <div className={styles.questionsContainer}>
+        <h2>Войдите или зарагистрируйтесь чтоб открыть тесты</h2>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.questionsContainer}>

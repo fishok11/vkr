@@ -98,5 +98,6 @@ export const useQuestions = () => {
     handleAnswerSelection,
     handleAddResult,
     errorMessage,
+    cookies,
   };
 };

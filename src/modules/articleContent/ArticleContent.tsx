@@ -16,7 +16,7 @@ const ArticleContent: FC = () => {
     <div className={styles.container}>
       <h1>{stateMain.article.title}</h1>
       {HTMLReactParser(stateMain.article.content)}
-      {cookies.user && <Questions />}
+      <Questions />
       <Pagination prevArticleId={prevArticleId} nextArticleId={nextArticleId} />
     </div>
   );
