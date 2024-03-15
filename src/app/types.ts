@@ -41,6 +41,7 @@ export type Result = {
   userAnswers: {
     [key: string]: string;
   };
+  averageGrade: number;
 };
 
 export type ResultToAdded = Omit<Result, 'id'>;

@@ -50,6 +50,7 @@ const initialState: InitialState = {
     chapterId: '',
     userId: '',
     userAnswers: {},
+    averageGrade: 0,
   },
   logInModal: false,
   signUpModal: false,
@@ -147,6 +148,7 @@ export const getResultOfTheArticle = createAsyncThunk<
           chapterId: doc.data().chapterId,
           userId: doc.data().userId,
           userAnswers: doc.data().userAnswers,
+          averageGrade: doc.data().averageGrade,
         };
       });
 
@@ -174,6 +176,7 @@ export const getResults = createAsyncThunk<
         chapterId: doc.data().chapterId,
         userId: doc.data().userId,
         userAnswers: doc.data().userAnswers,
+        averageGrade: doc.data().averageGrade,
       };
 
       data.push(resultData);

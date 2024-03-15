@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import styles from './Badge.module.scss';
 
 type BudgeProps = {
-  text: string;
+  text: number;
 };
 
 const Badge: FC<BudgeProps> = ({ text }) => {
-  return <span className={styles.badge}>{text}</span>;
+  return <span className={styles.badge}>{Math.floor(text)}%</span>;
 };
 
 export default Badge;

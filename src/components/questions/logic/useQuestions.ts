@@ -18,13 +18,6 @@ export const useQuestions = () => {
   const [cookies] = useCookies(['user']);
   const { articleId } = useParams();
 
-  const result: ResultToAdded = {
-    userId: cookies.user,
-    articleId: articleId,
-    chapterId: stateMain.article.chapterId,
-    userAnswers: selectedAnswers,
-  };
-
   const handleAnswerSelection = (
     questionId: string,
     selectedAnswer: string,
@@ -35,6 +28,43 @@ export const useQuestions = () => {
       return updatedSelection;
     });
   };
+
+  const calculationAverageGradeArticle = (aricleId: string | undefined) => {
+    let cout = 0;
+
+    const filterQuestionsByArticles = stateMain.questions.filter((question) => {
+      if (question.articleId == aricleId) {
+        return question.articleId;
+      }
+    });
+
+    const quantityQuestions = filterQuestionsByArticles.length;
+
+    filterQuestionsByArticles.forEach((question) => {
+      for (const key in selectedAnswers) {
+        if (
+          selectedAnswers[key] === question.correctAnswer &&
+          key === question.id
+        ) {
+          cout++;
+          return;
+        }
+      }
+    });
+
+    const averageGrade = cout / (quantityQuestions / 100);
+
+    return averageGrade;
+  };
+
+  const result: ResultToAdded = {
+    userId: cookies.user,
+    articleId: articleId,
+    chapterId: stateMain.article.chapterId,
+    userAnswers: selectedAnswers,
+    averageGrade: calculationAverageGradeArticle(articleId),
+  };
+  console.log(calculationAverageGradeArticle(articleId));
 
   const handleAddResult = () => {
     dispatch(addResult(result));

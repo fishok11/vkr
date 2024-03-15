@@ -50,7 +50,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                 {activeIndexChapter !== chapter.id && (
                   <FontAwesomeIcon icon={faCaretDown} />
                 )}
-                <Badge text={'100%'} />
+                <Badge text={100} />
               </h2>
             </button>
             {activeIndexChapter === chapter.id && (
@@ -78,7 +78,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                             <Badge
                               text={calculationAverageGradeArticle(
                                 article.id,
-                              ).toString()}
+                              )}
                             />
                           </button>
                         ))}
