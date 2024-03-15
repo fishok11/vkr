@@ -14,6 +14,7 @@ export const useQuestions = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
+  const [errorMessage, setErrorMessage] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [cookies] = useCookies(['user']);
   const { articleId } = useParams();
@@ -29,11 +30,11 @@ export const useQuestions = () => {
     });
   };
 
-  const calculationAverageGradeArticle = (aricleId: string | undefined) => {
+  const calculationAverageGradeArticle = (arеicleId: string | undefined) => {
     let cout = 0;
 
     const filterQuestionsByArticles = stateMain.questions.filter((question) => {
-      if (question.articleId == aricleId) {
+      if (question.articleId == arеicleId) {
         return question.articleId;
       }
     });
@@ -64,9 +65,20 @@ export const useQuestions = () => {
     userAnswers: selectedAnswers,
     averageGrade: calculationAverageGradeArticle(articleId),
   };
-  console.log(calculationAverageGradeArticle(articleId));
 
   const handleAddResult = () => {
+    const filterQuestionsByArticles = stateMain.questions.filter((question) => {
+      if (question.articleId == articleId) {
+        return question.articleId;
+      }
+    });
+    const quantityQuestions = filterQuestionsByArticles.length;
+    const quantityAnswers = Object.keys(selectedAnswers).length;
+
+    if (quantityAnswers < quantityQuestions) {
+      setErrorMessage(true);
+      return;
+    }
     dispatch(addResult(result));
     setShowResults(!showResults);
   };
@@ -85,5 +97,6 @@ export const useQuestions = () => {
     articleId,
     handleAnswerSelection,
     handleAddResult,
+    errorMessage,
   };
 };

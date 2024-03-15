@@ -25,7 +25,6 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
     activeIndexChapter,
     onTitleChapterClick,
     filterChaptersByUserResults,
-    calculationAverageGradeArticle,
   } = useUserResults({ userId });
 
   if (
@@ -75,11 +74,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                             onClick={() => onTitleArticleClick(article.id)}
                           >
                             <h2>{article.title}</h2>
-                            <Badge
-                              text={calculationAverageGradeArticle(
-                                article.id,
-                              )}
-                            />
+                            <Badge text={result.averageGrade} />
                           </button>
                         ))}
                       {activeIndexArticle === result.articleId && (

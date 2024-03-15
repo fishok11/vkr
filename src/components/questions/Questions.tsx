@@ -14,6 +14,7 @@ const Questions: FC = () => {
     articleId,
     handleAnswerSelection,
     handleAddResult,
+    errorMessage,
   } = useQuestions();
 
   if (stateMain.isLoadingQuestions) return <Loader />;
@@ -52,6 +53,9 @@ const Questions: FC = () => {
                 </div>
               </div>
             ))}
+          {errorMessage && (
+            <p className={styles.errorMessage}>Ответьте на все вопросы</p>
+          )}
           <div className={styles.buttonContainer}>
             <Button
               text={'Посмотреть результаты'}

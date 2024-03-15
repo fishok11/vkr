@@ -33,6 +33,10 @@
     @apply text-red-400;
   }
 
+  .errorMessage {
+    @apply text-red-400 text-center;
+  }
+
   .buttonContainer {
     @apply min-w-52 w-auto mx-auto my-0;
   }
