@@ -3,18 +3,35 @@ import styles from './Profile.module.scss';
 import { useProfle } from './logic/useProfile';
 import UserResults from '../../components/userResults/UserResults';
 import UsersResults from '../../components/usersResults/UsersResults';
+import Button from '../../UI/button/Button';
+import { Link } from 'react-router-dom';
 
 const UserProfile: FC = () => {
-  const { stateUser, cookies } = useProfle();
+  const { stateUser, cookies, removeCookie } = useProfle();
 
   return (
-    <div className={styles.container}>
-      <h2>
-        <b>Результаты пройденых тестов:</b>
-      </h2>
-      {!stateUser.user.admin && <UserResults userId={cookies.user} />}
-      {stateUser.user.admin && <UsersResults />}
-    </div>
+    <>
+      {cookies.user && (
+        <div className={styles.container}>
+          <div className={styles.userContainer}>
+            <div className={styles.userInfo}>
+              <h1>{stateUser.user.username}</h1>
+              <p className={styles.email}>{stateUser.user.email}</p>
+            </div>
+            <div className={styles.buttonContainer}>
+              <Link to={'/'}>
+                <Button text={'Выйти'} onClick={() => removeCookie('user')} />
+              </Link>
+            </div>
+          </div>
+          <h2>
+            <b>Результаты пройденых тестов:</b>
+          </h2>
+          {!stateUser.user.admin && <UserResults userId={cookies.user} />}
+          {stateUser.user.admin && <UsersResults />}
+        </div>
+      )}
+    </>
   );
 };
 

@@ -6,11 +6,11 @@ import { getUser, userState } from '../../../app/userSlice';
 export const useProfle = () => {
   const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
-  const [cookies] = useCookies(['user']);
+  const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   useEffect(() => {
     dispatch(getUser(cookies.user));
   }, []);
 
-  return { stateUser, cookies };
+  return { stateUser, cookies, removeCookie };
 };
