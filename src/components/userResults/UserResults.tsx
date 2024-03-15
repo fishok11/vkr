@@ -54,7 +54,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                   <FontAwesomeIcon icon={faCaretDown} />
                 )}
               </h2>
-              <Badge text={calculationAverageGradeChapter(chapter.id)} />
+              <Badge grade={calculationAverageGradeChapter(chapter.id)} />
             </button>
             {activeIndexChapter === chapter.id && (
               <>
@@ -78,7 +78,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                             onClick={() => onTitleArticleClick(article.id)}
                           >
                             <h2>{article.title}</h2>
-                            <Badge text={result.averageGrade} />
+                            <Badge grade={result.averageGrade} />
                           </button>
                         ))}
                       {activeIndexArticle === result.articleId && (

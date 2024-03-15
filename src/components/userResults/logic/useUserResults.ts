@@ -53,17 +53,18 @@ export const useUserResults = ({ userId }: { userId: string }) => {
   };
 
   const calculationAverageGradeChapter = (chapterId: string) => {
-    const filterResultsByChapter = stateUser.results.filter(
-      (result) => result.chapterId == chapterId,
+    const filterResultsByChapter = stateUser.results.filter((result) => {
+      if (result.chapterId == chapterId && result.userId === userId) {
+        return result;
+      }
+    });
+    console.log(filterResultsByChapter);
+    const averageGradeChapter = filterResultsByChapter.reduce(
+      (acc, currentResult) => acc + currentResult.averageGrade,
+      0,
     );
 
-    const averageGradeChapter =
-      filterResultsByChapter.reduce(
-        (acc, currentResult) => acc + currentResult.averageGrade,
-        0,
-      ) / filterResultsByChapter.length;
-
-    return averageGradeChapter;
+    return averageGradeChapter / filterResultsByChapter.length;
   };
 
   useEffect(() => {
