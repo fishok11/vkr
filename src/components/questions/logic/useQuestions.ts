@@ -85,10 +85,13 @@ export const useQuestions = () => {
 
   useEffect(() => {
     dispatch(resetResult());
-    dispatch(getQuestions());
-    dispatch(
-      getResultOfTheArticle({ articleId: articleId, userId: cookies.user }),
-    );
+    if (cookies.user === undefined) {
+      dispatch(getQuestions());
+    } else {
+      dispatch(
+        getResultOfTheArticle({ articleId: articleId, userId: cookies.user }),
+      );
+    }
   }, [showResults]);
 
   return {

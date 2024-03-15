@@ -15,7 +15,7 @@ export const useArticleContent = () => {
     if (articleId !== undefined) {
       dispatch(getArticle(articleId));
     }
-    dispatch(getArticles(''));
+    // dispatch(getArticles(''));
     return () => setShowResults(false);
   }, [articleId]);
 

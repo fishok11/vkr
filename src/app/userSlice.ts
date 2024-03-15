@@ -13,6 +13,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  limit,
   query,
   setDoc,
   where,
@@ -88,29 +89,29 @@ export const logInUser = createAsyncThunk<
       collection(db, 'users'),
       where('username', '==', user.username),
       where('password', '==', user.password),
+      limit(1),
     );
-    const docsUser = await getDocs(docRefUser);
-    let userData: User | undefined;
+    const docsUsers = await getDocs(docRefUser);
 
-    docsUser.forEach((doc) => {
-      userData = {
+    if (!docsUsers.empty) {
+      const doc = docsUsers.docs[0];
+      const userData = {
         id: doc.id,
         email: doc.data().email,
         username: doc.data().username,
         password: doc.data().password,
         admin: doc.data().admin,
       };
-    });
 
-    if (userData == undefined) {
+      toast.success('Вход выполнен!');
+
+      return userData;
+    } else {
       toast.error('Пользователь не найден!');
       return;
     }
-
-    toast.success('Вход выполнен!');
-
-    return userData ?? rejectWithValue('User not found');
   } catch (error) {
+    console.error(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -139,12 +140,13 @@ export const getResultOfTheArticle = createAsyncThunk<
         collection(db, 'results'),
         where('articleId', '==', params.articleId),
         where('userId', '==', params.userId),
+        limit(1),
       );
       const docsResults = await getDocs(docRefResults);
-      let resultData: Result | undefined;
 
-      docsResults.forEach((doc) => {
-        resultData = {
+      if (!docsResults.empty) {
+        const doc = docsResults.docs[0];
+        const resultData = {
           id: doc.id,
           articleId: doc.data().articleId,
           chapterId: doc.data().chapterId,
@@ -152,10 +154,12 @@ export const getResultOfTheArticle = createAsyncThunk<
           userAnswers: doc.data().userAnswers,
           averageGrade: doc.data().averageGrade,
         };
-      });
-
-      return resultData ?? rejectWithValue('Result not found');
+        return resultData;
+      } else {
+        return rejectWithValue('Result not found');
+      }
     } catch (error) {
+      console.error(error);
       return rejectWithValue('Server error!');
     }
   },
@@ -172,20 +176,22 @@ export const getResults = createAsyncThunk<
     const data: Result[] = [];
 
     docsResults.forEach((doc) => {
-      const resultData = {
+      const resultData = doc.data();
+      const result: Result = {
         id: doc.id,
-        articleId: doc.data().articleId,
-        chapterId: doc.data().chapterId,
-        userId: doc.data().userId,
-        userAnswers: doc.data().userAnswers,
-        averageGrade: doc.data().averageGrade,
+        articleId: resultData.articleId,
+        chapterId: resultData.chapterId,
+        userId: resultData.userId,
+        userAnswers: resultData.userAnswers,
+        averageGrade: resultData.averageGrade,
       };
 
-      data.push(resultData);
+      data.push(result);
     });
 
     return data ?? rejectWithValue('Result not found');
   } catch (error) {
+    console.error(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -201,19 +207,21 @@ export const getUsers = createAsyncThunk<
     const data: User[] = [];
 
     docsUsers.forEach((doc) => {
-      const userData = {
+      const userData = doc.data();
+      const user: User = {
         id: doc.id,
-        email: doc.data().email,
-        username: doc.data().username,
-        password: doc.data().password,
-        admin: doc.data().admin,
+        email: userData.email,
+        username: userData.username,
+        password: userData.password,
+        admin: userData.admin,
       };
 
-      data.push(userData);
+      data.push(user);
     });
 
     return data ?? rejectWithValue('Result not found');
   } catch (error) {
+    console.error(error);
     return rejectWithValue('Server error!');
   }
 });
@@ -226,19 +234,20 @@ export const getUser = createAsyncThunk<User, string, { rejectValue: string }>(
       const docUser = await getDoc(docRef);
 
       if (docUser.exists()) {
-        const data: User = {
+        const userData = docUser.data();
+        const user: User = {
           id: docUser.id,
-          email: docUser.data().email,
-          username: docUser.data().username,
-          password: docUser.data().password,
-          admin: docUser.data().admin,
+          email: userData.email,
+          username: userData.username,
+          password: userData.password,
+          admin: userData.admin,
         };
-
-        return data;
+        return user;
       } else {
-        return rejectWithValue('Article not found');
+        return rejectWithValue('User not found');
       }
     } catch (error) {
+      console.error(error);
       return rejectWithValue('Server error!');
     }
   },

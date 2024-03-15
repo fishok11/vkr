@@ -1,23 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
-import styles from './Badge.module.scss';
+import React, { FC } from 'react';
+import { useBadge } from './logic/useBadge';
 
 type BudgeProps = {
   grade: number;
 };
 
 const Badge: FC<BudgeProps> = ({ grade }) => {
-  const [badgeColor, setBadgeColor] = useState('');
-  useEffect(() => {
-    if (grade <= 30) {
-      setBadgeColor(styles.red);
-    }
-    if (grade > 30 && grade <= 50) {
-      setBadgeColor(styles.yellow);
-    }
-    if (grade > 50) {
-      setBadgeColor(styles.green);
-    }
-  }, [grade]);
+  const { badgeColor } = useBadge({ grade });
 
   return <span className={badgeColor}>{Math.floor(grade)}%</span>;
 };
