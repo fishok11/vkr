@@ -6,7 +6,7 @@
   }
 
   .buttonContainer {
-    @apply w-max flex gap-4 text-slate-300;
+    @apply w-max flex gap-6 text-slate-300;
 
     .ico {
       @apply duration-150 hover:text-blue-400 cursor-pointer text-lg;

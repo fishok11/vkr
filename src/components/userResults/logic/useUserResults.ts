@@ -1,18 +1,12 @@
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import {
-  getArticles,
-  getChapters,
-  getQuestions,
-  mainState,
-} from '../../../app/mainSlice';
+import { useAppSelector } from '../../../app/hooks';
+import { mainState } from '../../../app/mainSlice';
 import { Chapter, Result } from '../../../app/types';
-import { getResults, userState } from '../../../app/userSlice';
-import { useEffect, useState } from 'react';
+import { userState } from '../../../app/userSlice';
+import { useState } from 'react';
 
 export const useUserResults = ({ userId }: { userId: string }) => {
   const stateMain = useAppSelector(mainState);
   const stateUser = useAppSelector(userState);
-  const dispatch = useAppDispatch();
   const [activeIndexArticle, setActiveIndexArticle] = useState<string | null>(
     null,
   );
@@ -66,13 +60,6 @@ export const useUserResults = ({ userId }: { userId: string }) => {
 
     return averageGradeChapter / filterResultsByChapter.length;
   };
-
-  useEffect(() => {
-    dispatch(getResults());
-    dispatch(getChapters());
-    dispatch(getArticles(''));
-    dispatch(getQuestions());
-  }, []);
 
   return {
     stateMain,

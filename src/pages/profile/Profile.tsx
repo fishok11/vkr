@@ -10,7 +10,7 @@ const UserProfile: FC = () => {
   const { stateUser, cookies, removeCookie } = useProfle();
 
   if (stateUser.isLoadingGetUser) return <Loader />;
-  
+
   return (
     <>
       {cookies.user && (

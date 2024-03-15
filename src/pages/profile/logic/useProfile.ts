@@ -1,7 +1,8 @@
 import { useCookies } from 'react-cookie';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { useEffect } from 'react';
-import { getUser, userState } from '../../../app/userSlice';
+import { getResults, getUser, userState } from '../../../app/userSlice';
+import { getArticles, getChapters, getQuestions } from '../../../app/mainSlice';
 
 export const useProfle = () => {
   const stateUser = useAppSelector(userState);
@@ -10,6 +11,10 @@ export const useProfle = () => {
 
   useEffect(() => {
     dispatch(getUser(cookies.user));
+    dispatch(getResults());
+    dispatch(getChapters());
+    dispatch(getArticles(''));
+    dispatch(getQuestions());
   }, []);
 
   return { stateUser, cookies, removeCookie };
