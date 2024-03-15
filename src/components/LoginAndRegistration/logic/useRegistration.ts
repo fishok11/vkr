@@ -106,6 +106,12 @@ export const useRegistration = () => {
       setCookie('user', stateUser.user.id, { maxAge: 259200 });
       handleCloseModal();
     }
+
+    return () => {
+      setEmail('');
+      setUsername('');
+      setPassword('');
+    };
   }, [stateUser.user.id]);
 
   //=============================================LogIn

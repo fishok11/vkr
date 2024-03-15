@@ -4,11 +4,13 @@ import { useProfle } from './logic/useProfile';
 import UserResults from '../../components/userResults/UserResults';
 import UsersResults from '../../components/usersResults/UsersResults';
 import Button from '../../UI/button/Button';
-import { Link } from 'react-router-dom';
+import Loader from '../../UI/loader/Loader';
 
 const UserProfile: FC = () => {
   const { stateUser, cookies, removeCookie } = useProfle();
 
+  if (stateUser.isLoadingGetUser) return <Loader />;
+  
   return (
     <>
       {cookies.user && (
@@ -19,11 +21,12 @@ const UserProfile: FC = () => {
               <p className={styles.email}>{stateUser.user.email}</p>
             </div>
             <div className={styles.buttonContainer}>
-              <Link to={'/'}>
+              <a href={'/'}>
                 <Button text={'Выйти'} onClick={() => removeCookie('user')} />
-              </Link>
+              </a>
             </div>
           </div>
+
           <h2>
             <b>Результаты пройденых тестов:</b>
           </h2>

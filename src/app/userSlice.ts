@@ -32,6 +32,7 @@ export type InitialState = {
   isLoadingSignUp: boolean;
   isLoadingAddResult: boolean;
   isLoadingGetUserResults: boolean;
+  isLoadingGetUser: boolean;
 };
 
 const initialState: InitialState = {
@@ -59,6 +60,7 @@ const initialState: InitialState = {
   isLoadingSignUp: false,
   isLoadingAddResult: false,
   isLoadingGetUserResults: false,
+  isLoadingGetUser: false,
 };
 
 export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
@@ -316,11 +318,11 @@ export const userSlice = createSlice({
         state.isLoadingGetUserResults = false;
       })
       .addCase(getUser.pending, (state) => {
-        state.isLoadingGetUserResults = true;
+        state.isLoadingGetUser = true;
       })
       .addCase(getUser.fulfilled, (state, action: PayloadAction<User>) => {
         state.user = action.payload;
-        state.isLoadingGetUserResults = false;
+        state.isLoadingGetUser = false;
       });
   },
 });

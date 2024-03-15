@@ -58,7 +58,7 @@ export const useUserResults = ({ userId }: { userId: string }) => {
         return result;
       }
     });
-    console.log(filterResultsByChapter);
+
     const averageGradeChapter = filterResultsByChapter.reduce(
       (acc, currentResult) => acc + currentResult.averageGrade,
       0,
