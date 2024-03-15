@@ -25,6 +25,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
     activeIndexChapter,
     onTitleChapterClick,
     filterChaptersByUserResults,
+    calculationAverageGradeChapter,
   } = useUserResults({ userId });
 
   if (
@@ -40,17 +41,20 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
       {filterChaptersByUserResults(stateMain.chapters, stateUser.results).map(
         (chapter: Chapter) => (
           <React.Fragment key={chapter.id}>
-            <button onClick={() => onTitleChapterClick(chapter.id)}>
-              <h2 className={styles.chapterTitle}>
-                {chapter.chapter}
+            <button
+              className={styles.chapterTitle}
+              onClick={() => onTitleChapterClick(chapter.id)}
+            >
+              <h2>
+                {chapter.chapter}{' '}
                 {activeIndexChapter === chapter.id && (
                   <FontAwesomeIcon icon={faCaretUp} />
                 )}
                 {activeIndexChapter !== chapter.id && (
                   <FontAwesomeIcon icon={faCaretDown} />
                 )}
-                <Badge text={100} />
               </h2>
+              <Badge text={calculationAverageGradeChapter(chapter.id)} />
             </button>
             {activeIndexChapter === chapter.id && (
               <>

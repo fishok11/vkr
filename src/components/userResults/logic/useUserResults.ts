@@ -52,6 +52,20 @@ export const useUserResults = ({ userId }: { userId: string }) => {
     return uniqueChapters;
   };
 
+  const calculationAverageGradeChapter = (chapterId: string) => {
+    const filterResultsByChapter = stateUser.results.filter(
+      (result) => result.chapterId == chapterId,
+    );
+
+    const averageGradeChapter =
+      filterResultsByChapter.reduce(
+        (acc, currentResult) => acc + currentResult.averageGrade,
+        0,
+      ) / filterResultsByChapter.length;
+
+    return averageGradeChapter;
+  };
+
   useEffect(() => {
     dispatch(getResults());
     dispatch(getChapters());
@@ -67,5 +81,6 @@ export const useUserResults = ({ userId }: { userId: string }) => {
     activeIndexChapter,
     onTitleChapterClick,
     filterChaptersByUserResults,
+    calculationAverageGradeChapter,
   };
 };

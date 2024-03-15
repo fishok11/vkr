@@ -2,7 +2,7 @@
   @apply flex flex-col w-full gap-3;
 
   .chapterTitle {
-    @apply flex items-center gap-3;
+    @apply flex justify-between items-center gap-3;
   }
 
   .accordionContainer {
