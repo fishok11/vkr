@@ -25,7 +25,7 @@ export const useSideBar = () => {
   useEffect(() => {
     dispatch(getChapters());
     dispatch(getArticles(''));
-  }, [dispatch]);
+  }, []);
 
   // useEffect(() => {
   //   const handleClickOutside = (event: MouseEvent) => {

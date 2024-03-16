@@ -31,8 +31,11 @@ export const useArticlesPage = () => {
 
   useEffect(() => {
     dispatch(getChapters());
+  }, []);
+
+  useEffect(() => {
     dispatch(getArticles(articleToSearch));
-  }, [dispatch, articleToSearch]);
+  }, [articleToSearch]);
 
   return {
     stateMain,

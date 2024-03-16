@@ -7,8 +7,7 @@ import Loader from '../../UI/loader/Loader';
 import Pagination from '../../components/pagination/Pagination';
 
 const ArticleContent: FC = () => {
-  const { stateMain, prevArticleId, nextArticleId, cookies } =
-    useArticleContent();
+  const { stateMain, prevArticleId, nextArticleId } = useArticleContent();
 
   if (stateMain.isLoadingArticle) return <Loader />;
 

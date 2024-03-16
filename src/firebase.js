@@ -25,10 +25,11 @@ const settings = { timestampsInSnapshots: true, merge: true };
 db.settings(settings);
 
 // Enable experimentalForceLongPolling for Firestore
-const firestoreConfig = {
-  experimentalForceLongPolling: true,
-};
-const firestore = firebase.firestore(firebase.app());
-firestore.settings(firestoreConfig);
+// const firestoreConfig = {
+//   experimentalForceLongPolling: true,
+// };
+
+// const firestore = firebase.firestore(firebase.app());
+// firestore.settings(firestoreConfig);
 
 export default db;
