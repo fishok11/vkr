@@ -17,7 +17,10 @@ const UserProfile: FC = () => {
         <div className={styles.container}>
           <div className={styles.userContainer}>
             <div className={styles.userInfo}>
-              <h1>{stateUser.user.username}</h1>
+              <h1>
+                {stateUser.user.username}
+                {stateUser.user.admin ? ' - администратор' : ''}
+              </h1>
               <p className={styles.email}>{stateUser.user.email}</p>
             </div>
             <div className={styles.buttonContainer}>
@@ -26,12 +29,20 @@ const UserProfile: FC = () => {
               </a>
             </div>
           </div>
-
-          <h2>
-            <b>Результаты пройденых тестов:</b>
-          </h2>
-          {!stateUser.user.admin && <UserResults userId={cookies.user} />}
-          {stateUser.user.admin && <UsersResults />}
+          <div>
+            <h2>
+              <b>Результаты ваших тестов:</b>
+            </h2>
+            <UserResults userId={cookies.user} />
+          </div>
+          {stateUser.user.admin && (
+            <div>
+              <h2>
+                <b>Результаты тестов пользователей:</b>
+              </h2>
+              <UsersResults />
+            </div>
+          )}
         </div>
       )}
     </>

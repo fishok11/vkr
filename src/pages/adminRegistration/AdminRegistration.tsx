@@ -4,8 +4,18 @@ import styles from './AdminRegistration.module.scss';
 import { useAdminRegistration } from './logic/useAdminRegistration';
 
 const AdminRegistration: FC = () => {
-  const { cookies, handleShowLogInModal, handleShowSignUpModal } =
+  const { stateUser, cookies, handleShowLogInModal, handleShowSignUpModal } =
     useAdminRegistration();
+
+  if (cookies.user && stateUser.user.admin) {
+    return (
+      <div className={styles.container}>
+        <h2>
+          Вы можете посмотреть результаты тестов пользователей у себя в профиле
+        </h2>
+      </div>
+    );
+  }
 
   if (cookies.user) return null;
 

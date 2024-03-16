@@ -1,8 +1,13 @@
 import { useCookies } from 'react-cookie';
-import { useAppDispatch } from '../../../app/hooks';
-import { showLogInModal, showSignUpModal } from '../../../app/userSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {
+  showLogInModal,
+  showSignUpModal,
+  userState,
+} from '../../../app/userSlice';
 
 export const useAdminRegistration = () => {
+  const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
   const [cookies] = useCookies(['user']);
 
@@ -14,5 +19,5 @@ export const useAdminRegistration = () => {
     dispatch(showSignUpModal());
   };
 
-  return { cookies, handleShowLogInModal, handleShowSignUpModal };
+  return { stateUser, cookies, handleShowLogInModal, handleShowSignUpModal };
 };

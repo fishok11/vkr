@@ -18,15 +18,17 @@ const Questions: FC = () => {
     cookies,
   } = useQuestions();
 
-  if (stateMain.isLoadingQuestions) return <Loader />;
-
   if (cookies.user === undefined) {
     return (
       <div className={styles.questionsContainer}>
-        <h2>Войдите или зарагистрируйтесь чтоб открыть тесты</h2>
+        <h2 className={'text-center'}>
+          Войдите или зарагистрируйтесь чтоб открыть тесты
+        </h2>
       </div>
     );
   }
+
+  if (stateMain.isLoadingQuestions) return <Loader />;
 
   return (
     <div className={styles.questionsContainer}>
