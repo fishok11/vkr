@@ -1,5 +1,5 @@
 .questionsContainer {
-  @apply flex flex-col w-full bg-gray-900 border border-gray-700 p-4 rounded-lg gap-5;
+  @apply relative flex flex-col w-full bg-gray-900 border border-gray-700 p-4 rounded-lg gap-5;
 
   .text {
     @apply font-bold;
@@ -39,5 +39,9 @@
 
   .buttonContainer {
     @apply min-w-52 w-auto mx-auto my-0;
+  }
+
+  .lockQuestions {
+    @apply absolute top-0 left-0 backdrop-blur-sm h-full w-full flex items-center justify-center rounded-lg;
   }
 }

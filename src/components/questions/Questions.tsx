@@ -18,16 +18,6 @@ const Questions: FC = () => {
     cookies,
   } = useQuestions();
 
-  if (cookies.user === undefined) {
-    return (
-      <div className={styles.questionsContainer}>
-        <h2 className={'text-center'}>
-          Войдите или зарагистрируйтесь чтоб открыть тесты
-        </h2>
-      </div>
-    );
-  }
-
   if (stateMain.isLoadingQuestions) return <Loader />;
 
   return (
@@ -121,6 +111,11 @@ const Questions: FC = () => {
               </div>
             ))}
         </>
+      )}
+      {!cookies.user && (
+        <div className={styles.lockQuestions}>
+          <h2>Чтобы пройти тест зарегистрируйтесь!</h2>
+        </div>
       )}
     </div>
   );

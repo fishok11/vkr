@@ -4,8 +4,7 @@ import styles from './AdminRegistration.module.scss';
 import { useAdminRegistration } from './logic/useAdminRegistration';
 
 const AdminRegistration: FC = () => {
-  const { stateUser, cookies, handleShowLogInModal, handleShowSignUpModal } =
-    useAdminRegistration();
+  const { stateUser, cookies, handleShowSignUpModal } = useAdminRegistration();
 
   if (cookies.user && stateUser.user.admin) {
     return (
@@ -22,10 +21,6 @@ const AdminRegistration: FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.buttonsContainer}>
-        <Button
-          text="Войти как администратор"
-          onClick={() => handleShowLogInModal()}
-        />
         <Button
           text="Заркгистрироваться как администратор"
           onClick={() => handleShowSignUpModal()}
