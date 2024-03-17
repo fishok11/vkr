@@ -20,4 +20,30 @@
       }
     }
   }
+
+  @media (max-width: 768px) {
+    @apply w-full;
+
+    .inputContainer {
+      @apply max-w-xs;
+    }
+
+    .chapterContainer {
+      .chapter {
+        @apply text-xl;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    @apply px-4;
+
+    .chaptersContainer {
+      .chapterContainer {
+        .chapter {
+          @apply text-lg;
+        }
+      }
+    }
+  }
 }

@@ -16,4 +16,40 @@
       @apply max-w-max;
     }
   }
+
+  @media (max-width: 768px) {
+    @apply w-4/5;
+
+    .userContainer {
+      @apply gap-2;
+
+      .userInfo {
+        @apply text-sm gap-2;
+
+        .email {
+          @apply text-xs;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    @apply w-full px-4;
+
+    .userContainer {
+      @apply gap-2;
+
+      .userInfo {
+        @apply text-sm;
+
+        .email {
+          @apply text-xs;
+        }
+      }
+
+      .buttonContainer {
+        @apply w-full;
+      }
+    }
+  }
 }

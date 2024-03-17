@@ -12,6 +12,10 @@
       @apply flex flex-col gap-2 text-sm;
     }
   }
+  
+  @media (max-width: 768px) {
+    @apply hidden;
+  }
 }
 
 .sideBarContainer::-webkit-scrollbar {

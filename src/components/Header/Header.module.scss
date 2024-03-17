@@ -5,6 +5,10 @@
     @apply flex justify-between items-center w-56 mx-auto my-0;
   }
 
+  .menuButton {
+    @apply hidden;
+  }
+
   .buttonContainer {
     @apply w-max flex gap-6 text-slate-300;
 
@@ -13,7 +17,22 @@
     }
 
     .profileLink {
-      @apply flex items-center gap-3 text-slate-200 duration-150 hover:text-blue-400 text-lg;
+      @apply flex items-center justify-center gap-3 text-slate-200 duration-150 hover:text-blue-400 text-lg;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .linkContainer {
+      @apply hidden;
+    }
+
+    .menuButton {
+      @apply flex items-center justify-center gap-3 text-slate-200 text-lg;
     }
   }
 }
+
+.menu {
+  @apply flex flex-col justify-center items-center w-full sticky top-[7vh] bg-gray-800 z-10 py-3 shadow-2xl;
+}
+

@@ -7,11 +7,12 @@ import {
   userState,
 } from '../../../app/userSlice';
 import { useLocation } from 'react-router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useHeader = () => {
   const stateUser = useAppSelector(userState);
   const dispatch = useAppDispatch();
+  const [openMenu, setOpenMenu] = useState(false);
   const [cookies] = useCookies(['user']);
   const location = useLocation();
   const currentPath = location.pathname;
@@ -24,8 +25,16 @@ export const useHeader = () => {
     dispatch(showSignUpModal());
   };
 
+  const handleShowMenu = () => {
+    setOpenMenu(!openMenu);
+  };
+
+  const handleHideMenu = () => {
+    setOpenMenu(false);
+  };
+
   useEffect(() => {
-    dispatch(getUser(cookies.user));
+    if (cookies.user) dispatch(getUser(cookies.user));
   }, []);
 
   return {
@@ -34,5 +43,8 @@ export const useHeader = () => {
     currentPath,
     handleShowLogInModal,
     handleShowSignUpModal,
+    openMenu,
+    handleShowMenu,
+    handleHideMenu,
   };
 };

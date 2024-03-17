@@ -154,6 +154,7 @@ export const getResultOfTheArticle = createAsyncThunk<
           userAnswers: doc.data().userAnswers,
           averageGrade: doc.data().averageGrade,
         };
+
         return resultData;
       } else {
         return rejectWithValue('Result not found');

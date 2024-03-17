@@ -114,7 +114,9 @@ const Questions: FC = () => {
       )}
       {!cookies.user && (
         <div className={styles.lockQuestions}>
-          <h2>Чтобы пройти тест зарегистрируйтесь!</h2>
+          <h2 className={styles.lockQuestionsTitle}>
+            Чтобы пройти тест зарегистрируйтесь!
+          </h2>
         </div>
       )}
     </div>

@@ -1,11 +1,35 @@
 .container {
   @apply flex flex-col justify-center items-center h-full mx-auto my-0 gap-10 absolute top-0 bottom-0 left-0 right-0;
-  
+
   .title {
     @apply font-black text-6xl leading-normal text-center;
   }
 
   .link {
-    @apply flex flex-col justify-center items-center max-w-32 w-full h-10 bg-blue-600 text-white p-2 rounded-lg duration-150 hover:bg-blue-500
+    @apply flex flex-col justify-center items-center max-w-32 w-full h-10 bg-blue-600 text-white p-2 rounded-lg duration-150 hover:bg-blue-500;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    @apply px-5;
+
+    .title {
+      @apply text-4xl;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    @apply px-3;
+
+    .title {
+      @apply text-3xl;
+    }
+
+    .link {
+      @apply max-w-xs;
+    }
   }
 }

@@ -1,4 +1,4 @@
-import { resetResult, userState } from './../../../app/userSlice';
+import { getResults, resetResult, userState } from './../../../app/userSlice';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getQuestions, mainState } from '../../../app/mainSlice';
@@ -84,14 +84,22 @@ export const useQuestions = () => {
   };
 
   useEffect(() => {
-    dispatch(resetResult());
-    if (cookies.user === undefined) {
-      dispatch(getQuestions());
-    } else {
-      dispatch(
-        getResultOfTheArticle({ articleId: articleId, userId: cookies.user }),
-      );
+    if (cookies.user) {
+      dispatch(resetResult());
+      dispatch(getResults());
+      stateUser.results.some((result) => {
+        result.userId === cookies.user && result.articleId === articleId;
+        dispatch(
+          getResultOfTheArticle({
+            articleId: articleId,
+            userId: cookies.user,
+          }),
+        );
+        return true;
+      });
     }
+
+    dispatch(getQuestions());
   }, [showResults]);
 
   return {

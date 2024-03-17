@@ -43,5 +43,9 @@
 
   .lockQuestions {
     @apply absolute top-0 left-0 backdrop-blur-sm h-full w-full flex items-center justify-center rounded-lg;
+
+    .lockQuestionsTitle {
+      @apply text-center;
+    }
   }
 }

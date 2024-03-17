@@ -77,7 +77,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                             className={styles.articleTitle}
                             onClick={() => onTitleArticleClick(article.id)}
                           >
-                            <h2>{article.title}</h2>
+                            <h3>{article.title}</h3>
                             <Badge grade={result.averageGrade} />
                           </button>
                         ))}
