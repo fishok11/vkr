@@ -18,7 +18,12 @@ const Questions: FC = () => {
     cookies,
   } = useQuestions();
 
-  if (stateMain.isLoadingQuestions) return <Loader />;
+  if (
+    stateMain.isLoadingQuestions ||
+    stateUser.isLoadingGetResultOfTheArticle
+  ) {
+    return <Loader />;
+  }
 
   return (
     <div className={styles.questionsContainer}>
@@ -66,7 +71,7 @@ const Questions: FC = () => {
         </>
       )}
 
-      {stateUser.resultOfTheArticle.articleId === articleId && (
+      {stateUser.resultOfTheArticle.articleId === articleId && cookies.user && (
         <>
           <h2 className={styles.text}>Результаты</h2>
           {stateMain.questions

@@ -100,7 +100,7 @@ export const useQuestions = () => {
     }
 
     dispatch(getQuestions());
-  }, [showResults]);
+  }, [showResults, cookies.user]);
 
   return {
     stateMain,

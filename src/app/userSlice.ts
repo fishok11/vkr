@@ -34,6 +34,8 @@ export type InitialState = {
   isLoadingAddResult: boolean;
   isLoadingGetUserResults: boolean;
   isLoadingGetUser: boolean;
+  isLoadingGetUsers: boolean;
+  isLoadingGetResultOfTheArticle: boolean;
 };
 
 const initialState: InitialState = {
@@ -62,6 +64,8 @@ const initialState: InitialState = {
   isLoadingAddResult: false,
   isLoadingGetUserResults: false,
   isLoadingGetUser: false,
+  isLoadingGetUsers: false,
+  isLoadingGetResultOfTheArticle: false,
 };
 
 export const createUser = createAsyncThunk<void, User, { rejectValue: string }>(
@@ -301,13 +305,13 @@ export const userSlice = createSlice({
         state.isLoadingAddResult = false;
       })
       .addCase(getResultOfTheArticle.pending, (state) => {
-        state.isLoadingAddResult = true;
+        state.isLoadingGetResultOfTheArticle = true;
       })
       .addCase(
         getResultOfTheArticle.fulfilled,
         (state, action: PayloadAction<Result>) => {
           state.resultOfTheArticle = action.payload;
-          state.isLoadingAddResult = false;
+          state.isLoadingGetResultOfTheArticle = false;
         },
       )
       .addCase(getResults.pending, (state) => {
@@ -321,11 +325,11 @@ export const userSlice = createSlice({
         },
       )
       .addCase(getUsers.pending, (state) => {
-        state.isLoadingGetUserResults = true;
+        state.isLoadingGetUsers = true;
       })
       .addCase(getUsers.fulfilled, (state, action: PayloadAction<User[]>) => {
         state.users = action.payload;
-        state.isLoadingGetUserResults = false;
+        state.isLoadingGetUsers = false;
       })
       .addCase(getUser.pending, (state) => {
         state.isLoadingGetUser = true;
