@@ -33,6 +33,6 @@
 }
 
 .menu {
-  @apply flex flex-col justify-center items-center w-full sticky top-[7vh] bg-gray-800 z-10 py-3 shadow-2xl;
+  @apply flex flex-col justify-center items-center w-full fixed top-[7vh] bg-gray-800 z-10 py-3 shadow-2xl;
 }
 
