@@ -7,7 +7,7 @@ const InfoPage: FC = () => {
     <div className={styles.container}>
       <img src={logo} alt={'logo'} />
       <h2 className={styles.text}>
-        WEB - ресурс для проверки знаний военнослужащих по военным
+        WEB - ресурс для обучения и проверки знаний военнослужащих по военным
         специальностям
       </h2>
       <h2 className={styles.text}>

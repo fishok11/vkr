@@ -6,7 +6,7 @@ export const HomePage = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>
-        WEB - ресурс для проверки знаний военнослужащих по военным
+        WEB - ресурс для обучения и проверки знаний военнослужащих по военным
         специальностям
       </h1>
       <div className={styles.link}>
