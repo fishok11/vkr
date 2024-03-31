@@ -18,12 +18,12 @@ const Questions: FC = () => {
     cookies,
   } = useQuestions();
 
-  if (
-    stateMain.isLoadingQuestions ||
-    stateUser.isLoadingGetResultOfTheArticle
-  ) {
-    return <Loader />;
-  }
+  // if (
+  //   stateMain.isLoadingQuestions ||
+  //   stateUser.isLoadingGetResultOfTheArticle
+  // ) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className={styles.questionsContainer}>
