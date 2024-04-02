@@ -74,47 +74,79 @@ const Questions: FC = () => {
       {stateUser.resultOfTheArticle.articleId === articleId && cookies.user && (
         <>
           <h2 className={styles.text}>Результаты</h2>
-          {stateMain.questions
-            .filter(
-              (question: Question) =>
-                question.articleId.toString() == articleId,
-            )
-            .map((question: Question) => (
-              <div key={question.id}>
-                <h3 className={styles.questionTitle}>
-                  {stateUser.resultOfTheArticle.userAnswers[
-                    parseInt(question.id)
-                  ] === question.correctAnswer && (
-                    <FontAwesomeIcon
-                      icon={faCheck}
-                      className={styles.correctIco}
-                    />
-                  )}
-                  {stateUser.resultOfTheArticle.userAnswers[
-                    parseInt(question.id)
-                  ] !== question.correctAnswer && (
-                    <FontAwesomeIcon
-                      icon={faXmark}
-                      className={styles.incorrectIco}
-                    />
-                  )}{' '}
-                  {question.question}
-                </h3>
-                <div>
-                  <p>
-                    <b>Правильный ответ:</b> {question.correctAnswer}
-                  </p>
-                  <p>
-                    <b>Ваш ответ:</b>{' '}
-                    {
-                      stateUser.resultOfTheArticle.userAnswers[
-                        parseInt(question.id)
-                      ]
-                    }
-                  </p>
-                </div>
-              </div>
-            ))}
+          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead>
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Имя
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Курс
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Cредний балл
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {stateUser.results
+                .filter(
+                  (result) =>
+                    result.userId === cookies.user &&
+                    result.articleId === articleId,
+                )
+                .map((result) => (
+                  // <div key={question.id}>
+                  //   <h3 className={styles.questionTitle}>
+                  //     {stateUser.resultOfTheArticle.userAnswers[
+                  //       parseInt(question.id)
+                  //     ] === question.correctAnswer && (
+                  //       <FontAwesomeIcon
+                  //         icon={faCheck}
+                  //         className={styles.correctIco}
+                  //       />
+                  //     )}
+                  //     {stateUser.resultOfTheArticle.userAnswers[
+                  //       parseInt(question.id)
+                  //     ] !== question.correctAnswer && (
+                  //       <FontAwesomeIcon
+                  //         icon={faXmark}
+                  //         className={styles.incorrectIco}
+                  //       />
+                  //     )}{' '}
+                  //     {question.question}
+                  //   </h3>
+                  //   <div>
+                  //     <p>
+                  //       <b>Правильный ответ:</b> {question.correctAnswer}
+                  //     </p>
+                  //     <p>
+                  //       <b>Ваш ответ:</b>{' '}
+                  //       {
+                  //         stateUser.resultOfTheArticle.userAnswers[
+                  //           parseInt(question.id)
+                  //         ]
+                  //       }
+                  //     </p>
+                  //   </div>
+                  // </div>
+
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    key={result.id}
+                  >
+                    <th
+                      scope="row"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      {result.userId}
+                    </th>
+                    <td className="px-6 py-4">{result.articleId}</td>
+                    <td className="px-6 py-4">{result.averageGrade}</td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </>
       )}
       {!cookies.user && (
