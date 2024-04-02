@@ -20,7 +20,7 @@ const ArticlesPage = () => {
         <Input
           id={'search'}
           type={'text'}
-          placeholder={'Поиск по статьям...'}
+          placeholder={'Поиск по курсам...'}
           value={articleToSearch}
           onChange={(e) => setArticleToSearch(e.target.value)}
         />

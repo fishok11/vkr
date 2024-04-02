@@ -38,7 +38,7 @@ const Header: FC = () => {
         </div>
         <div className={styles.linkContainer}>
           <CustomLink to={'/'} text={'Главная'} />
-          <CustomLink to={'/articles'} text={'Статьи'} />
+          <CustomLink to={'/articles'} text={'Курсы'} />
           <CustomLink to={'/about'} text={'Инфо'} />
         </div>
         <div className={styles.buttonContainer}>

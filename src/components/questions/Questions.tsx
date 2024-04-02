@@ -3,31 +3,35 @@ import styles from './Questions.module.scss';
 import { useQuestions } from './logic/useQuestions';
 import { Question } from '../../app/types';
 import Button from '../../UI/button/Button';
-import Loader from '../../UI/loader/Loader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faCheck, faXmark } from '@fortawesome/free-solid-svg-icons';
 
-const Questions: FC = () => {
+type QuestionsProps = {
+  articleTitle: string;
+};
+
+const Questions: FC<QuestionsProps> = ({ articleTitle }) => {
   const {
     stateMain,
     stateUser,
     articleId,
     handleAnswerSelection,
     handleAddResult,
+    newAttempt,
+    handleNewAttempt,
+    checkUserResults,
+    calcQuantityAttempt,
     errorMessage,
     cookies,
   } = useQuestions();
 
-  // if (
-  //   stateMain.isLoadingQuestions ||
-  //   stateUser.isLoadingGetResultOfTheArticle
-  // ) {
-  //   return <Loader />;
-  // }
+  if (!articleId) {
+    return <p>Курс не найден</p>;
+  }
 
   return (
     <div className={styles.questionsContainer}>
-      {!stateUser.resultOfTheArticle.articleId && (
+      {(!checkUserResults(cookies.user, articleId) || newAttempt) && (
         <>
           <h2 className={styles.text}>Вопросы</h2>
           {stateMain.questions
@@ -71,7 +75,7 @@ const Questions: FC = () => {
         </>
       )}
 
-      {stateUser.resultOfTheArticle.articleId === articleId && cookies.user && (
+      {checkUserResults(cookies.user, articleId) && !newAttempt && (
         <>
           <h2 className={styles.text}>Результаты</h2>
           <table className={styles.table}>
@@ -84,8 +88,12 @@ const Questions: FC = () => {
                   Курс
                 </th>
                 <th scope="col" className={styles.tableHeadItem}>
+                  Попытка
+                </th>
+                <th scope="col" className={styles.tableHeadItem}>
                   Cредний балл
                 </th>
+                <th scope="col" className={styles.tableHeadItem} />
               </tr>
             </thead>
             <tbody className={styles.tableBody}>
@@ -95,7 +103,7 @@ const Questions: FC = () => {
                     result.userId === cookies.user &&
                     result.articleId === articleId,
                 )
-                .map((result) => (
+                .map((result, indexResult) => (
                   // <div key={question.id}>
                   //   <h3 className={styles.questionTitle}>
                   //     {stateUser.resultOfTheArticle.userAnswers[
@@ -132,15 +140,33 @@ const Questions: FC = () => {
                   // </div>
 
                   <tr className={styles.tableRow} key={result.id}>
-                    <td className={styles.tableRowItem}>{result.userId}</td>
-                    <td className={styles.tableRowItem}>{result.articleId}</td>
+                    <td className={styles.tableRowItem}>Вы</td>
+                    <td className={styles.tableRowItem}>{articleTitle}</td>
+                    <td className={styles.tableRowItem}>{indexResult + 1}</td>
                     <td className={styles.tableRowItem}>
-                      {result.averageGrade}
+                      {Math.floor(result.averageGrade)}
+                    </td>
+                    <td className={styles.tableRowItem}>
+                      <button className={styles.button}>
+                        Посмотреть попытку
+                      </button>
                     </td>
                   </tr>
                 ))}
             </tbody>
           </table>
+          <p className={styles.attemptQuantityText}>
+            У вас осталось попыток:{' '}
+            {3 - calcQuantityAttempt(cookies.user, articleId)}
+          </p>
+          {calcQuantityAttempt(cookies.user, articleId) < 3 && (
+            <div className={styles.buttonContainer}>
+              <Button
+                text={'Попробовать еще'}
+                onClick={() => handleNewAttempt()}
+              />
+            </div>
+          )}
         </>
       )}
       {!cookies.user && (

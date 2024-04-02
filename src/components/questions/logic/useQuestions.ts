@@ -1,10 +1,10 @@
-import { getResults, resetResult, userState } from './../../../app/userSlice';
+import { getResults, userState } from './../../../app/userSlice';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getQuestions, mainState } from '../../../app/mainSlice';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router';
-import { addResult, getResultOfTheArticle } from '../../../app/userSlice';
+import { addResult } from '../../../app/userSlice';
 import { ResultToAdded } from '../../../app/types';
 
 export const useQuestions = () => {
@@ -16,6 +16,7 @@ export const useQuestions = () => {
   }>({});
   const [errorMessage, setErrorMessage] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [newAttempt, setNewAttempt] = useState(false);
   const [cookies] = useCookies(['user']);
   const { articleId } = useParams();
 
@@ -79,28 +80,49 @@ export const useQuestions = () => {
       setErrorMessage(true);
       return;
     }
+    
     dispatch(addResult(result));
     setShowResults(!showResults);
+    setNewAttempt(false);
+  };
+
+  const handleNewAttempt = () => {
+    setNewAttempt(true);
+  };
+
+  const checkUserResults = (userId: string, articleId: string | undefined) => {
+    if (!articleId) return;
+
+    let userResult = false;
+
+    stateUser.results.forEach((result) => {
+      if (result.userId === userId && result.articleId === articleId) {
+        userResult = true;
+      }
+    });
+
+    return userResult;
+  };
+
+  const calcQuantityAttempt = (userId: string, articleId: string) => {
+    let quantityAttempt = 0;
+
+    stateUser.results.forEach((result) => {
+      if (result.userId === userId && result.articleId === articleId) {
+        quantityAttempt++;
+      }
+    });
+
+    return quantityAttempt;
   };
 
   useEffect(() => {
     if (cookies.user) {
-      dispatch(resetResult());
       dispatch(getResults());
-      stateUser.results.some((result) => {
-        result.userId === cookies.user && result.articleId === articleId;
-        dispatch(
-          getResultOfTheArticle({
-            articleId: articleId,
-            userId: cookies.user,
-          }),
-        );
-        return true;
-      });
     }
 
     dispatch(getQuestions());
-  }, [showResults, cookies.user]);
+  }, [showResults, newAttempt, cookies.user]);
 
   return {
     stateMain,
@@ -108,6 +130,10 @@ export const useQuestions = () => {
     articleId,
     handleAnswerSelection,
     handleAddResult,
+    newAttempt,
+    handleNewAttempt,
+    checkUserResults,
+    calcQuantityAttempt,
     errorMessage,
     cookies,
   };

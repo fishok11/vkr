@@ -24,7 +24,6 @@ import toast from 'react-hot-toast';
 export type InitialState = {
   user: User;
   users: User[];
-  resultOfTheArticle: Result;
   results: Result[];
   logInModal: boolean;
   signUpModal: boolean;
@@ -48,14 +47,6 @@ const initialState: InitialState = {
   },
   users: [],
   results: [],
-  resultOfTheArticle: {
-    id: '',
-    articleId: '',
-    chapterId: '',
-    userId: '',
-    userAnswers: {},
-    averageGrade: 0,
-  },
   logInModal: false,
   signUpModal: false,
   userNotFound: false,
@@ -131,44 +122,6 @@ export const addResult = createAsyncThunk<
     return rejectWithValue('Server error!');
   }
 });
-
-export const getResultOfTheArticle = createAsyncThunk<
-  Result,
-  GetResultOfTheArticleParams,
-  { rejectValue: string }
->(
-  'getResultOfTheArticle',
-  async (params: GetResultOfTheArticleParams, { rejectWithValue }) => {
-    try {
-      const docRefResults = query(
-        collection(db, 'results'),
-        where('articleId', '==', params.articleId),
-        where('userId', '==', params.userId),
-        limit(1),
-      );
-      const docsResults = await getDocs(docRefResults);
-
-      if (!docsResults.empty) {
-        const doc = docsResults.docs[0];
-        const resultData = {
-          id: doc.id,
-          articleId: doc.data().articleId,
-          chapterId: doc.data().chapterId,
-          userId: doc.data().userId,
-          userAnswers: doc.data().userAnswers,
-          averageGrade: doc.data().averageGrade,
-        };
-
-        return resultData;
-      } else {
-        return rejectWithValue('Result not found');
-      }
-    } catch (error) {
-      console.error(error);
-      return rejectWithValue('Server error!');
-    }
-  },
-);
 
 export const getResults = createAsyncThunk<
   Result[],
@@ -273,10 +226,7 @@ export const userSlice = createSlice({
     },
     hideSignUpModal: (state) => {
       state.signUpModal = false;
-    },
-    resetResult: (state) => {
-      state.resultOfTheArticle = initialState.resultOfTheArticle;
-    },
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -304,16 +254,6 @@ export const userSlice = createSlice({
       .addCase(addResult.fulfilled, (state) => {
         state.isLoadingAddResult = false;
       })
-      .addCase(getResultOfTheArticle.pending, (state) => {
-        state.isLoadingGetResultOfTheArticle = true;
-      })
-      .addCase(
-        getResultOfTheArticle.fulfilled,
-        (state, action: PayloadAction<Result>) => {
-          state.resultOfTheArticle = action.payload;
-          state.isLoadingGetResultOfTheArticle = false;
-        },
-      )
       .addCase(getResults.pending, (state) => {
         state.isLoadingGetUserResults = true;
       })
@@ -346,7 +286,6 @@ export const {
   hideLogInModal,
   showSignUpModal,
   hideSignUpModal,
-  resetResult,
 } = userSlice.actions;
 
 export const userState = (state: RootState) => state.user;
