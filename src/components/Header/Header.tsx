@@ -77,7 +77,7 @@ const Header: FC = () => {
             <CustomLink to={'/'} text={'Главная'} />
           </li>
           <li onClick={() => handleHideMenu()}>
-            <CustomLink to={'/articles'} text={'Статьи'} />
+            <CustomLink to={'/articles'} text={'Курсы'} />
           </li>
           <li onClick={() => handleHideMenu()}>
             <CustomLink to={'/about'} text={'Инфо'} />
