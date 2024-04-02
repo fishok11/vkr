@@ -1,11 +1,15 @@
-import { getResults, userState } from './../../../app/userSlice';
+import {
+  getResults,
+  showResultModal,
+  userState,
+} from './../../../app/userSlice';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getQuestions, mainState } from '../../../app/mainSlice';
 import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router';
 import { addResult } from '../../../app/userSlice';
-import { ResultToAdded } from '../../../app/types';
+import { Result, ResultToAdded } from '../../../app/types';
 
 export const useQuestions = () => {
   const stateMain = useAppSelector(mainState);
@@ -80,7 +84,7 @@ export const useQuestions = () => {
       setErrorMessage(true);
       return;
     }
-    
+
     dispatch(addResult(result));
     setShowResults(!showResults);
     setNewAttempt(false);
@@ -116,6 +120,10 @@ export const useQuestions = () => {
     return quantityAttempt;
   };
 
+  const handleShowResultModal = (result: Result) => {
+    dispatch(showResultModal(result));
+  };
+
   useEffect(() => {
     if (cookies.user) {
       dispatch(getResults());
@@ -134,6 +142,7 @@ export const useQuestions = () => {
     handleNewAttempt,
     checkUserResults,
     calcQuantityAttempt,
+    handleShowResultModal,
     errorMessage,
     cookies,
   };

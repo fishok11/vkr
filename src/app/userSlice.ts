@@ -1,12 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import {
-  GetResultOfTheArticleParams,
-  Result,
-  ResultToAdded,
-  User,
-  UserLogIn,
-} from './types';
+import { Result, ResultToAdded, User, UserLogIn } from './types';
 import {
   addDoc,
   collection,
@@ -25,9 +19,10 @@ export type InitialState = {
   user: User;
   users: User[];
   results: Result[];
+  resultForResultModal: Result | null;
+  resultModal: boolean;
   logInModal: boolean;
   signUpModal: boolean;
-  userNotFound: boolean;
   isLoadingLogIn: boolean;
   isLoadingSignUp: boolean;
   isLoadingAddResult: boolean;
@@ -47,9 +42,10 @@ const initialState: InitialState = {
   },
   users: [],
   results: [],
+  resultForResultModal: null,
+  resultModal: false,
   logInModal: false,
   signUpModal: false,
-  userNotFound: false,
   isLoadingLogIn: false,
   isLoadingSignUp: false,
   isLoadingAddResult: false,
@@ -226,7 +222,15 @@ export const userSlice = createSlice({
     },
     hideSignUpModal: (state) => {
       state.signUpModal = false;
-    }
+    },
+    showResultModal: (state, action: PayloadAction<Result>) => {
+      state.resultForResultModal = action.payload;
+      state.resultModal = true;
+    },
+    hideResultModal: (state) => {
+      state.resultForResultModal = initialState.resultForResultModal;
+      state.resultModal = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -286,6 +290,8 @@ export const {
   hideLogInModal,
   showSignUpModal,
   hideSignUpModal,
+  showResultModal,
+  hideResultModal,
 } = userSlice.actions;
 
 export const userState = (state: RootState) => state.user;

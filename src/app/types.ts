@@ -45,8 +45,3 @@ export type Result = {
 };
 
 export type ResultToAdded = Omit<Result, 'id'>;
-
-export type GetResultOfTheArticleParams = {
-  userId: string;
-  articleId: string | undefined;
-};

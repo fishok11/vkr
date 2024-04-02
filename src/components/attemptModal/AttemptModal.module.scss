@@ -1,0 +1,51 @@
+.wrapper {
+  @apply fixed top-0 bottom-0 left-0 right-0 flex justify-center items-center min-h-full min-w-full z-30 bg-black bg-opacity-70 p-4;
+
+  .container {
+    @apply w-max h-max relative flex flex-col bg-gray-900 border border-gray-700 p-4 rounded-lg gap-5;
+
+    .modalHead {
+      @apply flex justify-between items-center;
+
+      .modalHeadTitle {
+        @apply inline-block;
+      }
+
+      .closeWindow {
+        @apply text-gray-400;
+      }
+    }
+
+    .text {
+      @apply font-bold;
+    }
+
+    .questionTitle {
+      @apply text-lg mb-2;
+    }
+
+    .answersContainer {
+      @apply flex flex-col;
+
+      .answerContainer {
+        @apply flex items-center gap-3;
+
+        .input {
+          @apply w-4 h-4 text-blue-600 focus:ring-blue-600 ring-offset-gray-800 focus:ring-2 bg-gray-700 border-gray-600 checked:bg-blue-600 checked:border-blue-600 cursor-pointer;
+        }
+
+        .label {
+          @apply text-base cursor-pointer;
+        }
+      }
+    }
+
+    .correctIco {
+      @apply text-green-400;
+    }
+
+    .incorrectIco {
+      @apply text-red-400;
+    }
+  }
+}
