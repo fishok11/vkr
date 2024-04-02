@@ -25,6 +25,28 @@
     }
   }
 
+  .table {
+    @apply w-full text-sm text-left rtl:text-right text-gray-400 rounded-lg overflow-hidden;
+
+    .tableHead {
+      @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400;
+
+      .tableHeadItem {
+        @apply px-6 py-3;
+      }
+    }
+
+    .tableBody {
+      .tableRow {
+        @apply bg-gray-800 border-gray-700;
+
+        .tableRowItem {
+          @apply px-6 py-4;
+        }
+      }
+    }
+  }
+
   .correctIco {
     @apply text-green-400;
   }

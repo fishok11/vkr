@@ -74,21 +74,21 @@ const Questions: FC = () => {
       {stateUser.resultOfTheArticle.articleId === articleId && cookies.user && (
         <>
           <h2 className={styles.text}>Результаты</h2>
-          <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead>
+          <table className={styles.table}>
+            <thead className={styles.tableHead}>
               <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className={styles.tableHeadItem}>
                   Имя
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className={styles.tableHeadItem}>
                   Курс
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className={styles.tableHeadItem}>
                   Cредний балл
                 </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className={styles.tableBody}>
               {stateUser.results
                 .filter(
                   (result) =>
@@ -131,18 +131,12 @@ const Questions: FC = () => {
                   //   </div>
                   // </div>
 
-                  <tr
-                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                    key={result.id}
-                  >
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      {result.userId}
-                    </th>
-                    <td className="px-6 py-4">{result.articleId}</td>
-                    <td className="px-6 py-4">{result.averageGrade}</td>
+                  <tr className={styles.tableRow} key={result.id}>
+                    <td className={styles.tableRowItem}>{result.userId}</td>
+                    <td className={styles.tableRowItem}>{result.articleId}</td>
+                    <td className={styles.tableRowItem}>
+                      {result.averageGrade}
+                    </td>
                   </tr>
                 ))}
             </tbody>
