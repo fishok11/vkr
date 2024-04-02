@@ -78,83 +78,85 @@ const Questions: FC<QuestionsProps> = ({ articleTitle }) => {
       {checkUserResults(cookies.user, articleId) && !newAttempt && (
         <>
           <h2 className={styles.text}>Результаты</h2>
-          <table className={styles.table}>
-            <thead className={styles.tableHead}>
-              <tr>
-                <th scope="col" className={styles.tableHeadItem}>
-                  Имя
-                </th>
-                <th scope="col" className={styles.tableHeadItem}>
-                  Курс
-                </th>
-                <th scope="col" className={styles.tableHeadItem}>
-                  Попытка
-                </th>
-                <th scope="col" className={styles.tableHeadItem}>
-                  Cредний балл
-                </th>
-                <th scope="col" className={styles.tableHeadItem} />
-              </tr>
-            </thead>
-            <tbody className={styles.tableBody}>
-              {stateUser.results
-                .filter(
-                  (result) =>
-                    result.userId === cookies.user &&
-                    result.articleId === articleId,
-                )
-                .map((result, indexResult) => (
-                  // <div key={question.id}>
-                  //   <h3 className={styles.questionTitle}>
-                  //     {stateUser.resultOfTheArticle.userAnswers[
-                  //       parseInt(question.id)
-                  //     ] === question.correctAnswer && (
-                  //       <FontAwesomeIcon
-                  //         icon={faCheck}
-                  //         className={styles.correctIco}
-                  //       />
-                  //     )}
-                  //     {stateUser.resultOfTheArticle.userAnswers[
-                  //       parseInt(question.id)
-                  //     ] !== question.correctAnswer && (
-                  //       <FontAwesomeIcon
-                  //         icon={faXmark}
-                  //         className={styles.incorrectIco}
-                  //       />
-                  //     )}{' '}
-                  //     {question.question}
-                  //   </h3>
-                  //   <div>
-                  //     <p>
-                  //       <b>Правильный ответ:</b> {question.correctAnswer}
-                  //     </p>
-                  //     <p>
-                  //       <b>Ваш ответ:</b>{' '}
-                  //       {
-                  //         stateUser.resultOfTheArticle.userAnswers[
-                  //           parseInt(question.id)
-                  //         ]
-                  //       }
-                  //     </p>
-                  //   </div>
-                  // </div>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead className={styles.tableHead}>
+                <tr>
+                  <th scope="col" className={styles.tableHeadItem}>
+                    Имя
+                  </th>
+                  <th scope="col" className={styles.tableHeadItem}>
+                    Курс
+                  </th>
+                  <th scope="col" className={styles.tableHeadItem}>
+                    Попытка
+                  </th>
+                  <th scope="col" className={styles.tableHeadItem}>
+                    Cредний балл
+                  </th>
+                  <th scope="col" className={styles.tableHeadItem} />
+                </tr>
+              </thead>
+              <tbody className={styles.tableBody}>
+                {stateUser.results
+                  .filter(
+                    (result) =>
+                      result.userId === cookies.user &&
+                      result.articleId === articleId,
+                  )
+                  .map((result, indexResult) => (
+                    // <div key={question.id}>
+                    //   <h3 className={styles.questionTitle}>
+                    //     {stateUser.resultOfTheArticle.userAnswers[
+                    //       parseInt(question.id)
+                    //     ] === question.correctAnswer && (
+                    //       <FontAwesomeIcon
+                    //         icon={faCheck}
+                    //         className={styles.correctIco}
+                    //       />
+                    //     )}
+                    //     {stateUser.resultOfTheArticle.userAnswers[
+                    //       parseInt(question.id)
+                    //     ] !== question.correctAnswer && (
+                    //       <FontAwesomeIcon
+                    //         icon={faXmark}
+                    //         className={styles.incorrectIco}
+                    //       />
+                    //     )}{' '}
+                    //     {question.question}
+                    //   </h3>
+                    //   <div>
+                    //     <p>
+                    //       <b>Правильный ответ:</b> {question.correctAnswer}
+                    //     </p>
+                    //     <p>
+                    //       <b>Ваш ответ:</b>{' '}
+                    //       {
+                    //         stateUser.resultOfTheArticle.userAnswers[
+                    //           parseInt(question.id)
+                    //         ]
+                    //       }
+                    //     </p>
+                    //   </div>
+                    // </div>
 
-                  <tr className={styles.tableRow} key={result.id}>
-                    <td className={styles.tableRowItem}>Вы</td>
-                    <td className={styles.tableRowItem}>{articleTitle}</td>
-                    <td className={styles.tableRowItem}>{indexResult + 1}</td>
-                    <td className={styles.tableRowItem}>
-                      {Math.floor(result.averageGrade)}
-                    </td>
-                    <td className={styles.tableRowItem}>
-                      <button className={styles.button}>
-                        Посмотреть попытку
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
+                    <tr className={styles.tableRow} key={result.id}>
+                      <td className={styles.tableRowItem}>Вы</td>
+                      <td className={styles.tableRowItem}>{articleTitle}</td>
+                      <td className={styles.tableRowItem}>{indexResult + 1}</td>
+                      <td className={styles.tableRowItem}>
+                        {Math.floor(result.averageGrade)}
+                      </td>
+                      <td className={styles.tableRowItem}>
+                        <button className={styles.button}>
+                          Посмотреть попытку
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
           <p className={styles.attemptQuantityText}>
             У вас осталось попыток:{' '}
             {3 - calcQuantityAttempt(cookies.user, articleId)}
