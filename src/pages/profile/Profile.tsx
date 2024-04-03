@@ -24,7 +24,7 @@ const UserProfile: FC = () => {
               <p className={styles.email}>{stateUser.user.email}</p>
             </div>
             <div className={styles.buttonContainer}>
-              <a href={'/'}>
+              <a href={'/#'}>
                 <Button text={'Выйти'} onClick={() => removeCookie('user')} />
               </a>
             </div>

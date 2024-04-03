@@ -34,13 +34,6 @@ export const useUsersResults = () => {
 
     setUsernameToSearch('');
   };
-
-  const findUserName = (userId: string) => {
-    const user = stateUser.users.find((user) => user.id === userId);
-
-    return user ? user.username : '';
-  };
-
   const handleShowResultModal = (
     result: Result,
     articleId: string | undefined,
@@ -48,6 +41,38 @@ export const useUsersResults = () => {
     if (!articleId) return;
     dispatch(setArticleIdForResultModal(articleId));
     dispatch(showResultModal(result));
+  };
+
+  const findUserName = (userId: string) => {
+    const user = stateUser.users.find((user) => user.id === userId);
+
+    return user ? user.username : '';
+  };
+
+  const setAttempt = (
+    props: Result 
+  ) => {
+    if (!props.articleId) return '';
+
+    const userArticleResults: Result[] = stateUser.results.filter(
+      (result) =>
+        result.userId === props.userId && result.articleId === props.articleId,
+    );
+
+    let attempt;
+
+    userArticleResults.forEach((result, index) => {
+      if (
+        result.userId == props.userId &&
+        result.articleId == props.articleId &&
+        result.userAnswers == props.userAnswers
+      ) {
+        attempt = index + 1;
+        return;
+      }
+    });
+
+    return attempt;
   };
 
   useEffect(() => {
@@ -65,5 +90,6 @@ export const useUsersResults = () => {
     handleShowResultModal,
     usernameToSearch,
     setUsernameToSearch,
+    setAttempt,
   };
 };

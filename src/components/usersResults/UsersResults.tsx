@@ -19,6 +19,7 @@ const UsersResults = () => {
     handleShowResultModal,
     usernameToSearch,
     setUsernameToSearch,
+    setAttempt,
   } = useUsersResults();
 
   return (
@@ -134,7 +135,7 @@ const UsersResults = () => {
                                         {article.title}
                                       </td>
                                       <td className={styles.tableRowItem}>
-                                        {indexResult + 1}
+                                        {setAttempt(result)}
                                       </td>
                                       <td className={styles.tableRowItem}>
                                         {Math.floor(result.averageGrade)}
