@@ -17,6 +17,8 @@ const UsersResults = () => {
     onTitleChapterClick,
     findUserName,
     handleShowResultModal,
+    usernameToSearch,
+    setUsernameToSearch,
   } = useUsersResults();
 
   return (
@@ -70,8 +72,10 @@ const UsersResults = () => {
                             id={'search'}
                             type={'text'}
                             placeholder={'Введите имя пользователя'}
-                            // value={articleToSearch}
-                            // onChange={(e) => setArticleToSearch(e.target.value)}
+                            value={usernameToSearch}
+                            onChange={(e) =>
+                              setUsernameToSearch(e.target.value)
+                            }
                           />
                           <div className={styles.tableContainer}>
                             <table className={styles.table}>
@@ -110,7 +114,13 @@ const UsersResults = () => {
                               <tbody className={styles.tableBody}>
                                 {stateUser.results
                                   .filter(
-                                    (result) => result.articleId === article.id,
+                                    (result) =>
+                                      result.articleId === article.id &&
+                                      findUserName(result.userId)
+                                        .toLowerCase()
+                                        .includes(
+                                          usernameToSearch.toLowerCase(),
+                                        ),
                                   )
                                   .map((result, indexResult) => (
                                     <tr
