@@ -10,9 +10,9 @@ import {
 import { useState } from 'react';
 
 export const useUserResults = ({ userId }: { userId: string }) => {
+  const dispatch = useAppDispatch();
   const stateMain = useAppSelector(mainState);
   const stateUser = useAppSelector(userState);
-  const dispatch = useAppDispatch();
   const [cookies] = useCookies(['user']);
   const [activeIndexArticle, setActiveIndexArticle] = useState<string | null>(
     null,

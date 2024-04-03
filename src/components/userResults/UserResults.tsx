@@ -94,7 +94,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                                     scope="col"
                                     className={styles.tableHeadItem}
                                   >
-                                    Курс
+                                    Cпециальность
                                   </th>
                                   <th
                                     scope="col"

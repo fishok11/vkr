@@ -2,7 +2,7 @@
   @apply flex justify-between items-center px-7 py-3 border-b border-gray-600 bg-gray-800 h-[7vh] box-border sticky top-0 z-10;
 
   .linkContainer {
-    @apply flex justify-between items-center w-56 mx-auto my-0;
+    @apply flex justify-between items-center gap-5 w-max mx-auto my-0;
   }
 
   .menuButton {

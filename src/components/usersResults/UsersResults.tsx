@@ -11,6 +11,7 @@ const UsersResults = () => {
   const {
     stateUser,
     stateMain,
+    cookies,
     activeIndexArticle,
     activeIndexChapter,
     onTitleArticleClick,
@@ -92,7 +93,7 @@ const UsersResults = () => {
                                     scope="col"
                                     className={styles.tableHeadItem}
                                   >
-                                    Курс
+                                    Cпециальность
                                   </th>
                                   <th
                                     scope="col"
@@ -117,6 +118,7 @@ const UsersResults = () => {
                                   .filter(
                                     (result) =>
                                       result.articleId === article.id &&
+                                      result.userId !== cookies.user &&
                                       findUserName(result.userId)
                                         .toLowerCase()
                                         .includes(

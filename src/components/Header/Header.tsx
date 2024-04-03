@@ -38,7 +38,7 @@ const Header: FC = () => {
         </div>
         <div className={styles.linkContainer}>
           <CustomLink to={'/'} text={'Главная'} />
-          <CustomLink to={'/articles'} text={'Курсы'} />
+          <CustomLink to={'/articles'} text={'Cпециальности'} />
           <CustomLink to={'/about'} text={'Инфо'} />
         </div>
         <div className={styles.buttonContainer}>
@@ -77,7 +77,7 @@ const Header: FC = () => {
             <CustomLink to={'/'} text={'Главная'} />
           </li>
           <li onClick={() => handleHideMenu()}>
-            <CustomLink to={'/articles'} text={'Курсы'} />
+            <CustomLink to={'/articles'} text={'Cпециальности'} />
           </li>
           <li onClick={() => handleHideMenu()}>
             <CustomLink to={'/about'} text={'Инфо'} />

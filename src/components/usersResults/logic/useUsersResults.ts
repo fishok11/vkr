@@ -8,11 +8,13 @@ import {
 } from '../../../app/userSlice';
 import { mainState } from '../../../app/mainSlice';
 import { Result } from '../../../app/types';
+import { useCookies } from 'react-cookie';
 
 export const useUsersResults = () => {
   const dispatch = useAppDispatch();
   const stateUser = useAppSelector(userState);
   const stateMain = useAppSelector(mainState);
+  const [cookies] = useCookies(['user']);
   const [usernameToSearch, setUsernameToSearch] = useState('');
   const [activeIndexArticle, setActiveIndexArticle] = useState<string | null>(
     null,
@@ -80,6 +82,7 @@ export const useUsersResults = () => {
   return {
     stateUser,
     stateMain,
+    cookies,
     activeIndexArticle,
     activeIndexChapter,
     onTitleArticleClick,
