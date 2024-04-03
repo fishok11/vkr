@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { getUsers, userState } from '../../../app/userSlice';
+import {
+  getUsers,
+  setArticleIdForResultModal,
+  showResultModal,
+  userState,
+} from '../../../app/userSlice';
 import { mainState } from '../../../app/mainSlice';
+import { Result } from '../../../app/types';
 
 export const useUsersResults = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +36,15 @@ export const useUsersResults = () => {
     return user?.username;
   };
 
+  const handleShowResultModal = (
+    result: Result,
+    articleId: string | undefined,
+  ) => {
+    if (!articleId) return;
+    dispatch(setArticleIdForResultModal(articleId));
+    dispatch(showResultModal(result));
+  };
+
   useEffect(() => {
     dispatch(getUsers());
   }, []);
@@ -42,5 +57,6 @@ export const useUsersResults = () => {
     onTitleArticleClick,
     onTitleChapterClick,
     findUserName,
+    handleShowResultModal,
   };
 };

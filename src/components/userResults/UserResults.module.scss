@@ -8,33 +8,37 @@
   .accordionContainer {
     @apply flex flex-col gap-3;
 
-    .articleTitle {
-      @apply flex items-center justify-between w-full p-5 font-medium border border-gray-700 rounded-lg bg-gray-900 hover:bg-gray-800 hover:text-white cursor-pointer duration-150 text-wrap text-left;
-    }
+    .article {
+      @apply w-full p-5 flex flex-col gap-3 items-start border border-gray-700 rounded-lg;
 
-    .tableContainer {
-      @apply w-full overflow-y-auto;
+      .articleTitle {
+        @apply text-lg font-bold;
+      }
 
-      .table {
-        @apply w-full text-sm text-left rtl:text-right text-gray-400 rounded-lg overflow-hidden;
+      .tableContainer {
+        @apply w-full overflow-y-auto;
 
-        .tableHead {
-          @apply text-xs uppercase bg-gray-700 text-gray-400;
+        .table {
+          @apply w-full text-sm text-left rtl:text-right text-gray-400 rounded-lg overflow-hidden;
 
-          .tableHeadItem {
-            @apply px-6 py-3;
+          .tableHead {
+            @apply text-xs uppercase bg-gray-700 text-gray-400;
+
+            .tableHeadItem {
+              @apply px-6 py-3;
+            }
           }
-        }
 
-        .tableBody {
-          .tableRow {
-            @apply bg-gray-800 border-gray-700 hover:bg-gray-600;
+          .tableBody {
+            .tableRow {
+              @apply bg-gray-800 border-gray-700 hover:bg-gray-600;
 
-            .tableRowItem {
-              @apply px-6 py-4;
+              .tableRowItem {
+                @apply px-6 py-4;
 
-              .button {
-                @apply font-bold text-blue-500 hover:underline;
+                .button {
+                  @apply font-bold text-blue-500 hover:underline;
+                }
               }
             }
           }

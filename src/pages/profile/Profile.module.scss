@@ -17,6 +17,10 @@
     }
   }
 
+  .line {
+    @apply w-full border-b border-gray-400;
+  }
+
   @media (max-width: 768px) {
     @apply w-4/5;
 

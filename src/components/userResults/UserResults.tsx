@@ -64,12 +64,20 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                           .includes(article.id),
                     )
                     .map((article) => (
-                      <React.Fragment key={article.id}>
+                      <div className={styles.article} key={article.id}>
                         <button
                           className={styles.articleTitle}
                           onClick={() => onTitleArticleClick(article.id)}
                         >
-                          <h3>{article.title}</h3>
+                          <h3>
+                            {article.title}{' '}
+                            {activeIndexArticle === article.id && (
+                              <FontAwesomeIcon icon={faCaretUp} />
+                            )}
+                            {activeIndexArticle !== article.id && (
+                              <FontAwesomeIcon icon={faCaretDown} />
+                            )}
+                          </h3>
                         </button>
                         {activeIndexArticle === article.id && (
                           <div className={styles.tableContainer}>
@@ -151,7 +159,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                             </table>
                           </div>
                         )}
-                      </React.Fragment>
+                      </div>
                     ))}
                 </div>
               )}
