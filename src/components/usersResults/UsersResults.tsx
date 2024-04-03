@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { Chapter } from '../../app/types';
 import AttemptModal from '../attemptModal/AttemptModal';
+import Input from '../../UI/input/Input';
 
 const UsersResults = () => {
   const {
@@ -64,80 +65,89 @@ const UsersResults = () => {
                         </h3>
                       </button>
                       {activeIndexArticle === article.id && (
-                        <div className={styles.tableContainer}>
-                          <table className={styles.table}>
-                            <thead className={styles.tableHead}>
-                              <tr>
-                                <th
-                                  scope="col"
-                                  className={styles.tableHeadItem}
-                                >
-                                  Имя
-                                </th>
-                                <th
-                                  scope="col"
-                                  className={styles.tableHeadItem}
-                                >
-                                  Курс
-                                </th>
-                                <th
-                                  scope="col"
-                                  className={styles.tableHeadItem}
-                                >
-                                  Попытка
-                                </th>
-                                <th
-                                  scope="col"
-                                  className={styles.tableHeadItem}
-                                >
-                                  Cредний балл
-                                </th>
-                                <th
-                                  scope="col"
-                                  className={styles.tableHeadItem}
-                                />
-                              </tr>
-                            </thead>
-                            <tbody className={styles.tableBody}>
-                              {stateUser.results
-                                .filter(
-                                  (result) => result.articleId === article.id,
-                                )
-                                .map((result, indexResult) => (
-                                  <tr
-                                    className={styles.tableRow}
-                                    key={result.id}
+                        <>
+                          <Input
+                            id={'search'}
+                            type={'text'}
+                            placeholder={'Введите имя пользователя'}
+                            // value={articleToSearch}
+                            // onChange={(e) => setArticleToSearch(e.target.value)}
+                          />
+                          <div className={styles.tableContainer}>
+                            <table className={styles.table}>
+                              <thead className={styles.tableHead}>
+                                <tr>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
                                   >
-                                    <td className={styles.tableRowItem}>
-                                      {findUserName(result.userId)}
-                                    </td>
-                                    <td className={styles.tableRowItem}>
-                                      {article.title}
-                                    </td>
-                                    <td className={styles.tableRowItem}>
-                                      {indexResult + 1}
-                                    </td>
-                                    <td className={styles.tableRowItem}>
-                                      {Math.floor(result.averageGrade)}
-                                    </td>
-                                    <td className={styles.tableRowItem}>
-                                      <button
-                                        className={styles.button}
-                                        onClick={() =>
-                                          handleShowResultModal(
-                                            result,
-                                            result.articleId,
-                                          )
-                                        }
-                                      >
-                                        Посмотреть попытку
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
-                            </tbody>
-                          </table>
-                        </div>
+                                    Имя
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Курс
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Попытка
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Cредний балл
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  />
+                                </tr>
+                              </thead>
+                              <tbody className={styles.tableBody}>
+                                {stateUser.results
+                                  .filter(
+                                    (result) => result.articleId === article.id,
+                                  )
+                                  .map((result, indexResult) => (
+                                    <tr
+                                      className={styles.tableRow}
+                                      key={result.id}
+                                    >
+                                      <td className={styles.tableRowItem}>
+                                        {findUserName(result.userId)}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        {article.title}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        {indexResult + 1}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        {Math.floor(result.averageGrade)}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        <button
+                                          className={styles.button}
+                                          onClick={() =>
+                                            handleShowResultModal(
+                                              result,
+                                              result.articleId,
+                                            )
+                                          }
+                                        >
+                                          Посмотреть попытку
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        </>
                       )}
                     </div>
                   ))}

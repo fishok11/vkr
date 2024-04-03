@@ -31,17 +31,15 @@ const UserProfile: FC = () => {
           </div>
           <div className={styles.line} />
           <div>
-            <h2>
-              <b>Результаты ваших тестов:</b>
-            </h2>
+            <h2 className={styles.resultsTitle}>Результаты ваших тестов:</h2>
             <UserResults userId={cookies.user} />
           </div>
           {stateUser.user.admin && (
             <>
               <div className={styles.line} />
               <div>
-                <h2>
-                  <b>Результаты тестов пользователей:</b>
+                <h2 className={styles.resultsTitle}>
+                  Результаты тестов пользователей:
                 </h2>
                 <UsersResults />
               </div>

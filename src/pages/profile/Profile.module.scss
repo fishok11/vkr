@@ -21,6 +21,10 @@
     @apply w-full border-b border-gray-400;
   }
 
+  .resultsTitle {
+    @apply mb-5 font-bold underline;
+  }
+
   @media (max-width: 768px) {
     @apply w-4/5;
 
