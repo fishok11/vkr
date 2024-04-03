@@ -20,6 +20,7 @@ export type InitialState = {
   users: User[];
   results: Result[];
   resultForResultModal: Result | null;
+  articleIdForResultModal: string;
   resultModal: boolean;
   logInModal: boolean;
   signUpModal: boolean;
@@ -43,6 +44,7 @@ const initialState: InitialState = {
   users: [],
   results: [],
   resultForResultModal: null,
+  articleIdForResultModal: 'string',
   resultModal: false,
   logInModal: false,
   signUpModal: false,
@@ -228,8 +230,12 @@ export const userSlice = createSlice({
       state.resultModal = true;
     },
     hideResultModal: (state) => {
+      state.articleIdForResultModal = initialState.articleIdForResultModal;
       state.resultForResultModal = initialState.resultForResultModal;
       state.resultModal = false;
+    },
+    setArticleIdForResultModal: (state, action: PayloadAction<string>) => {
+      state.articleIdForResultModal = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -292,6 +298,7 @@ export const {
   hideSignUpModal,
   showResultModal,
   hideResultModal,
+  setArticleIdForResultModal,
 } = userSlice.actions;
 
 export const userState = (state: RootState) => state.user;
