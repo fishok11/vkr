@@ -53,109 +53,107 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                 </h2>
               </button>
               {activeIndexChapter === chapter.id && (
-                <>
-                  <div className={styles.accordionContainer}>
-                    {stateMain.articles
-                      .filter(
-                        (article) =>
-                          article.chapterId == chapter.id &&
-                          stateUser.results
-                            .filter((result) => result.userId == userId)
-                            .map((result) => result.articleId)
-                            .includes(article.id),
-                      )
-                      .map((article) => (
-                        <React.Fragment key={article.id}>
-                          <button
-                            className={styles.articleTitle}
-                            onClick={() => onTitleArticleClick(article.id)}
-                          >
-                            <h3>{article.title}</h3>
-                          </button>
-                          {activeIndexArticle === article.id && (
-                            <div className={styles.tableContainer}>
-                              <table className={styles.table}>
-                                <thead className={styles.tableHead}>
-                                  <tr>
-                                    <th
-                                      scope="col"
-                                      className={styles.tableHeadItem}
+                <div className={styles.accordionContainer}>
+                  {stateMain.articles
+                    .filter(
+                      (article) =>
+                        article.chapterId == chapter.id &&
+                        stateUser.results
+                          .filter((result) => result.userId == userId)
+                          .map((result) => result.articleId)
+                          .includes(article.id),
+                    )
+                    .map((article) => (
+                      <React.Fragment key={article.id}>
+                        <button
+                          className={styles.articleTitle}
+                          onClick={() => onTitleArticleClick(article.id)}
+                        >
+                          <h3>{article.title}</h3>
+                        </button>
+                        {activeIndexArticle === article.id && (
+                          <div className={styles.tableContainer}>
+                            <table className={styles.table}>
+                              <thead className={styles.tableHead}>
+                                <tr>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Имя
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Курс
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Попытка
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  >
+                                    Cредний балл
+                                  </th>
+                                  <th
+                                    scope="col"
+                                    className={styles.tableHeadItem}
+                                  />
+                                </tr>
+                              </thead>
+                              <tbody className={styles.tableBody}>
+                                {stateUser.results
+                                  .filter(
+                                    (result) =>
+                                      result.userId === cookies.user &&
+                                      result.articleId === article.id,
+                                  )
+                                  .map((result, indexResult) => (
+                                    <tr
+                                      className={styles.tableRow}
+                                      key={result.id}
                                     >
-                                      Имя
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      className={styles.tableHeadItem}
-                                    >
-                                      Курс
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      className={styles.tableHeadItem}
-                                    >
-                                      Попытка
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      className={styles.tableHeadItem}
-                                    >
-                                      Cредний балл
-                                    </th>
-                                    <th
-                                      scope="col"
-                                      className={styles.tableHeadItem}
-                                    />
-                                  </tr>
-                                </thead>
-                                <tbody className={styles.tableBody}>
-                                  {stateUser.results
-                                    .filter(
-                                      (result) =>
-                                        result.userId === cookies.user &&
-                                        result.articleId === article.id,
-                                    )
-                                    .map((result, indexResult) => (
-                                      <tr
-                                        className={styles.tableRow}
-                                        key={result.id}
-                                      >
-                                        <td className={styles.tableRowItem}>
-                                          {result.userId === userId
-                                            ? 'Вы'
-                                            : userId}
-                                        </td>
-                                        <td className={styles.tableRowItem}>
-                                          {article.title}
-                                        </td>
-                                        <td className={styles.tableRowItem}>
-                                          {indexResult + 1}
-                                        </td>
-                                        <td className={styles.tableRowItem}>
-                                          {Math.floor(result.averageGrade)}
-                                        </td>
-                                        <td className={styles.tableRowItem}>
-                                          <button
-                                            className={styles.button}
-                                            onClick={() =>
-                                              handleShowResultModal(
-                                                result,
-                                                result.articleId,
-                                              )
-                                            }
-                                          >
-                                            Посмотреть попытку
-                                          </button>
-                                        </td>
-                                      </tr>
-                                    ))}
-                                </tbody>
-                              </table>
-                            </div>
-                          )}
-                        </React.Fragment>
-                      ))}
-                  </div>
-                </>
+                                      <td className={styles.tableRowItem}>
+                                        {result.userId === userId
+                                          ? 'Вы'
+                                          : userId}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        {article.title}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        {indexResult + 1}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        {Math.floor(result.averageGrade)}
+                                      </td>
+                                      <td className={styles.tableRowItem}>
+                                        <button
+                                          className={styles.button}
+                                          onClick={() =>
+                                            handleShowResultModal(
+                                              result,
+                                              result.articleId,
+                                            )
+                                          }
+                                        >
+                                          Посмотреть попытку
+                                        </button>
+                                      </td>
+                                    </tr>
+                                  ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
+                      </React.Fragment>
+                    ))}
+                </div>
               )}
             </React.Fragment>
           ),

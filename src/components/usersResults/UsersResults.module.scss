@@ -8,4 +8,50 @@
       @apply flex justify-start items-center gap-4;
     }
   }
+
+  .chapterTitle {
+    @apply flex justify-between items-center gap-3 text-wrap text-left;
+  }
+
+  .articlesContainer {
+    @apply flex flex-col gap-3 items-start;
+
+    .article {
+      @apply w-full p-5 flex flex-col gap-3 items-start border border-gray-700 rounded-lg;
+
+      .articleTitle {
+        @apply text-lg font-bold;
+      }
+
+      .tableContainer {
+        @apply w-full overflow-y-auto;
+
+        .table {
+          @apply w-full text-sm text-left rtl:text-right text-gray-400 rounded-lg overflow-hidden;
+
+          .tableHead {
+            @apply text-xs uppercase bg-gray-700 text-gray-400;
+
+            .tableHeadItem {
+              @apply px-6 py-3;
+            }
+          }
+
+          .tableBody {
+            .tableRow {
+              @apply bg-gray-800 border-gray-700 hover:bg-gray-600;
+
+              .tableRowItem {
+                @apply px-6 py-4;
+
+                .button {
+                  @apply font-bold text-blue-500 hover:underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
