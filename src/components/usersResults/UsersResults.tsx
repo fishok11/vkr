@@ -98,7 +98,7 @@ const UsersResults = () => {
                                     scope="col"
                                     className={styles.tableHeadItem}
                                   >
-                                    Попытка
+                                    Попытка №
                                   </th>
                                   <th
                                     scope="col"
@@ -123,7 +123,7 @@ const UsersResults = () => {
                                           usernameToSearch.toLowerCase(),
                                         ),
                                   )
-                                  .map((result, indexResult) => (
+                                  .map((result) => (
                                     <tr
                                       className={styles.tableRow}
                                       key={result.id}
@@ -138,7 +138,7 @@ const UsersResults = () => {
                                         {setAttempt(result)}
                                       </td>
                                       <td className={styles.tableRowItem}>
-                                        {Math.floor(result.averageGrade)}
+                                        {Math.floor(result.averageGrade)} / 100
                                       </td>
                                       <td className={styles.tableRowItem}>
                                         <button

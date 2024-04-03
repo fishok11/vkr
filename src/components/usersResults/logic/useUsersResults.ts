@@ -49,9 +49,7 @@ export const useUsersResults = () => {
     return user ? user.username : '';
   };
 
-  const setAttempt = (
-    props: Result 
-  ) => {
+  const setAttempt = (props: Result) => {
     if (!props.articleId) return '';
 
     const userArticleResults: Result[] = stateUser.results.filter(

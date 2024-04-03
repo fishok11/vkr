@@ -100,7 +100,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                                     scope="col"
                                     className={styles.tableHeadItem}
                                   >
-                                    Попытка
+                                    Попытка №
                                   </th>
                                   <th
                                     scope="col"
@@ -138,7 +138,7 @@ const UserResults: FC<UserResultsParams> = ({ userId }) => {
                                         {indexResult + 1}
                                       </td>
                                       <td className={styles.tableRowItem}>
-                                        {Math.floor(result.averageGrade)}
+                                        {Math.floor(result.averageGrade)} / 100
                                       </td>
                                       <td className={styles.tableRowItem}>
                                         <button

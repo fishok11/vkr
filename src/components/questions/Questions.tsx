@@ -92,7 +92,7 @@ const Questions: FC<QuestionsProps> = ({ articleTitle }) => {
                       Курс
                     </th>
                     <th scope="col" className={styles.tableHeadItem}>
-                      Попытка
+                      Попытка №
                     </th>
                     <th scope="col" className={styles.tableHeadItem}>
                       Cредний балл
@@ -115,7 +115,7 @@ const Questions: FC<QuestionsProps> = ({ articleTitle }) => {
                           {indexResult + 1}
                         </td>
                         <td className={styles.tableRowItem}>
-                          {Math.floor(result.averageGrade)}
+                          {Math.floor(result.averageGrade)} / 100
                         </td>
                         <td className={styles.tableRowItem}>
                           <button
