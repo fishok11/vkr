@@ -10,6 +10,7 @@ import { useCookies } from 'react-cookie';
 import { useParams } from 'react-router';
 import { addResult } from '../../../app/userSlice';
 import { Result, ResultToAdded } from '../../../app/types';
+import toast from 'react-hot-toast';
 
 export const useQuestions = () => {
   const stateMain = useAppSelector(mainState);
@@ -18,7 +19,6 @@ export const useQuestions = () => {
   const [selectedAnswers, setSelectedAnswers] = useState<{
     [key: string]: string;
   }>({});
-  const [errorMessage, setErrorMessage] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [newAttempt, setNewAttempt] = useState(false);
   const [cookies] = useCookies(['user']);
@@ -81,7 +81,7 @@ export const useQuestions = () => {
     const quantityAnswers = Object.keys(selectedAnswers).length;
 
     if (quantityAnswers < quantityQuestions) {
-      setErrorMessage(true);
+      toast.error('Ответьте на все вопросы');
       return;
     }
 
@@ -143,7 +143,6 @@ export const useQuestions = () => {
     checkUserResults,
     calcQuantityAttempt,
     handleShowResultModal,
-    errorMessage,
     cookies,
   };
 };

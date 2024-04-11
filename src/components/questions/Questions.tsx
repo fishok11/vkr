@@ -23,7 +23,6 @@ const Questions: FC<QuestionsProps> = ({ articleTitle }) => {
     checkUserResults,
     calcQuantityAttempt,
     handleShowResultModal,
-    errorMessage,
     cookies,
   } = useQuestions();
 
@@ -66,9 +65,6 @@ const Questions: FC<QuestionsProps> = ({ articleTitle }) => {
                   </div>
                 </div>
               ))}
-            {errorMessage && (
-              <p className={styles.errorMessage}>Ответьте на все вопросы</p>
-            )}
             <div className={styles.buttonContainer}>
               <Button
                 text={'Посмотреть результаты'}
