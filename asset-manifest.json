@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/vkr/static/css/main.288b513e.css",
-    "main.js": "/vkr/static/js/main.5d18bdad.js",
+    "main.css": "/vkr/static/css/main.e6d2b250.css",
+    "main.js": "/vkr/static/js/main.5163302b.js",
     "static/js/787.c7d339cf.chunk.js": "/vkr/static/js/787.c7d339cf.chunk.js",
     "static/media/logoPenzGTU.png": "/vkr/static/media/logoPenzGTU.2cf67f30b4bf93e8c8d5.png",
     "index.html": "/vkr/index.html",
-    "main.288b513e.css.map": "/vkr/static/css/main.288b513e.css.map",
-    "main.5d18bdad.js.map": "/vkr/static/js/main.5d18bdad.js.map",
+    "main.e6d2b250.css.map": "/vkr/static/css/main.e6d2b250.css.map",
+    "main.5163302b.js.map": "/vkr/static/js/main.5163302b.js.map",
     "787.c7d339cf.chunk.js.map": "/vkr/static/js/787.c7d339cf.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.288b513e.css",
-    "static/js/main.5d18bdad.js"
+    "static/css/main.e6d2b250.css",
+    "static/js/main.5163302b.js"
   ]
 }
