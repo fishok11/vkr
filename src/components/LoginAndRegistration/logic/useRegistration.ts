@@ -38,9 +38,16 @@ export const useRegistration = () => {
     password: password,
   };
 
+  const resetUserFields = () => {
+    setEmail('');
+    setUsername('');
+    setPassword('');
+  };
+
   const handleCloseModal = () => {
     dispatch(hideLogInModal());
     dispatch(hideSignUpModal());
+    resetUserFields();
   };
 
   //=============================================SignUp
@@ -51,6 +58,7 @@ export const useRegistration = () => {
   };
 
   const handleClickSignUp = () => {
+    resetUserFields();
     setErrorEmail(false);
     setErrorUsername(false);
     setErrorPasswor(false);
@@ -84,6 +92,7 @@ export const useRegistration = () => {
   //=============================================LogIn
 
   const handleClickLogIn = () => {
+    resetUserFields();
     setErrorUsername(false);
     setErrorUsername(false);
 
@@ -108,9 +117,7 @@ export const useRegistration = () => {
     }
 
     return () => {
-      setEmail('');
-      setUsername('');
-      setPassword('');
+      resetUserFields();
     };
   }, [stateUser.user.id]);
 
